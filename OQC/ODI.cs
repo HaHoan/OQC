@@ -27,5 +27,14 @@ namespace OQC
         public int CheckNumber { get; set; }
         public int NumberNG { get; set; }
         public string Note { get; set; }
+        public string Occur_Time { get; set; }
+        public string Occur_Line { get; set; }
+        public string Serial_Number { get; set; }
+        public string Position { get; set; }
+        public string Defection { get; set; }
+        public string Detail { get; set; }
+        public string NG_Photo { get; set; }
+        public string OK_Photo { get; set; }
+        public string Area { get; set; }
     }
 }

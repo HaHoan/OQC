@@ -29,6 +29,13 @@ namespace OQC
         public static string BROTHER = "BROTHER";
         public static string NICHICON = "NICHICON";
     }
+    public class Areas
+    {
+        public static string AUTO = "AUTO";
+        public static string ID = "ID";
+        public static string OA = "OA";
+        public static string PICKUP = "PICKUP";
+    }
     public class Shift
     {
         public static string DAY = "Day";

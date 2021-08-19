@@ -6,6 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="0494c012d9c1477896ae3b3855254f81" Name="Diagram1">
         <EntityTypeShape EntityType="ClaimFormModel.ODI" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ClaimFormModel.TypeNG" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ClaimFormModel.User" Width="1.5" PointX="3.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

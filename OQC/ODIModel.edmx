@@ -22,9 +22,40 @@
           <Property Name="CheckNumber" Type="int" Nullable="false" />
           <Property Name="NumberNG" Type="int" Nullable="false" />
           <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="Occur_Time" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Occur_Line" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Serial_Number" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Position" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Defection" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Detail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NG_Photo" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="OK_Photo" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Area" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeNG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeNG" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Department_id" Type="int" />
+          <Property Name="Position_id" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="MailCC" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityContainer Name="ClaimFormModelStoreContainer">
           <EntitySet Name="ODI" EntityType="Self.ODI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeNG" EntityType="Self.TypeNG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -32,6 +63,8 @@
       <Schema Namespace="ClaimFormModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ClaimFormEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ODIs" EntityType="ClaimFormModel.ODI" />
+          <EntitySet Name="TypeNGs" EntityType="ClaimFormModel.TypeNG" />
+          <EntitySet Name="Users" EntityType="ClaimFormModel.User" />
         </EntityContainer>
         <EntityType Name="ODI">
           <Key>
@@ -50,6 +83,35 @@
           <Property Name="CheckNumber" Type="Int32" Nullable="false" />
           <Property Name="NumberNG" Type="Int32" Nullable="false" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Occur_Time" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Occur_Line" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Serial_Number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Defection" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Detail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NG_Photo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="OK_Photo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Area" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TypeNG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeNG1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Department_id" Type="Int32" />
+          <Property Name="Position_id" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="MailCC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -60,6 +122,15 @@
           <EntitySetMapping Name="ODIs">
             <EntityTypeMapping TypeName="ClaimFormModel.ODI">
               <MappingFragment StoreEntitySet="ODI">
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="OK_Photo" ColumnName="OK_Photo" />
+                <ScalarProperty Name="NG_Photo" ColumnName="NG_Photo" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Defection" ColumnName="Defection" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Serial_Number" ColumnName="Serial_Number" />
+                <ScalarProperty Name="Occur_Line" ColumnName="Occur_Line" />
+                <ScalarProperty Name="Occur_Time" ColumnName="Occur_Time" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="NumberNG" ColumnName="NumberNG" />
                 <ScalarProperty Name="CheckNumber" ColumnName="CheckNumber" />
@@ -73,6 +144,28 @@
                 <ScalarProperty Name="Customer" ColumnName="Customer" />
                 <ScalarProperty Name="DateOccur" ColumnName="DateOccur" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeNGs">
+            <EntityTypeMapping TypeName="ClaimFormModel.TypeNG">
+              <MappingFragment StoreEntitySet="TypeNG">
+                <ScalarProperty Name="TypeNG1" ColumnName="TypeNG" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ClaimFormModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="MailCC" ColumnName="MailCC" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Position_id" ColumnName="Position_id" />
+                <ScalarProperty Name="Department_id" ColumnName="Department_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
