@@ -86,7 +86,15 @@ namespace OQC
             this.lblNight = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.panelAddWork = new System.Windows.Forms.Panel();
+            this.pbLoad = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.adgrvODi = new ADGV.AdvancedDataGridView();
+            this.label14 = new System.Windows.Forms.Label();
+            this.dpTo = new System.Windows.Forms.DateTimePicker();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dpFrom = new System.Windows.Forms.DateTimePicker();
             this.txbDateOccur = new System.Windows.Forms.TextBox();
+            this.btnDateOccur = new System.Windows.Forms.Button();
             this.btnSubmitNext = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -94,7 +102,9 @@ namespace OQC
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.btnAddOK = new System.Windows.Forms.Button();
+            this.pbOK = new System.Windows.Forms.PictureBox();
             this.btnAddNG = new System.Windows.Forms.Button();
+            this.pbNG = new System.Windows.Forms.PictureBox();
             this.cbbTypeNG = new System.Windows.Forms.ComboBox();
             this.dtpTimeOccur = new System.Windows.Forms.DateTimePicker();
             this.txbNGDetail = new System.Windows.Forms.TextBox();
@@ -107,40 +117,11 @@ namespace OQC
             this.txbLine = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
-            this.dpFrom = new System.Windows.Forms.DateTimePicker();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.dpTo = new System.Windows.Forms.DateTimePicker();
-            this.adgrvODi = new ADGV.AdvancedDataGridView();
-            this.claimFormDataSet = new OQC.ClaimFormDataSet();
             this.oDIBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.claimFormDataSet = new OQC.ClaimFormDataSet();
             this.oDITableAdapter = new OQC.ClaimFormDataSetTableAdapters.ODITableAdapter();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnDateOccur = new System.Windows.Forms.Button();
-            this.pbOK = new System.Windows.Forms.PictureBox();
-            this.pbNG = new System.Windows.Forms.PictureBox();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateOccurDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.customerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.areaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.shiftDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.inspectorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupModelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modelNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.wODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.wOQtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.checkNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numberNGDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.occurTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.occurLineDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.serialNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.positionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.defectionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.detailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nGPhotoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oKPhotoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.claimFormDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblNumberRow = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -153,11 +134,13 @@ namespace OQC
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panelAddWork.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLoad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adgrvODi)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.oDIBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNG)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.oDIBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dtpDateOccur
@@ -743,6 +726,8 @@ namespace OQC
             // 
             // panelAddWork
             // 
+            this.panelAddWork.Controls.Add(this.lblNumberRow);
+            this.panelAddWork.Controls.Add(this.pbLoad);
             this.panelAddWork.Controls.Add(this.button1);
             this.panelAddWork.Controls.Add(this.adgrvODi);
             this.panelAddWork.Controls.Add(this.label14);
@@ -795,6 +780,85 @@ namespace OQC
             this.panelAddWork.Size = new System.Drawing.Size(1210, 793);
             this.panelAddWork.TabIndex = 2;
             // 
+            // pbLoad
+            // 
+            this.pbLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbLoad.BackColor = System.Drawing.Color.White;
+            this.pbLoad.Image = global::OQC.Properties.Resources.load1;
+            this.pbLoad.Location = new System.Drawing.Point(634, 237);
+            this.pbLoad.Name = "pbLoad";
+            this.pbLoad.Size = new System.Drawing.Size(202, 200);
+            this.pbLoad.TabIndex = 61;
+            this.pbLoad.TabStop = false;
+            this.pbLoad.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = global::OQC.Properties.Resources.binoculars;
+            this.button1.Location = new System.Drawing.Point(566, 133);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(42, 33);
+            this.button1.TabIndex = 60;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // adgrvODi
+            // 
+            this.adgrvODi.AutoGenerateContextFilters = true;
+            this.adgrvODi.BackgroundColor = System.Drawing.Color.White;
+            this.adgrvODi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.adgrvODi.DateWithTime = false;
+            this.adgrvODi.Location = new System.Drawing.Point(286, 169);
+            this.adgrvODi.Name = "adgrvODi";
+            this.adgrvODi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.adgrvODi.Size = new System.Drawing.Size(915, 331);
+            this.adgrvODi.TabIndex = 59;
+            this.adgrvODi.TimeFilter = false;
+            this.adgrvODi.SortStringChanged += new System.EventHandler(this.adgrvODi_SortStringChanged);
+            this.adgrvODi.FilterStringChanged += new System.EventHandler(this.adgrvODi_FilterStringChanged);
+            this.adgrvODi.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.adgrvODi_CellMouseClick);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(427, 144);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(27, 13);
+            this.label14.TabIndex = 56;
+            this.label14.Text = "Đến";
+            // 
+            // dpTo
+            // 
+            this.dpTo.CustomFormat = "dd-MM-yyyy";
+            this.dpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpTo.Location = new System.Drawing.Point(457, 140);
+            this.dpTo.Name = "dpTo";
+            this.dpTo.Size = new System.Drawing.Size(77, 20);
+            this.dpTo.TabIndex = 55;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(296, 143);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(20, 13);
+            this.label11.TabIndex = 54;
+            this.label11.Text = "Từ";
+            // 
+            // dpFrom
+            // 
+            this.dpFrom.CustomFormat = "dd-MM-yyyy";
+            this.dpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpFrom.Location = new System.Drawing.Point(319, 140);
+            this.dpFrom.Name = "dpFrom";
+            this.dpFrom.Size = new System.Drawing.Size(77, 20);
+            this.dpFrom.TabIndex = 53;
+            // 
             // txbDateOccur
             // 
             this.txbDateOccur.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
@@ -803,6 +867,19 @@ namespace OQC
             this.txbDateOccur.Name = "txbDateOccur";
             this.txbDateOccur.Size = new System.Drawing.Size(123, 20);
             this.txbDateOccur.TabIndex = 52;
+            // 
+            // btnDateOccur
+            // 
+            this.btnDateOccur.BackColor = System.Drawing.Color.Transparent;
+            this.btnDateOccur.FlatAppearance.BorderSize = 0;
+            this.btnDateOccur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDateOccur.Image = global::OQC.Properties.Resources.calendar;
+            this.btnDateOccur.Location = new System.Drawing.Point(45, 3);
+            this.btnDateOccur.Name = "btnDateOccur";
+            this.btnDateOccur.Size = new System.Drawing.Size(42, 42);
+            this.btnDateOccur.TabIndex = 51;
+            this.btnDateOccur.UseVisualStyleBackColor = false;
+            this.btnDateOccur.Click += new System.EventHandler(this.btnDateOccur_Click);
             // 
             // btnSubmitNext
             // 
@@ -884,6 +961,15 @@ namespace OQC
             this.btnAddOK.UseVisualStyleBackColor = true;
             this.btnAddOK.Click += new System.EventHandler(this.btnAddOK_Click);
             // 
+            // pbOK
+            // 
+            this.pbOK.Location = new System.Drawing.Point(872, 544);
+            this.pbOK.Name = "pbOK";
+            this.pbOK.Size = new System.Drawing.Size(309, 204);
+            this.pbOK.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbOK.TabIndex = 43;
+            this.pbOK.TabStop = false;
+            // 
             // btnAddNG
             // 
             this.btnAddNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -895,6 +981,15 @@ namespace OQC
             this.btnAddNG.Text = "Chọn Ảnh";
             this.btnAddNG.UseVisualStyleBackColor = true;
             this.btnAddNG.Click += new System.EventHandler(this.btnAddNG_Click);
+            // 
+            // pbNG
+            // 
+            this.pbNG.Location = new System.Drawing.Point(538, 544);
+            this.pbNG.Name = "pbNG";
+            this.pbNG.Size = new System.Drawing.Size(309, 210);
+            this.pbNG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbNG.TabIndex = 41;
+            this.pbNG.TabStop = false;
             // 
             // cbbTypeNG
             // 
@@ -1020,321 +1115,33 @@ namespace OQC
             this.label30.TabIndex = 29;
             this.label30.Text = "Thời điểm(hh:mm)";
             // 
-            // dpFrom
+            // oDIBindingSource
             // 
-            this.dpFrom.CustomFormat = "dd-MM-yyyy";
-            this.dpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpFrom.Location = new System.Drawing.Point(319, 140);
-            this.dpFrom.Name = "dpFrom";
-            this.dpFrom.Size = new System.Drawing.Size(77, 20);
-            this.dpFrom.TabIndex = 53;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(296, 143);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(20, 13);
-            this.label11.TabIndex = 54;
-            this.label11.Text = "Từ";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(427, 144);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(27, 13);
-            this.label14.TabIndex = 56;
-            this.label14.Text = "Đến";
-            // 
-            // dpTo
-            // 
-            this.dpTo.CustomFormat = "dd-MM-yyyy";
-            this.dpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpTo.Location = new System.Drawing.Point(457, 140);
-            this.dpTo.Name = "dpTo";
-            this.dpTo.Size = new System.Drawing.Size(77, 20);
-            this.dpTo.TabIndex = 55;
-            // 
-            // adgrvODi
-            // 
-            this.adgrvODi.AutoGenerateColumns = false;
-            this.adgrvODi.AutoGenerateContextFilters = true;
-            this.adgrvODi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.adgrvODi.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.dateOccurDataGridViewTextBoxColumn,
-            this.customerDataGridViewTextBoxColumn,
-            this.areaDataGridViewTextBoxColumn,
-            this.shiftDataGridViewTextBoxColumn,
-            this.stationDataGridViewTextBoxColumn,
-            this.inspectorDataGridViewTextBoxColumn,
-            this.groupModelDataGridViewTextBoxColumn,
-            this.modelNameDataGridViewTextBoxColumn,
-            this.wODataGridViewTextBoxColumn,
-            this.wOQtyDataGridViewTextBoxColumn,
-            this.checkNumberDataGridViewTextBoxColumn,
-            this.numberNGDataGridViewTextBoxColumn,
-            this.noteDataGridViewTextBoxColumn,
-            this.occurTimeDataGridViewTextBoxColumn,
-            this.occurLineDataGridViewTextBoxColumn,
-            this.serialNumberDataGridViewTextBoxColumn,
-            this.positionDataGridViewTextBoxColumn,
-            this.defectionDataGridViewTextBoxColumn,
-            this.detailDataGridViewTextBoxColumn,
-            this.nGPhotoDataGridViewTextBoxColumn,
-            this.oKPhotoDataGridViewTextBoxColumn});
-            this.adgrvODi.DataSource = this.oDIBindingSource;
-            this.adgrvODi.DateWithTime = false;
-            this.adgrvODi.Location = new System.Drawing.Point(286, 169);
-            this.adgrvODi.Name = "adgrvODi";
-            this.adgrvODi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.adgrvODi.Size = new System.Drawing.Size(915, 331);
-            this.adgrvODi.TabIndex = 59;
-            this.adgrvODi.TimeFilter = false;
-            this.adgrvODi.SortStringChanged += new System.EventHandler(this.adgrvODi_SortStringChanged);
-            this.adgrvODi.FilterStringChanged += new System.EventHandler(this.adgrvODi_FilterStringChanged);
-            this.adgrvODi.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.adgrvODi_CellMouseClick);
+            this.oDIBindingSource.DataMember = "ODI";
+            this.oDIBindingSource.DataSource = this.claimFormDataSet;
             // 
             // claimFormDataSet
             // 
             this.claimFormDataSet.DataSetName = "ClaimFormDataSet";
             this.claimFormDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // oDIBindingSource
-            // 
-            this.oDIBindingSource.DataMember = "ODI";
-            this.oDIBindingSource.DataSource = this.claimFormDataSet;
-            // 
             // oDITableAdapter
             // 
             this.oDITableAdapter.ClearBeforeFill = true;
             // 
-            // button1
+            // claimFormDataSetBindingSource
             // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::OQC.Properties.Resources.binoculars;
-            this.button1.Location = new System.Drawing.Point(566, 133);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(42, 33);
-            this.button1.TabIndex = 60;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.claimFormDataSetBindingSource.DataSource = this.claimFormDataSet;
+            this.claimFormDataSetBindingSource.Position = 0;
             // 
-            // btnDateOccur
+            // lblNumberRow
             // 
-            this.btnDateOccur.BackColor = System.Drawing.Color.Transparent;
-            this.btnDateOccur.FlatAppearance.BorderSize = 0;
-            this.btnDateOccur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDateOccur.Image = global::OQC.Properties.Resources.calendar;
-            this.btnDateOccur.Location = new System.Drawing.Point(45, 3);
-            this.btnDateOccur.Name = "btnDateOccur";
-            this.btnDateOccur.Size = new System.Drawing.Size(42, 42);
-            this.btnDateOccur.TabIndex = 51;
-            this.btnDateOccur.UseVisualStyleBackColor = false;
-            this.btnDateOccur.Click += new System.EventHandler(this.btnDateOccur_Click);
-            // 
-            // pbOK
-            // 
-            this.pbOK.Location = new System.Drawing.Point(872, 544);
-            this.pbOK.Name = "pbOK";
-            this.pbOK.Size = new System.Drawing.Size(309, 204);
-            this.pbOK.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbOK.TabIndex = 43;
-            this.pbOK.TabStop = false;
-            // 
-            // pbNG
-            // 
-            this.pbNG.Location = new System.Drawing.Point(538, 544);
-            this.pbNG.Name = "pbNG";
-            this.pbNG.Size = new System.Drawing.Size(309, 210);
-            this.pbNG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbNG.TabIndex = 41;
-            this.pbNG.TabStop = false;
-            // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "ID";
-            this.ID.MinimumWidth = 22;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ID.Visible = false;
-            // 
-            // dateOccurDataGridViewTextBoxColumn
-            // 
-            this.dateOccurDataGridViewTextBoxColumn.DataPropertyName = "DateOccur";
-            this.dateOccurDataGridViewTextBoxColumn.HeaderText = "DateOccur";
-            this.dateOccurDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.dateOccurDataGridViewTextBoxColumn.Name = "dateOccurDataGridViewTextBoxColumn";
-            this.dateOccurDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // customerDataGridViewTextBoxColumn
-            // 
-            this.customerDataGridViewTextBoxColumn.DataPropertyName = "Customer";
-            this.customerDataGridViewTextBoxColumn.HeaderText = "Customer";
-            this.customerDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.customerDataGridViewTextBoxColumn.Name = "customerDataGridViewTextBoxColumn";
-            this.customerDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // areaDataGridViewTextBoxColumn
-            // 
-            this.areaDataGridViewTextBoxColumn.DataPropertyName = "Area";
-            this.areaDataGridViewTextBoxColumn.HeaderText = "Area";
-            this.areaDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.areaDataGridViewTextBoxColumn.Name = "areaDataGridViewTextBoxColumn";
-            this.areaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // shiftDataGridViewTextBoxColumn
-            // 
-            this.shiftDataGridViewTextBoxColumn.DataPropertyName = "Shift";
-            this.shiftDataGridViewTextBoxColumn.HeaderText = "Shift";
-            this.shiftDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.shiftDataGridViewTextBoxColumn.Name = "shiftDataGridViewTextBoxColumn";
-            this.shiftDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // stationDataGridViewTextBoxColumn
-            // 
-            this.stationDataGridViewTextBoxColumn.DataPropertyName = "Station";
-            this.stationDataGridViewTextBoxColumn.HeaderText = "Station";
-            this.stationDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.stationDataGridViewTextBoxColumn.Name = "stationDataGridViewTextBoxColumn";
-            this.stationDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // inspectorDataGridViewTextBoxColumn
-            // 
-            this.inspectorDataGridViewTextBoxColumn.DataPropertyName = "Inspector";
-            this.inspectorDataGridViewTextBoxColumn.HeaderText = "Inspector";
-            this.inspectorDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.inspectorDataGridViewTextBoxColumn.Name = "inspectorDataGridViewTextBoxColumn";
-            this.inspectorDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // groupModelDataGridViewTextBoxColumn
-            // 
-            this.groupModelDataGridViewTextBoxColumn.DataPropertyName = "GroupModel";
-            this.groupModelDataGridViewTextBoxColumn.HeaderText = "GroupModel";
-            this.groupModelDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.groupModelDataGridViewTextBoxColumn.Name = "groupModelDataGridViewTextBoxColumn";
-            this.groupModelDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // modelNameDataGridViewTextBoxColumn
-            // 
-            this.modelNameDataGridViewTextBoxColumn.DataPropertyName = "ModelName";
-            this.modelNameDataGridViewTextBoxColumn.HeaderText = "ModelName";
-            this.modelNameDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.modelNameDataGridViewTextBoxColumn.Name = "modelNameDataGridViewTextBoxColumn";
-            this.modelNameDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // wODataGridViewTextBoxColumn
-            // 
-            this.wODataGridViewTextBoxColumn.DataPropertyName = "WO";
-            this.wODataGridViewTextBoxColumn.HeaderText = "WO";
-            this.wODataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.wODataGridViewTextBoxColumn.Name = "wODataGridViewTextBoxColumn";
-            this.wODataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // wOQtyDataGridViewTextBoxColumn
-            // 
-            this.wOQtyDataGridViewTextBoxColumn.DataPropertyName = "WOQty";
-            this.wOQtyDataGridViewTextBoxColumn.HeaderText = "WOQty";
-            this.wOQtyDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.wOQtyDataGridViewTextBoxColumn.Name = "wOQtyDataGridViewTextBoxColumn";
-            this.wOQtyDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // checkNumberDataGridViewTextBoxColumn
-            // 
-            this.checkNumberDataGridViewTextBoxColumn.DataPropertyName = "CheckNumber";
-            this.checkNumberDataGridViewTextBoxColumn.HeaderText = "CheckNumber";
-            this.checkNumberDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.checkNumberDataGridViewTextBoxColumn.Name = "checkNumberDataGridViewTextBoxColumn";
-            this.checkNumberDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // numberNGDataGridViewTextBoxColumn
-            // 
-            this.numberNGDataGridViewTextBoxColumn.DataPropertyName = "NumberNG";
-            this.numberNGDataGridViewTextBoxColumn.HeaderText = "NumberNG";
-            this.numberNGDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.numberNGDataGridViewTextBoxColumn.Name = "numberNGDataGridViewTextBoxColumn";
-            this.numberNGDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // noteDataGridViewTextBoxColumn
-            // 
-            this.noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
-            this.noteDataGridViewTextBoxColumn.HeaderText = "Note";
-            this.noteDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
-            this.noteDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.noteDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // occurTimeDataGridViewTextBoxColumn
-            // 
-            this.occurTimeDataGridViewTextBoxColumn.DataPropertyName = "Occur_Time";
-            this.occurTimeDataGridViewTextBoxColumn.HeaderText = "Occur_Time";
-            this.occurTimeDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.occurTimeDataGridViewTextBoxColumn.Name = "occurTimeDataGridViewTextBoxColumn";
-            this.occurTimeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // occurLineDataGridViewTextBoxColumn
-            // 
-            this.occurLineDataGridViewTextBoxColumn.DataPropertyName = "Occur_Line";
-            this.occurLineDataGridViewTextBoxColumn.HeaderText = "Occur_Line";
-            this.occurLineDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.occurLineDataGridViewTextBoxColumn.Name = "occurLineDataGridViewTextBoxColumn";
-            this.occurLineDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // serialNumberDataGridViewTextBoxColumn
-            // 
-            this.serialNumberDataGridViewTextBoxColumn.DataPropertyName = "Serial_Number";
-            this.serialNumberDataGridViewTextBoxColumn.HeaderText = "Serial_Number";
-            this.serialNumberDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.serialNumberDataGridViewTextBoxColumn.Name = "serialNumberDataGridViewTextBoxColumn";
-            this.serialNumberDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // positionDataGridViewTextBoxColumn
-            // 
-            this.positionDataGridViewTextBoxColumn.DataPropertyName = "Position";
-            this.positionDataGridViewTextBoxColumn.HeaderText = "Position";
-            this.positionDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.positionDataGridViewTextBoxColumn.Name = "positionDataGridViewTextBoxColumn";
-            this.positionDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // defectionDataGridViewTextBoxColumn
-            // 
-            this.defectionDataGridViewTextBoxColumn.DataPropertyName = "Defection";
-            this.defectionDataGridViewTextBoxColumn.HeaderText = "Defection";
-            this.defectionDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.defectionDataGridViewTextBoxColumn.Name = "defectionDataGridViewTextBoxColumn";
-            this.defectionDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // detailDataGridViewTextBoxColumn
-            // 
-            this.detailDataGridViewTextBoxColumn.DataPropertyName = "Detail";
-            this.detailDataGridViewTextBoxColumn.HeaderText = "Detail";
-            this.detailDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.detailDataGridViewTextBoxColumn.Name = "detailDataGridViewTextBoxColumn";
-            this.detailDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.detailDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nGPhotoDataGridViewTextBoxColumn
-            // 
-            this.nGPhotoDataGridViewTextBoxColumn.DataPropertyName = "NG_Photo";
-            this.nGPhotoDataGridViewTextBoxColumn.HeaderText = "NG_Photo";
-            this.nGPhotoDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.nGPhotoDataGridViewTextBoxColumn.Name = "nGPhotoDataGridViewTextBoxColumn";
-            this.nGPhotoDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.nGPhotoDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // oKPhotoDataGridViewTextBoxColumn
-            // 
-            this.oKPhotoDataGridViewTextBoxColumn.DataPropertyName = "OK_Photo";
-            this.oKPhotoDataGridViewTextBoxColumn.HeaderText = "OK_Photo";
-            this.oKPhotoDataGridViewTextBoxColumn.MinimumWidth = 22;
-            this.oKPhotoDataGridViewTextBoxColumn.Name = "oKPhotoDataGridViewTextBoxColumn";
-            this.oKPhotoDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.oKPhotoDataGridViewTextBoxColumn.Visible = false;
+            this.lblNumberRow.AutoSize = true;
+            this.lblNumberRow.Location = new System.Drawing.Point(1149, 143);
+            this.lblNumberRow.Name = "lblNumberRow";
+            this.lblNumberRow.Size = new System.Drawing.Size(43, 13);
+            this.lblNumberRow.TabIndex = 62;
+            this.lblNumberRow.Text = "0 Rows";
             // 
             // FormMain
             // 
@@ -1366,11 +1173,13 @@ namespace OQC
             this.panel8.ResumeLayout(false);
             this.panelAddWork.ResumeLayout(false);
             this.panelAddWork.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLoad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.adgrvODi)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.oDIBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNG)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.oDIBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1466,27 +1275,8 @@ namespace OQC
         private System.Windows.Forms.BindingSource oDIBindingSource;
         private ClaimFormDataSetTableAdapters.ODITableAdapter oDITableAdapter;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateOccurDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn customerDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn areaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn shiftDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stationDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn inspectorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn groupModelDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn modelNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn wODataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn wOQtyDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn checkNumberDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numberNGDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn occurTimeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn occurLineDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn serialNumberDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn positionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn defectionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn detailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nGPhotoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn oKPhotoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource claimFormDataSetBindingSource;
+        private System.Windows.Forms.PictureBox pbLoad;
+        private System.Windows.Forms.Label lblNumberRow;
     }
 }

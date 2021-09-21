@@ -2,9 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace OQC
@@ -38,6 +41,9 @@ namespace OQC
             Areas.PICKUP,
             Areas.OA
         };
+        private string sql = "select  [ID] ,[DateOccur]  ,[Customer] ,[Area],[Shift],[Station],[Inspector],[GroupModel],[ModelName] ,[WO] ,[WOQty],[CheckNumber],[NumberNG] ,[Occur_Time] ,[Occur_Line] ,[Serial_Number] ,[Position],[Defection] from ODI";
+        private BindingSource odiDataSource = new BindingSource();
+        private SqlDataAdapter dataAdapter = new SqlDataAdapter();
         public FormMain()
         {
             InitializeComponent();
@@ -58,8 +64,14 @@ namespace OQC
                     cbbTypeNG.Items.Add(ng.TypeNG1);
                 }
             }
+            odiDataSource.ListChanged += OdiDataSource_ListChanged;
             GetTotal();
             this.ActiveControl = txbDateOccur;
+        }
+
+        private void OdiDataSource_ListChanged(object sender, System.ComponentModel.ListChangedEventArgs e)
+        {
+            lblNumberRow.Text = string.Format("{0} Rows", this.odiDataSource.List.Count);
         }
 
         private bool ValidateEntry()
@@ -260,8 +272,7 @@ namespace OQC
         }
         private void GetListODIs()
         {
-            this.oDIBindingSource.ResetBindings(true);
-
+            GetData(dataAdapter.SelectCommand.CommandText);
         }
 
         private void OnlyNumberPress(object sender, KeyPressEventArgs e)
@@ -687,24 +698,29 @@ namespace OQC
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            using (var db = new ClaimFormEntities())
+            if (MessageBox.Show("Bạn có muốn xóa không?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                if (IDODI == 0)
+
+                using (var db = new ClaimFormEntities())
                 {
-                    MessageBox.Show("Chọn một ODI để xóa!");
-                    return;
+                    if (IDODI == 0)
+                    {
+                        MessageBox.Show("Chọn một ODI để xóa!");
+                        return;
+                    }
+                    var ODI = db.ODIs.Where(m => m.ID == IDODI).FirstOrDefault();
+                    if (ODI == null)
+                    {
+                        MessageBox.Show("ODI không tồn tại!");
+                        return;
+                    }
+                    db.ODIs.Remove(ODI);
+                    db.SaveChanges();
+                    GetListODIs();
+                    ResetData();
                 }
-                var ODI = db.ODIs.Where(m => m.ID == IDODI).FirstOrDefault();
-                if (ODI == null)
-                {
-                    MessageBox.Show("ODI không tồn tại!");
-                    return;
-                }
-                db.ODIs.Remove(ODI);
-                db.SaveChanges();
-                GetListODIs();
-                ResetData();
             }
+
         }
         private void radioButtons_CheckedChanged(object sender, EventArgs e)
         {
@@ -726,28 +742,28 @@ namespace OQC
         {
             var dateFrom = dpFrom.Value.Date;
             var dateTo = dpTo.Value.Date;
-            this.oDIBindingSource.Filter = "DateOccur >= '" + dateFrom + "' AND DateOccur <= '" + dateTo + "'";
-
+            adgrvODi.DataSource = odiDataSource;
+            GetData(sql + " where DateOccur  >='" + dateFrom + "' AND DateOccur <= '" + dateTo + "'");
+            //odiDataSource.Filter = "DateOccur >= '" + dateFrom + "' AND DateOccur <= '" + dateTo + "'";
         }
 
 
         private void adgrvODi_FilterStringChanged(object sender, EventArgs e)
         {
-            this.oDIBindingSource.Filter = this.adgrvODi.FilterString;
+            odiDataSource.Filter = this.adgrvODi.FilterString;
         }
 
         private void adgrvODi_SortStringChanged(object sender, EventArgs e)
         {
-            this.oDIBindingSource.Sort = this.adgrvODi.SortString;
+            odiDataSource.Sort = this.adgrvODi.SortString;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'claimFormDataSet.ODI' table. You can move, or remove it, as needed.
-            this.oDITableAdapter.Fill(this.claimFormDataSet.ODI);
 
+            adgrvODi.DataSource = odiDataSource;
+            GetData(sql + " where DateOccur = '" + DateTime.Now.ToShortDateString() + "'");
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             compareDate();
@@ -834,7 +850,7 @@ namespace OQC
                         OK_Photo = "";
                         pbOK.Image = null;
                     }
-                   
+
                 }
             }
             catch (Exception ex)
@@ -843,5 +859,31 @@ namespace OQC
 
             }
         }
+
+
+        private void GetData(string selectCommand)
+        {
+            try
+            {
+
+                String connectionString = "Data Source=172.28.10.17;Initial Catalog=ClaimForm;Persist Security Info=True;User ID=sa;Password=umc@2019";
+
+                dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
+                DataTable table = new DataTable
+                {
+                    Locale = CultureInfo.InvariantCulture
+                };
+                dataAdapter.Fill(table);
+                odiDataSource.DataSource = table;
+
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("To run this example, replace the value of the " +
+                    "connectionString variable with a connection string that is " +
+                    "valid for your system.");
+            }
+        }
+
     }
 }

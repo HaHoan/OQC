@@ -224,6 +224,7 @@
       <DependentUpon>ODIModel.edmx</DependentUpon>
       <LastGenOutput>ODIModel.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\load.gif" />
     <None Include="Resources\binoculars.png" />
     <None Include="Connected Services\FTPServiceReference\FTPWebService.disco" />
     <None Include="Connected Services\FTPServiceReference\configuration91.svcinfo" />
