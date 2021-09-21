@@ -12,10 +12,10 @@
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>\\172.28.10.12\Share\18 IT\U34811%28hoanht%29\OQC\</PublishUrl>
+    <PublishUrl>\\vn-file\Share\18 IT\U34811%28hoanht%29\OQC\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
@@ -24,7 +24,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -68,6 +68,9 @@
     <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AdvancedDataGridView, Version=0.1.0.10, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ADGV.0.1.0.10\lib\net40\AdvancedDataGridView.dll</HintPath>
+    </Reference>
     <Reference Include="Bet.Util, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\Bet.Util.dll</HintPath>
@@ -105,6 +108,11 @@
   <ItemGroup>
     <Compile Include="Business\Extensions.cs" />
     <Compile Include="Business\Utils.cs" />
+    <Compile Include="ClaimFormDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClaimFormDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\FTPServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -165,10 +173,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EntityDeploy Include="ODIModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ODIModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <None Include="ClaimFormDataSet.xsc">
+      <DependentUpon>ClaimFormDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ClaimFormDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ClaimFormDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ClaimFormDataSet.xss">
+      <DependentUpon>ClaimFormDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Connected Services\FTPServiceReference\FTPWebService.wsdl" />
     <None Include="Connected Services\FTPServiceReference\OQC.FTPServiceReference.DownloadFileResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -176,6 +191,10 @@
     <None Include="Connected Services\FTPServiceReference\OQC.FTPServiceReference.UploadFileResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <EntityDeploy Include="ODIModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ODIModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="ODIModel.edmx.diagram">
       <DependentUpon>ODIModel.edmx</DependentUpon>
     </None>
@@ -195,6 +214,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ODIModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ODIModel.edmx</DependentUpon>
+      <LastGenOutput>ODIModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ODIModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ODIModel.edmx</DependentUpon>
+      <LastGenOutput>ODIModel.cs</LastGenOutput>
+    </Content>
+    <None Include="Resources\binoculars.png" />
     <None Include="Connected Services\FTPServiceReference\FTPWebService.disco" />
     <None Include="Connected Services\FTPServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\FTPServiceReference\configuration.svcinfo" />
@@ -203,16 +233,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="logo.ico" />
-    <Content Include="ODIModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ODIModel.Context.cs</LastGenOutput>
-      <DependentUpon>ODIModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="ODIModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ODIModel.edmx</DependentUpon>
-      <LastGenOutput>ODIModel.cs</LastGenOutput>
-    </Content>
     <None Include="Resources\calendar.png" />
   </ItemGroup>
   <ItemGroup>

@@ -59,7 +59,6 @@ namespace OQC
                 }
             }
             GetTotal();
-            GetListODIs();
             this.ActiveControl = txbDateOccur;
         }
 
@@ -224,11 +223,12 @@ namespace OQC
 
         private void dtpDateOccur_ValueChanged(object sender, EventArgs e)
         {
-            
-            txbDateOccur.Text = dtpDateOccur.Value.ToString("dd/MM/yyy");
-            GetListODIs();
-            GetTotal();
 
+            dpFrom.Value = dtpDateOccur.Value;
+            dpTo.Value = dtpDateOccur.Value;
+            txbDateOccur.Text = dtpDateOccur.Value.ToString("dd/MM/yyy");
+            compareDate();
+            GetTotal();
         }
 
         private void GetTotal()
@@ -260,11 +260,8 @@ namespace OQC
         }
         private void GetListODIs()
         {
-            using (var db = new ClaimFormEntities())
-            {
-                dtgvListODI.DataSource = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date).ToList();
-                dtgvListODI.Refresh();
-            }
+            this.oDIBindingSource.ResetBindings(true);
+
         }
 
         private void OnlyNumberPress(object sender, KeyPressEventArgs e)
@@ -335,7 +332,7 @@ namespace OQC
                     DateTime dateOccur = DateTime.Now;
                     try
                     {
-                        Convert.ToDateTime(txbDateOccur.Text);
+                        dateOccur = DateTime.ParseExact(txbDateOccur.Text.Trim(), "dd/MM/yyyy", null);
                     }
                     catch
                     {
@@ -718,11 +715,59 @@ namespace OQC
 
             }
         }
-        private void dtgvListODI_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+
+        private void btnDateOccur_Click(object sender, EventArgs e)
+        {
+            dtpDateOccur.Open();
+        }
+
+
+        private void compareDate()
+        {
+            var dateFrom = dpFrom.Value.Date;
+            var dateTo = dpTo.Value.Date;
+            this.oDIBindingSource.Filter = "DateOccur >= '" + dateFrom + "' AND DateOccur <= '" + dateTo + "'";
+
+        }
+
+
+        private void adgrvODi_FilterStringChanged(object sender, EventArgs e)
+        {
+            this.oDIBindingSource.Filter = this.adgrvODi.FilterString;
+        }
+
+        private void adgrvODi_SortStringChanged(object sender, EventArgs e)
+        {
+            this.oDIBindingSource.Sort = this.adgrvODi.SortString;
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'claimFormDataSet.ODI' table. You can move, or remove it, as needed.
+            this.oDITableAdapter.Fill(this.claimFormDataSet.ODI);
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            compareDate();
+        }
+
+        private void adgrvODi_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+        }
+
+        private void adgrvODi_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void adgrvODi_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
             {
-                DataGridViewRow r = dtgvListODI.Rows[e.RowIndex];
+                DataGridViewRow r = adgrvODi.Rows[e.RowIndex];
                 IDODI = int.Parse(r.Cells["ID"].Value.ToString());
                 btnSaveODI.Text = "EDIT";
                 btnSubmitNext.Text = "EDIT/NEXT";
@@ -730,7 +775,7 @@ namespace OQC
                 using (var db = new ClaimFormEntities())
                 {
                     var odi = db.ODIs.Where(m => m.ID == IDODI).FirstOrDefault();
-                    dtpDateOccur.Value = odi.DateOccur;
+                    txbDateOccur.Text = odi.DateOccur.ToString("dd/MM/yyy");
                     cbbAreas.Text = odi.Area;
                     cbbCustomer.Text = odi.Customer;
                     rbShiftDay.Checked = odi.Shift == OQC.Shift.DAY;
@@ -768,10 +813,28 @@ namespace OQC
                     txbPosition.Text = odi.Position;
                     cbbTypeNG.Text = odi.Defection;
                     txbNGDetail.Text = odi.Detail;
-                    NG_Photo = odi.NG_Photo;
-                    OK_Photo = odi.OK_Photo;
-                    pbNG.Image = new Bitmap(Utils.DownloadFile("172.28.10.17", @"VN\U34811", "umcvn", Application.StartupPath + "/" + odi.NG_Photo, "/OQC/" + odi.NG_Photo));
-                    pbOK.Image = new Bitmap(Utils.DownloadFile("172.28.10.17", @"VN\U34811", "umcvn", Application.StartupPath + "/" + odi.OK_Photo, "/OQC/" + odi.OK_Photo));
+                    if (!string.IsNullOrEmpty(odi.NG_Photo))
+                    {
+                        NG_Photo = odi.NG_Photo;
+                        pbNG.Image = new Bitmap(Utils.DownloadFile("172.28.10.17", @"VN\U34811", "umcvn", Application.StartupPath + "/" + odi.NG_Photo, "/OQC/" + odi.NG_Photo));
+                    }
+                    else
+                    {
+                        NG_Photo = "";
+                        pbNG.Image = null;
+                    }
+                    if (!string.IsNullOrEmpty(odi.OK_Photo))
+                    {
+                        OK_Photo = odi.OK_Photo;
+                        pbOK.Image = new Bitmap(Utils.DownloadFile("172.28.10.17", @"VN\U34811", "umcvn", Application.StartupPath + "/" + odi.OK_Photo, "/OQC/" + odi.OK_Photo));
+
+                    }
+                    else
+                    {
+                        OK_Photo = "";
+                        pbOK.Image = null;
+                    }
+                   
                 }
             }
             catch (Exception ex)
@@ -779,10 +842,6 @@ namespace OQC
                 Console.Write(ex.ToString());
 
             }
-        }
-        private void btnDateOccur_Click(object sender, EventArgs e)
-        {
-            dtpDateOccur.Open();
         }
     }
 }
