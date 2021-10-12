@@ -817,7 +817,6 @@ namespace OQC
             this.adgrvODi.Size = new System.Drawing.Size(915, 331);
             this.adgrvODi.TabIndex = 59;
             this.adgrvODi.TimeFilter = false;
-            this.adgrvODi.UseWaitCursor = true;
             this.adgrvODi.SortStringChanged += new System.EventHandler(this.adgrvODi_SortStringChanged);
             this.adgrvODi.FilterStringChanged += new System.EventHandler(this.adgrvODi_FilterStringChanged);
             this.adgrvODi.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.adgrvODi_CellMouseClick);
