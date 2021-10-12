@@ -48,4 +48,11 @@ namespace OQC
         public static string OQC2 = "OQC2";
         public static string CSL = "CSL";
     }
+    public class SampleForm
+    {
+        public static string SF100PER = "100%";
+        public static string SF50PER = "50%(other)";
+        public static string SFAQL = "AQL";
+
+    }
 }

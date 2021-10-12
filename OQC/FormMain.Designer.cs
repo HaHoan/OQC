@@ -86,7 +86,7 @@ namespace OQC
             this.lblNight = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.panelAddWork = new System.Windows.Forms.Panel();
-            this.pbLoad = new System.Windows.Forms.PictureBox();
+            this.lblNumberRow = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.adgrvODi = new ADGV.AdvancedDataGridView();
             this.label14 = new System.Windows.Forms.Label();
@@ -121,7 +121,10 @@ namespace OQC
             this.claimFormDataSet = new OQC.ClaimFormDataSet();
             this.oDITableAdapter = new OQC.ClaimFormDataSetTableAdapters.ODITableAdapter();
             this.claimFormDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lblNumberRow = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.rb50Per = new System.Windows.Forms.RadioButton();
+            this.rbAQL = new System.Windows.Forms.RadioButton();
+            this.rb100Per = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -134,13 +137,13 @@ namespace OQC
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panelAddWork.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLoad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adgrvODi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oDIBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSetBindingSource)).BeginInit();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // dtpDateOccur
@@ -270,7 +273,7 @@ namespace OQC
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.groupBox3.Location = new System.Drawing.Point(12, 249);
+            this.groupBox3.Location = new System.Drawing.Point(12, 298);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(254, 313);
             this.groupBox3.TabIndex = 5;
@@ -726,8 +729,8 @@ namespace OQC
             // 
             // panelAddWork
             // 
+            this.panelAddWork.Controls.Add(this.groupBox4);
             this.panelAddWork.Controls.Add(this.lblNumberRow);
-            this.panelAddWork.Controls.Add(this.pbLoad);
             this.panelAddWork.Controls.Add(this.button1);
             this.panelAddWork.Controls.Add(this.adgrvODi);
             this.panelAddWork.Controls.Add(this.label14);
@@ -780,19 +783,14 @@ namespace OQC
             this.panelAddWork.Size = new System.Drawing.Size(1210, 793);
             this.panelAddWork.TabIndex = 2;
             // 
-            // pbLoad
+            // lblNumberRow
             // 
-            this.pbLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbLoad.BackColor = System.Drawing.Color.White;
-            this.pbLoad.Image = global::OQC.Properties.Resources.load1;
-            this.pbLoad.Location = new System.Drawing.Point(634, 237);
-            this.pbLoad.Name = "pbLoad";
-            this.pbLoad.Size = new System.Drawing.Size(202, 200);
-            this.pbLoad.TabIndex = 61;
-            this.pbLoad.TabStop = false;
-            this.pbLoad.Visible = false;
+            this.lblNumberRow.AutoSize = true;
+            this.lblNumberRow.Location = new System.Drawing.Point(1149, 143);
+            this.lblNumberRow.Name = "lblNumberRow";
+            this.lblNumberRow.Size = new System.Drawing.Size(43, 13);
+            this.lblNumberRow.TabIndex = 62;
+            this.lblNumberRow.Text = "0 Rows";
             // 
             // button1
             // 
@@ -819,6 +817,7 @@ namespace OQC
             this.adgrvODi.Size = new System.Drawing.Size(915, 331);
             this.adgrvODi.TabIndex = 59;
             this.adgrvODi.TimeFilter = false;
+            this.adgrvODi.UseWaitCursor = true;
             this.adgrvODi.SortStringChanged += new System.EventHandler(this.adgrvODi_SortStringChanged);
             this.adgrvODi.FilterStringChanged += new System.EventHandler(this.adgrvODi_FilterStringChanged);
             this.adgrvODi.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.adgrvODi_CellMouseClick);
@@ -886,7 +885,7 @@ namespace OQC
             this.btnSubmitNext.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.btnSubmitNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmitNext.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnSubmitNext.Location = new System.Drawing.Point(123, 627);
+            this.btnSubmitNext.Location = new System.Drawing.Point(123, 636);
             this.btnSubmitNext.Name = "btnSubmitNext";
             this.btnSubmitNext.Size = new System.Drawing.Size(116, 49);
             this.btnSubmitNext.TabIndex = 50;
@@ -899,7 +898,7 @@ namespace OQC
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.ForeColor = System.Drawing.Color.Maroon;
-            this.lblStatus.Location = new System.Drawing.Point(21, 580);
+            this.lblStatus.Location = new System.Drawing.Point(21, 612);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(20, 16);
             this.lblStatus.TabIndex = 49;
@@ -923,7 +922,7 @@ namespace OQC
             this.btnSaveODI.BackColor = System.Drawing.Color.Green;
             this.btnSaveODI.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveODI.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnSaveODI.Location = new System.Drawing.Point(16, 628);
+            this.btnSaveODI.Location = new System.Drawing.Point(16, 637);
             this.btnSaveODI.Name = "btnSaveODI";
             this.btnSaveODI.Size = new System.Drawing.Size(103, 49);
             this.btnSaveODI.TabIndex = 47;
@@ -1134,14 +1133,50 @@ namespace OQC
             this.claimFormDataSetBindingSource.DataSource = this.claimFormDataSet;
             this.claimFormDataSetBindingSource.Position = 0;
             // 
-            // lblNumberRow
+            // groupBox4
             // 
-            this.lblNumberRow.AutoSize = true;
-            this.lblNumberRow.Location = new System.Drawing.Point(1149, 143);
-            this.lblNumberRow.Name = "lblNumberRow";
-            this.lblNumberRow.Size = new System.Drawing.Size(43, 13);
-            this.lblNumberRow.TabIndex = 62;
-            this.lblNumberRow.Text = "0 Rows";
+            this.groupBox4.Controls.Add(this.rb50Per);
+            this.groupBox4.Controls.Add(this.rbAQL);
+            this.groupBox4.Controls.Add(this.rb100Per);
+            this.groupBox4.Location = new System.Drawing.Point(15, 237);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(200, 52);
+            this.groupBox4.TabIndex = 63;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Hình thức lấy mẫu";
+            // 
+            // rb50Per
+            // 
+            this.rb50Per.AutoSize = true;
+            this.rb50Per.Location = new System.Drawing.Point(118, 26);
+            this.rb50Per.Name = "rb50Per";
+            this.rb50Per.Size = new System.Drawing.Size(75, 17);
+            this.rb50Per.TabIndex = 3;
+            this.rb50Per.TabStop = true;
+            this.rb50Per.Text = "50%(other)";
+            this.rb50Per.UseVisualStyleBackColor = true;
+            // 
+            // rbAQL
+            // 
+            this.rbAQL.AutoSize = true;
+            this.rbAQL.Location = new System.Drawing.Point(66, 26);
+            this.rbAQL.Name = "rbAQL";
+            this.rbAQL.Size = new System.Drawing.Size(46, 17);
+            this.rbAQL.TabIndex = 2;
+            this.rbAQL.TabStop = true;
+            this.rbAQL.Text = "AQL";
+            this.rbAQL.UseVisualStyleBackColor = true;
+            // 
+            // rb100Per
+            // 
+            this.rb100Per.AutoSize = true;
+            this.rb100Per.Location = new System.Drawing.Point(6, 26);
+            this.rb100Per.Name = "rb100Per";
+            this.rb100Per.Size = new System.Drawing.Size(51, 17);
+            this.rb100Per.TabIndex = 1;
+            this.rb100Per.TabStop = true;
+            this.rb100Per.Text = "100%";
+            this.rb100Per.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -1173,13 +1208,14 @@ namespace OQC
             this.panel8.ResumeLayout(false);
             this.panelAddWork.ResumeLayout(false);
             this.panelAddWork.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLoad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.adgrvODi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.oDIBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSetBindingSource)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1276,7 +1312,10 @@ namespace OQC
         private ClaimFormDataSetTableAdapters.ODITableAdapter oDITableAdapter;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.BindingSource claimFormDataSetBindingSource;
-        private System.Windows.Forms.PictureBox pbLoad;
         private System.Windows.Forms.Label lblNumberRow;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.RadioButton rb50Per;
+        private System.Windows.Forms.RadioButton rbAQL;
+        private System.Windows.Forms.RadioButton rb100Per;
     }
 }

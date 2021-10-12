@@ -36,5 +36,6 @@ namespace OQC
         public string NG_Photo { get; set; }
         public string OK_Photo { get; set; }
         public string Area { get; set; }
+        public string Sample_Form { get; set; }
     }
 }

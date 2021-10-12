@@ -41,7 +41,7 @@ namespace OQC
             Areas.PICKUP,
             Areas.OA
         };
-        private string sql = "select  [ID] ,[DateOccur]  ,[Customer] ,[Area],[Shift],[Station],[Inspector],[GroupModel],[ModelName] ,[WO] ,[WOQty],[CheckNumber],[NumberNG] ,[Occur_Time] ,[Occur_Line] ,[Serial_Number] ,[Position],[Defection] from ODI";
+        private string sql = "select  [ID] ,[DateOccur]  ,[Customer] ,[Area],[Shift],[Station],[Inspector],[GroupModel],[ModelName] ,[WO] ,[WOQty],[CheckNumber],[NumberNG] ,[Occur_Time] ,[Occur_Line] ,[Serial_Number] ,[Position],[Defection],[Sample_Form] from ODI";
         private BindingSource odiDataSource = new BindingSource();
         private SqlDataAdapter dataAdapter = new SqlDataAdapter();
         public FormMain()
@@ -102,6 +102,10 @@ namespace OQC
             if (!rbStationOQC1.Checked && !rbStationOQC2.Checked && !rbStationCSL.Checked)
             {
                 lblStatus.Text = "Chưa chọn station";
+                return false;
+            }
+            if(!rb100Per.Checked && !rbAQL.Checked && !rb50Per.Checked){
+                lblStatus.Text = "Chưa chọn hình thức lấy mẫu";
                 return false;
             }
             if (string.IsNullOrEmpty(txbInspector.Text))
@@ -338,6 +342,17 @@ namespace OQC
                     {
                         station = OQC.Station.CSL;
                     }
+                    string sampleForm = "";
+                    if (rb100Per.Checked)
+                    {
+                        sampleForm = OQC.SampleForm.SF100PER;
+                    }else if (rb50Per.Checked)
+                    {
+                        sampleForm = SampleForm.SF50PER;
+                    }else if (rbAQL.Checked)
+                    {
+                        sampleForm = SampleForm.SFAQL;
+                    }
                     string shift = rbShiftDay.Checked ? OQC.Shift.DAY : OQC.Shift.NIGHT;
                     var ODI = db.ODIs.Where(m => m.ID == IDODI).FirstOrDefault();
                     DateTime dateOccur = DateTime.Now;
@@ -375,7 +390,7 @@ namespace OQC
                         ODI.Detail = txbNGDetail.Text;
                         ODI.NG_Photo = NG_Photo;
                         ODI.OK_Photo = OK_Photo;
-
+                        ODI.Sample_Form = sampleForm;
                     }
                     else
                     {
@@ -401,8 +416,9 @@ namespace OQC
                             Defection = cbbTypeNG.Text,
                             Detail = txbNGDetail.Text,
                             NG_Photo = NG_Photo,
-                            OK_Photo = OK_Photo
-                        };
+                            OK_Photo = OK_Photo,
+                            Sample_Form = sampleForm
+                    };
                         db.ODIs.Add(ODI);
                     }
 
@@ -744,7 +760,6 @@ namespace OQC
             var dateTo = dpTo.Value.Date;
             adgrvODi.DataSource = odiDataSource;
             GetData(sql + " where DateOccur  >='" + dateFrom + "' AND DateOccur <= '" + dateTo + "'");
-            //odiDataSource.Filter = "DateOccur >= '" + dateFrom + "' AND DateOccur <= '" + dateTo + "'";
         }
 
 
@@ -815,6 +830,16 @@ namespace OQC
                     {
                         rbShiftNight.Checked = true;
                     }
+                    if(odi.Sample_Form == SampleForm.SFAQL)
+                    {
+                        rbAQL.Checked = true;
+                    }else if(odi.Sample_Form == SampleForm.SF100PER)
+                    {
+                        rb100Per.Checked = true;
+                    }else if(odi.Sample_Form == SampleForm.SF50PER)
+                    {
+                        rb50Per.Checked = true;
+                    }
                     txbInspector.Text = odi.Inspector;
                     txbGroupModel.Text = odi.GroupModel;
                     txbModelName.Text = odi.ModelName;
@@ -866,7 +891,7 @@ namespace OQC
             try
             {
 
-                String connectionString = "Data Source=172.28.10.17;Initial Catalog=ClaimForm;Persist Security Info=True;User ID=sa;Password=umc@2019";
+                string connectionString = "Data Source=172.28.10.17;Initial Catalog=ClaimForm;Persist Security Info=True;User ID=sa;Password=umc@2019";
 
                 dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
                 DataTable table = new DataTable

@@ -16,5 +16,6 @@ namespace OQC
     {
         public int ID { get; set; }
         public string TypeNG1 { get; set; }
+        public string JP { get; set; }
     }
 }
