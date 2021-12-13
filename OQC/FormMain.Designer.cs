@@ -91,14 +91,12 @@ namespace OQC
             this.rbAQL = new System.Windows.Forms.RadioButton();
             this.rb100Per = new System.Windows.Forms.RadioButton();
             this.lblNumberRow = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.adgrvODi = new ADGV.AdvancedDataGridView();
             this.label14 = new System.Windows.Forms.Label();
             this.dpTo = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
             this.dpFrom = new System.Windows.Forms.DateTimePicker();
             this.txbDateOccur = new System.Windows.Forms.TextBox();
-            this.btnDateOccur = new System.Windows.Forms.Button();
             this.btnSubmitNext = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -106,9 +104,7 @@ namespace OQC
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.btnAddOK = new System.Windows.Forms.Button();
-            this.pbOK = new System.Windows.Forms.PictureBox();
             this.btnAddNG = new System.Windows.Forms.Button();
-            this.pbNG = new System.Windows.Forms.PictureBox();
             this.cbbTypeNG = new System.Windows.Forms.ComboBox();
             this.dtpTimeOccur = new System.Windows.Forms.DateTimePicker();
             this.txbNGDetail = new System.Windows.Forms.TextBox();
@@ -125,6 +121,13 @@ namespace OQC
             this.claimFormDataSet = new OQC.ClaimFormDataSet();
             this.oDITableAdapter = new OQC.ClaimFormDataSetTableAdapters.ODITableAdapter();
             this.claimFormDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnExcel = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnDateOccur = new System.Windows.Forms.Button();
+            this.pbOK = new System.Windows.Forms.PictureBox();
+            this.pbNG = new System.Windows.Forms.PictureBox();
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.lblExport = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -139,11 +142,11 @@ namespace OQC
             this.panelAddWork.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.adgrvODi)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOK)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oDIBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOK)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNG)).BeginInit();
             this.SuspendLayout();
             // 
             // dtpDateOccur
@@ -167,6 +170,8 @@ namespace OQC
             // 
             // cbbCustomer
             // 
+            this.cbbCustomer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbCustomer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbbCustomer.FormattingEnabled = true;
             this.cbbCustomer.Location = new System.Drawing.Point(94, 49);
             this.cbbCustomer.Name = "cbbCustomer";
@@ -729,6 +734,8 @@ namespace OQC
             // 
             // panelAddWork
             // 
+            this.panelAddWork.Controls.Add(this.lblExport);
+            this.panelAddWork.Controls.Add(this.btnExcel);
             this.panelAddWork.Controls.Add(this.groupBox4);
             this.panelAddWork.Controls.Add(this.lblNumberRow);
             this.panelAddWork.Controls.Add(this.button1);
@@ -837,19 +844,6 @@ namespace OQC
             this.lblNumberRow.TabIndex = 62;
             this.lblNumberRow.Text = "0 Rows";
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::OQC.Properties.Resources.binoculars;
-            this.button1.Location = new System.Drawing.Point(945, 127);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(42, 33);
-            this.button1.TabIndex = 60;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // adgrvODi
             // 
             this.adgrvODi.AutoGenerateContextFilters = true;
@@ -910,19 +904,6 @@ namespace OQC
             this.txbDateOccur.Name = "txbDateOccur";
             this.txbDateOccur.Size = new System.Drawing.Size(123, 20);
             this.txbDateOccur.TabIndex = 52;
-            // 
-            // btnDateOccur
-            // 
-            this.btnDateOccur.BackColor = System.Drawing.Color.Transparent;
-            this.btnDateOccur.FlatAppearance.BorderSize = 0;
-            this.btnDateOccur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDateOccur.Image = global::OQC.Properties.Resources.calendar;
-            this.btnDateOccur.Location = new System.Drawing.Point(45, 3);
-            this.btnDateOccur.Name = "btnDateOccur";
-            this.btnDateOccur.Size = new System.Drawing.Size(42, 42);
-            this.btnDateOccur.TabIndex = 51;
-            this.btnDateOccur.UseVisualStyleBackColor = false;
-            this.btnDateOccur.Click += new System.EventHandler(this.btnDateOccur_Click);
             // 
             // btnSubmitNext
             // 
@@ -1004,15 +985,6 @@ namespace OQC
             this.btnAddOK.UseVisualStyleBackColor = true;
             this.btnAddOK.Click += new System.EventHandler(this.btnAddOK_Click);
             // 
-            // pbOK
-            // 
-            this.pbOK.Location = new System.Drawing.Point(862, 435);
-            this.pbOK.Name = "pbOK";
-            this.pbOK.Size = new System.Drawing.Size(309, 204);
-            this.pbOK.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbOK.TabIndex = 43;
-            this.pbOK.TabStop = false;
-            // 
             // btnAddNG
             // 
             this.btnAddNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1025,17 +997,10 @@ namespace OQC
             this.btnAddNG.UseVisualStyleBackColor = true;
             this.btnAddNG.Click += new System.EventHandler(this.btnAddNG_Click);
             // 
-            // pbNG
-            // 
-            this.pbNG.Location = new System.Drawing.Point(528, 435);
-            this.pbNG.Name = "pbNG";
-            this.pbNG.Size = new System.Drawing.Size(309, 210);
-            this.pbNG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbNG.TabIndex = 41;
-            this.pbNG.TabStop = false;
-            // 
             // cbbTypeNG
             // 
+            this.cbbTypeNG.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbTypeNG.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbbTypeNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbTypeNG.FormattingEnabled = true;
             this.cbbTypeNG.Location = new System.Drawing.Point(366, 522);
@@ -1177,6 +1142,76 @@ namespace OQC
             this.claimFormDataSetBindingSource.DataSource = this.claimFormDataSet;
             this.claimFormDataSetBindingSource.Position = 0;
             // 
+            // btnExcel
+            // 
+            this.btnExcel.BackColor = System.Drawing.Color.Transparent;
+            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcel.ForeColor = System.Drawing.Color.Transparent;
+            this.btnExcel.Image = global::OQC.Properties.Resources.import_excel;
+            this.btnExcel.Location = new System.Drawing.Point(1005, 130);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(75, 27);
+            this.btnExcel.TabIndex = 64;
+            this.btnExcel.UseVisualStyleBackColor = false;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = global::OQC.Properties.Resources.binoculars;
+            this.button1.Location = new System.Drawing.Point(945, 127);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(42, 33);
+            this.button1.TabIndex = 60;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnDateOccur
+            // 
+            this.btnDateOccur.BackColor = System.Drawing.Color.Transparent;
+            this.btnDateOccur.FlatAppearance.BorderSize = 0;
+            this.btnDateOccur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDateOccur.Image = global::OQC.Properties.Resources.calendar;
+            this.btnDateOccur.Location = new System.Drawing.Point(45, 3);
+            this.btnDateOccur.Name = "btnDateOccur";
+            this.btnDateOccur.Size = new System.Drawing.Size(42, 42);
+            this.btnDateOccur.TabIndex = 51;
+            this.btnDateOccur.UseVisualStyleBackColor = false;
+            this.btnDateOccur.Click += new System.EventHandler(this.btnDateOccur_Click);
+            // 
+            // pbOK
+            // 
+            this.pbOK.Location = new System.Drawing.Point(862, 435);
+            this.pbOK.Name = "pbOK";
+            this.pbOK.Size = new System.Drawing.Size(309, 204);
+            this.pbOK.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbOK.TabIndex = 43;
+            this.pbOK.TabStop = false;
+            // 
+            // pbNG
+            // 
+            this.pbNG.Location = new System.Drawing.Point(528, 435);
+            this.pbNG.Name = "pbNG";
+            this.pbNG.Size = new System.Drawing.Size(309, 210);
+            this.pbNG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbNG.TabIndex = 41;
+            this.pbNG.TabStop = false;
+            // 
+            // bgWorker
+            // 
+            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
+            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
+            // 
+            // lblExport
+            // 
+            this.lblExport.AutoSize = true;
+            this.lblExport.Location = new System.Drawing.Point(1097, 137);
+            this.lblExport.Name = "lblExport";
+            this.lblExport.Size = new System.Drawing.Size(0, 13);
+            this.lblExport.TabIndex = 65;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1209,11 +1244,11 @@ namespace OQC
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.adgrvODi)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOK)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.oDIBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOK)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNG)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1315,5 +1350,8 @@ namespace OQC
         private System.Windows.Forms.RadioButton rb50Per;
         private System.Windows.Forms.RadioButton rbAQL;
         private System.Windows.Forms.RadioButton rb100Per;
+        private System.Windows.Forms.Button btnExcel;
+        private System.ComponentModel.BackgroundWorker bgWorker;
+        private System.Windows.Forms.Label lblExport;
     }
 }

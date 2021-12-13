@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -926,5 +927,86 @@ namespace OQC
             }
         }
 
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            var choofdlog = new FolderBrowserDialog();
+
+            if (choofdlog.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = Utils.GetFileName(choofdlog, Constants.EXCEL_STAFF);
+                //lblExport.Text = "Waiting...";
+                //bgWorker.RunWorkerAsync(argument: fileName);
+
+                // Don't save if no data is returned
+                var dgv = adgrvODi;
+                if (dgv.Rows.Count == 0)
+                {
+                    return;
+                }
+                StringBuilder sb = new StringBuilder();
+                // Column headers
+                string columnsHeader = "";
+                for (int i = 0; i < dgv.Columns.Count; i++)
+                {
+                    columnsHeader += dgv.Columns[i].Name + ",";
+                }
+                sb.Append(columnsHeader + Environment.NewLine);
+                // Go through each cell in the datagridview
+                foreach (DataGridViewRow dgvRow in dgv.Rows)
+                {
+                    // Make sure it's not an empty row.
+                    if (!dgvRow.IsNewRow)
+                    {
+                        for (int c = 0; c < dgvRow.Cells.Count; c++)
+                        {
+                            // Append the cells data followed by a comma to delimit.
+
+                            sb.Append(dgvRow.Cells[c].Value + ",");
+                        }
+                        // Add a new line in the text file.
+                        sb.Append(Environment.NewLine);
+                    }
+                }
+                // Load up the save file dialog with the default option as saving as a .csv file.
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "CSV files (*.csv)|*.csv";
+                sfd.FileName = fileName;
+                if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    // If they've selected a save location...
+                    using (StreamWriter sw = new System.IO.StreamWriter(sfd.FileName, false))
+                    {
+                        // Write the stringbuilder text to the the file.
+                        sw.WriteLine(sb.ToString());
+                    }
+                    MessageBox.Show( "Đã xuất file csv thành công!");
+
+                }
+
+                //lblPathRoot.Text = @"C:\DATA_BIVN_PACKING_CSV_FILE";
+
+
+            }
+        }
+
+        private void bgWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            var fileName = (string)e.Argument;
+            using (var db = new ClaimFormEntities())
+            {
+                var dateFrom = dpFrom.Value.Date;
+                var dateTo = dpTo.Value.Date;
+                var odis = db.ODIs.Where(m => m.DateOccur >= dateFrom && m.DateOccur <= dateTo).ToList();
+                var result = Utils.ExportStaff(odis, fileName);
+                e.Result = result;
+            }
+        }
+
+        private void bgWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            var result =(Tuple<int, string>) e.Result;
+            MessageBox.Show(result.Item2);
+            lblExport.Text = "";
+        }
     }
 }

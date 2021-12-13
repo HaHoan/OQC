@@ -8,7 +8,9 @@ namespace OQC
 {
     public class Constants
     {
-       
+        public static int SUCCESS = 0;
+        public static int ERROR = 1;
+        public static string EXCEL_STAFF = "Danh sách ODI";
     }
     public class Customers
     {
