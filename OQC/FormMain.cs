@@ -298,29 +298,45 @@ namespace OQC
         string OK_Photo = "";
         private void btnAddNG_Click(object sender, EventArgs e)
         {
-
-            OpenFileDialog choofdlog = new OpenFileDialog();
-            choofdlog.FilterIndex = 1;
-            choofdlog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
-            if (choofdlog.ShowDialog() == DialogResult.OK)
+            try
             {
-                NG_Photo = Guid.NewGuid().ToString() + Path.GetFileName(choofdlog.FileName);
-                pbNG.Image = new Bitmap(choofdlog.FileName);
-                Utils.UploadFile("172.28.10.17", @"VN\U34811", "umcvn", choofdlog.FileName, @"\OQC\" + NG_Photo);
+                OpenFileDialog choofdlog = new OpenFileDialog();
+                choofdlog.FilterIndex = 1;
+                choofdlog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+                if (choofdlog.ShowDialog() == DialogResult.OK)
+                {
+                    NG_Photo = Guid.NewGuid().ToString() + Path.GetFileName(choofdlog.FileName);
+                    pbNG.Image = new Bitmap(choofdlog.FileName);
+                    Utils.UploadFile("172.28.10.17", @"VN\U34811", "hoan200794", choofdlog.FileName, @"\OQC\" + NG_Photo);
+                }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString());
+            }
+          
         }
 
         private void btnAddOK_Click(object sender, EventArgs e)
         {
-            OpenFileDialog choofdlog = new OpenFileDialog();
-            choofdlog.FilterIndex = 1;
-            choofdlog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
-            if (choofdlog.ShowDialog() == DialogResult.OK)
+            try
             {
-                OK_Photo = Guid.NewGuid().ToString() + Path.GetFileName(choofdlog.FileName);
-                pbOK.Image = new Bitmap(choofdlog.FileName);
-                Utils.UploadFile("172.28.10.17", @"VN\U34811", "umcvn", choofdlog.FileName, @"\OQC\" + OK_Photo);
+                OpenFileDialog choofdlog = new OpenFileDialog();
+                choofdlog.FilterIndex = 1;
+                choofdlog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+                if (choofdlog.ShowDialog() == DialogResult.OK)
+                {
+                    OK_Photo = Guid.NewGuid().ToString() + Path.GetFileName(choofdlog.FileName);
+                    pbOK.Image = new Bitmap(choofdlog.FileName);
+                    Utils.UploadFile("172.28.10.17", @"VN\U34811", "hoan200794", choofdlog.FileName, @"\OQC\" + OK_Photo);
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+            
         }
 
         private void btnSaveODI_Click(object sender, EventArgs e)
@@ -857,7 +873,7 @@ namespace OQC
                     if (!string.IsNullOrEmpty(odi.NG_Photo))
                     {
                         NG_Photo = odi.NG_Photo;
-                        pbNG.Image = new Bitmap(Utils.DownloadFile("172.28.10.17", @"VN\U34811", "umcvn", Application.StartupPath + "/" + odi.NG_Photo, "/OQC/" + odi.NG_Photo));
+                        pbNG.Image = new Bitmap(Utils.DownloadFile("172.28.10.17", @"VN\U34811", "hoan200794", Application.StartupPath + "/" + odi.NG_Photo, "/OQC/" + odi.NG_Photo));
                     }
                     else
                     {
@@ -867,7 +883,7 @@ namespace OQC
                     if (!string.IsNullOrEmpty(odi.OK_Photo))
                     {
                         OK_Photo = odi.OK_Photo;
-                        pbOK.Image = new Bitmap(Utils.DownloadFile("172.28.10.17", @"VN\U34811", "umcvn", Application.StartupPath + "/" + odi.OK_Photo, "/OQC/" + odi.OK_Photo));
+                        pbOK.Image = new Bitmap(Utils.DownloadFile("172.28.10.17", @"VN\U34811", "hoan200794", Application.StartupPath + "/" + odi.OK_Photo, "/OQC/" + odi.OK_Photo));
 
                     }
                     else
