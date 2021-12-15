@@ -32,7 +32,8 @@ namespace OQC
             Customers.VALEO,
             Customers.ICHIKOH,
             Customers.BROTHER,
-            Customers.NICHICON
+            Customers.NICHICON,
+            Customers.YASKAWA
         };
         List<TypeNG> listNG = new List<TypeNG>();
         public string[] areas = new string[]
@@ -167,12 +168,7 @@ namespace OQC
                 txbNumberNG.Focus();
                 return false;
             }
-            if (string.IsNullOrEmpty(txbSerial.Text))
-            {
-                lblStatus.Text = "Chưa nhập số serial lỗi";
-                txbNumberNG.Focus();
-                return false;
-            }
+            
             if (string.IsNullOrEmpty(txbPosition.Text))
             {
                 lblStatus.Text = "Chưa nhập vị trí lỗi";
@@ -453,7 +449,7 @@ namespace OQC
                 }
             }
         }
-
+      
         private void ResetDataKeepInspector()
         {
 
@@ -1007,6 +1003,61 @@ namespace OQC
             var result =(Tuple<int, string>) e.Result;
             MessageBox.Show(result.Item2);
             lblExport.Text = "";
+        }
+
+        private void txbDateOccur_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            cbbCustomer.Focus();
+        }
+
+        private void cbbCustomer_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            cbbAreas.Focus();
+        }
+
+        private void cbbAreas_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            rbShiftDay.Focus();
+        }
+
+        private void rbShiftDay_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            rbShiftNight.Focus();
+        }
+
+        private void rbShiftNight_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            rbStationOQC1.Focus();
+        }
+
+        private void rbStationOQC1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            rbStationOQC2.Focus();
+        }
+
+        private void rbStationOQC2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            rbStationCSL.Focus();
+        }
+
+        private void rbStationCSL_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            rb100Per.Focus();
+        }
+
+        private void rb100Per_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            rbAQL.Focus();
+        }
+
+        private void rbAQL_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            rb50Per.Focus();
+        }
+
+        private void rb50Per_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            txbInspector.Focus();
         }
     }
 }

@@ -86,17 +86,21 @@ namespace OQC
             this.lblNight = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.panelAddWork = new System.Windows.Forms.Panel();
+            this.lblExport = new System.Windows.Forms.Label();
+            this.btnExcel = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.rb50Per = new System.Windows.Forms.RadioButton();
             this.rbAQL = new System.Windows.Forms.RadioButton();
             this.rb100Per = new System.Windows.Forms.RadioButton();
             this.lblNumberRow = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.adgrvODi = new ADGV.AdvancedDataGridView();
             this.label14 = new System.Windows.Forms.Label();
             this.dpTo = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
             this.dpFrom = new System.Windows.Forms.DateTimePicker();
             this.txbDateOccur = new System.Windows.Forms.TextBox();
+            this.btnDateOccur = new System.Windows.Forms.Button();
             this.btnSubmitNext = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -104,7 +108,9 @@ namespace OQC
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.btnAddOK = new System.Windows.Forms.Button();
+            this.pbOK = new System.Windows.Forms.PictureBox();
             this.btnAddNG = new System.Windows.Forms.Button();
+            this.pbNG = new System.Windows.Forms.PictureBox();
             this.cbbTypeNG = new System.Windows.Forms.ComboBox();
             this.dtpTimeOccur = new System.Windows.Forms.DateTimePicker();
             this.txbNGDetail = new System.Windows.Forms.TextBox();
@@ -121,13 +127,7 @@ namespace OQC
             this.claimFormDataSet = new OQC.ClaimFormDataSet();
             this.oDITableAdapter = new OQC.ClaimFormDataSetTableAdapters.ODITableAdapter();
             this.claimFormDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnExcel = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnDateOccur = new System.Windows.Forms.Button();
-            this.pbOK = new System.Windows.Forms.PictureBox();
-            this.pbNG = new System.Windows.Forms.PictureBox();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
-            this.lblExport = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -142,11 +142,11 @@ namespace OQC
             this.panelAddWork.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.adgrvODi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOK)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oDIBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOK)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNG)).BeginInit();
             this.SuspendLayout();
             // 
             // dtpDateOccur
@@ -176,7 +176,8 @@ namespace OQC
             this.cbbCustomer.Location = new System.Drawing.Point(94, 49);
             this.cbbCustomer.Name = "cbbCustomer";
             this.cbbCustomer.Size = new System.Drawing.Size(121, 21);
-            this.cbbCustomer.TabIndex = 2;
+            this.cbbCustomer.TabIndex = 1;
+            this.cbbCustomer.SelectedIndexChanged += new System.EventHandler(this.cbbCustomer_SelectedIndexChanged_1);
             // 
             // groupBox1
             // 
@@ -195,11 +196,12 @@ namespace OQC
             this.rbShiftNight.Location = new System.Drawing.Point(109, 26);
             this.rbShiftNight.Name = "rbShiftNight";
             this.rbShiftNight.Size = new System.Drawing.Size(50, 17);
-            this.rbShiftNight.TabIndex = 1;
+            this.rbShiftNight.TabIndex = 4;
             this.rbShiftNight.TabStop = true;
             this.rbShiftNight.Text = "Night";
             this.rbShiftNight.UseVisualStyleBackColor = true;
             this.rbShiftNight.CheckedChanged += new System.EventHandler(this.radioButtons_CheckedChanged);
+            this.rbShiftNight.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.rbShiftNight_PreviewKeyDown);
             // 
             // rbShiftDay
             // 
@@ -207,11 +209,12 @@ namespace OQC
             this.rbShiftDay.Location = new System.Drawing.Point(24, 26);
             this.rbShiftDay.Name = "rbShiftDay";
             this.rbShiftDay.Size = new System.Drawing.Size(44, 17);
-            this.rbShiftDay.TabIndex = 0;
+            this.rbShiftDay.TabIndex = 3;
             this.rbShiftDay.TabStop = true;
             this.rbShiftDay.Text = "Day";
             this.rbShiftDay.UseVisualStyleBackColor = true;
             this.rbShiftDay.CheckedChanged += new System.EventHandler(this.radioButtons_CheckedChanged);
+            this.rbShiftDay.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.rbShiftDay_PreviewKeyDown);
             // 
             // groupBox2
             // 
@@ -231,10 +234,11 @@ namespace OQC
             this.rbStationCSL.Location = new System.Drawing.Point(126, 26);
             this.rbStationCSL.Name = "rbStationCSL";
             this.rbStationCSL.Size = new System.Drawing.Size(45, 17);
-            this.rbStationCSL.TabIndex = 3;
+            this.rbStationCSL.TabIndex = 7;
             this.rbStationCSL.TabStop = true;
             this.rbStationCSL.Text = "CSL";
             this.rbStationCSL.UseVisualStyleBackColor = true;
+            this.rbStationCSL.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.rbStationCSL_PreviewKeyDown);
             // 
             // rbStationOQC2
             // 
@@ -242,10 +246,11 @@ namespace OQC
             this.rbStationOQC2.Location = new System.Drawing.Point(66, 26);
             this.rbStationOQC2.Name = "rbStationOQC2";
             this.rbStationOQC2.Size = new System.Drawing.Size(54, 17);
-            this.rbStationOQC2.TabIndex = 2;
+            this.rbStationOQC2.TabIndex = 6;
             this.rbStationOQC2.TabStop = true;
             this.rbStationOQC2.Text = "OQC2";
             this.rbStationOQC2.UseVisualStyleBackColor = true;
+            this.rbStationOQC2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.rbStationOQC2_PreviewKeyDown);
             // 
             // rbStationOQC1
             // 
@@ -253,10 +258,11 @@ namespace OQC
             this.rbStationOQC1.Location = new System.Drawing.Point(6, 26);
             this.rbStationOQC1.Name = "rbStationOQC1";
             this.rbStationOQC1.Size = new System.Drawing.Size(54, 17);
-            this.rbStationOQC1.TabIndex = 1;
+            this.rbStationOQC1.TabIndex = 5;
             this.rbStationOQC1.TabStop = true;
             this.rbStationOQC1.Text = "OQC1";
             this.rbStationOQC1.UseVisualStyleBackColor = true;
+            this.rbStationOQC1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.rbStationOQC1_PreviewKeyDown);
             // 
             // groupBox3
             // 
@@ -292,7 +298,7 @@ namespace OQC
             this.txbNote.Multiline = true;
             this.txbNote.Name = "txbNote";
             this.txbNote.Size = new System.Drawing.Size(164, 37);
-            this.txbNote.TabIndex = 15;
+            this.txbNote.TabIndex = 18;
             this.txbNote.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbNote_PreviewKeyDown);
             // 
             // label9
@@ -312,7 +318,8 @@ namespace OQC
             this.txbNumberNG.Location = new System.Drawing.Point(321, 73);
             this.txbNumberNG.Name = "txbNumberNG";
             this.txbNumberNG.Size = new System.Drawing.Size(163, 20);
-            this.txbNumberNG.TabIndex = 13;
+            this.txbNumberNG.TabIndex = 17;
+            this.txbNumberNG.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyNumberPress);
             this.txbNumberNG.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbNumberNG_PreviewKeyDown);
             // 
             // label8
@@ -332,7 +339,8 @@ namespace OQC
             this.txbNumerCheck.Location = new System.Drawing.Point(321, 47);
             this.txbNumerCheck.Name = "txbNumerCheck";
             this.txbNumerCheck.Size = new System.Drawing.Size(163, 20);
-            this.txbNumerCheck.TabIndex = 11;
+            this.txbNumerCheck.TabIndex = 16;
+            this.txbNumerCheck.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyNumberPress);
             this.txbNumerCheck.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbNumerCheck_PreviewKeyDown);
             // 
             // label7
@@ -352,7 +360,8 @@ namespace OQC
             this.txbWOQty.Location = new System.Drawing.Point(321, 21);
             this.txbWOQty.Name = "txbWOQty";
             this.txbWOQty.Size = new System.Drawing.Size(163, 20);
-            this.txbWOQty.TabIndex = 9;
+            this.txbWOQty.TabIndex = 15;
+            this.txbWOQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyNumberPress);
             this.txbWOQty.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbWOQty_PreviewKeyDown);
             // 
             // label6
@@ -368,11 +377,12 @@ namespace OQC
             // 
             // txbWO
             // 
+            this.txbWO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbWO.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbWO.Location = new System.Drawing.Point(79, 114);
             this.txbWO.Name = "txbWO";
             this.txbWO.Size = new System.Drawing.Size(163, 20);
-            this.txbWO.TabIndex = 7;
+            this.txbWO.TabIndex = 14;
             this.txbWO.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbWO_PreviewKeyDown);
             // 
             // label5
@@ -388,11 +398,12 @@ namespace OQC
             // 
             // txbModelName
             // 
+            this.txbModelName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbModelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbModelName.Location = new System.Drawing.Point(80, 83);
             this.txbModelName.Name = "txbModelName";
             this.txbModelName.Size = new System.Drawing.Size(163, 20);
-            this.txbModelName.TabIndex = 5;
+            this.txbModelName.TabIndex = 13;
             this.txbModelName.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbModelName_PreviewKeyDown);
             // 
             // label4
@@ -408,11 +419,12 @@ namespace OQC
             // 
             // txbGroupModel
             // 
+            this.txbGroupModel.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbGroupModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbGroupModel.Location = new System.Drawing.Point(80, 55);
             this.txbGroupModel.Name = "txbGroupModel";
             this.txbGroupModel.Size = new System.Drawing.Size(163, 20);
-            this.txbGroupModel.TabIndex = 3;
+            this.txbGroupModel.TabIndex = 12;
             this.txbGroupModel.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbGroupModel_PreviewKeyDown);
             // 
             // label3
@@ -433,7 +445,7 @@ namespace OQC
             this.txbInspector.Location = new System.Drawing.Point(80, 27);
             this.txbInspector.Name = "txbInspector";
             this.txbInspector.Size = new System.Drawing.Size(163, 20);
-            this.txbInspector.TabIndex = 1;
+            this.txbInspector.TabIndex = 11;
             this.txbInspector.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbInspector_PreviewKeyDown);
             // 
             // label2
@@ -458,11 +470,14 @@ namespace OQC
             // 
             // cbbAreas
             // 
+            this.cbbAreas.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbAreas.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbbAreas.FormattingEnabled = true;
             this.cbbAreas.Location = new System.Drawing.Point(94, 76);
             this.cbbAreas.Name = "cbbAreas";
             this.cbbAreas.Size = new System.Drawing.Size(121, 21);
-            this.cbbAreas.TabIndex = 7;
+            this.cbbAreas.TabIndex = 2;
+            this.cbbAreas.SelectedIndexChanged += new System.EventHandler(this.cbbAreas_SelectedIndexChanged_1);
             // 
             // panel1
             // 
@@ -790,6 +805,27 @@ namespace OQC
             this.panelAddWork.Size = new System.Drawing.Size(1218, 697);
             this.panelAddWork.TabIndex = 2;
             // 
+            // lblExport
+            // 
+            this.lblExport.AutoSize = true;
+            this.lblExport.Location = new System.Drawing.Point(1097, 137);
+            this.lblExport.Name = "lblExport";
+            this.lblExport.Size = new System.Drawing.Size(0, 13);
+            this.lblExport.TabIndex = 65;
+            // 
+            // btnExcel
+            // 
+            this.btnExcel.BackColor = System.Drawing.Color.Transparent;
+            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcel.ForeColor = System.Drawing.Color.Transparent;
+            this.btnExcel.Image = global::OQC.Properties.Resources.import_excel;
+            this.btnExcel.Location = new System.Drawing.Point(1005, 130);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(75, 27);
+            this.btnExcel.TabIndex = 64;
+            this.btnExcel.UseVisualStyleBackColor = false;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.rb50Per);
@@ -808,10 +844,11 @@ namespace OQC
             this.rb50Per.Location = new System.Drawing.Point(118, 26);
             this.rb50Per.Name = "rb50Per";
             this.rb50Per.Size = new System.Drawing.Size(75, 17);
-            this.rb50Per.TabIndex = 3;
+            this.rb50Per.TabIndex = 10;
             this.rb50Per.TabStop = true;
             this.rb50Per.Text = "50%(other)";
             this.rb50Per.UseVisualStyleBackColor = true;
+            this.rb50Per.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.rb50Per_PreviewKeyDown);
             // 
             // rbAQL
             // 
@@ -819,10 +856,11 @@ namespace OQC
             this.rbAQL.Location = new System.Drawing.Point(66, 26);
             this.rbAQL.Name = "rbAQL";
             this.rbAQL.Size = new System.Drawing.Size(46, 17);
-            this.rbAQL.TabIndex = 2;
+            this.rbAQL.TabIndex = 9;
             this.rbAQL.TabStop = true;
             this.rbAQL.Text = "AQL";
             this.rbAQL.UseVisualStyleBackColor = true;
+            this.rbAQL.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.rbAQL_PreviewKeyDown);
             // 
             // rb100Per
             // 
@@ -830,10 +868,11 @@ namespace OQC
             this.rb100Per.Location = new System.Drawing.Point(6, 26);
             this.rb100Per.Name = "rb100Per";
             this.rb100Per.Size = new System.Drawing.Size(51, 17);
-            this.rb100Per.TabIndex = 1;
+            this.rb100Per.TabIndex = 8;
             this.rb100Per.TabStop = true;
             this.rb100Per.Text = "100%";
             this.rb100Per.UseVisualStyleBackColor = true;
+            this.rb100Per.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.rb100Per_PreviewKeyDown);
             // 
             // lblNumberRow
             // 
@@ -843,6 +882,19 @@ namespace OQC
             this.lblNumberRow.Size = new System.Drawing.Size(43, 13);
             this.lblNumberRow.TabIndex = 62;
             this.lblNumberRow.Text = "0 Rows";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = global::OQC.Properties.Resources.binoculars;
+            this.button1.Location = new System.Drawing.Point(945, 127);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(42, 33);
+            this.button1.TabIndex = 60;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // adgrvODi
             // 
@@ -903,7 +955,21 @@ namespace OQC
             this.txbDateOccur.Location = new System.Drawing.Point(91, 16);
             this.txbDateOccur.Name = "txbDateOccur";
             this.txbDateOccur.Size = new System.Drawing.Size(123, 20);
-            this.txbDateOccur.TabIndex = 52;
+            this.txbDateOccur.TabIndex = 0;
+            this.txbDateOccur.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbDateOccur_PreviewKeyDown);
+            // 
+            // btnDateOccur
+            // 
+            this.btnDateOccur.BackColor = System.Drawing.Color.Transparent;
+            this.btnDateOccur.FlatAppearance.BorderSize = 0;
+            this.btnDateOccur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDateOccur.Image = global::OQC.Properties.Resources.calendar;
+            this.btnDateOccur.Location = new System.Drawing.Point(45, 3);
+            this.btnDateOccur.Name = "btnDateOccur";
+            this.btnDateOccur.Size = new System.Drawing.Size(42, 42);
+            this.btnDateOccur.TabIndex = 51;
+            this.btnDateOccur.UseVisualStyleBackColor = false;
+            this.btnDateOccur.Click += new System.EventHandler(this.btnDateOccur_Click);
             // 
             // btnSubmitNext
             // 
@@ -913,7 +979,7 @@ namespace OQC
             this.btnSubmitNext.Location = new System.Drawing.Point(113, 435);
             this.btnSubmitNext.Name = "btnSubmitNext";
             this.btnSubmitNext.Size = new System.Drawing.Size(116, 49);
-            this.btnSubmitNext.TabIndex = 50;
+            this.btnSubmitNext.TabIndex = 20;
             this.btnSubmitNext.Text = "SUBMIT/NEXT";
             this.btnSubmitNext.UseVisualStyleBackColor = false;
             this.btnSubmitNext.Click += new System.EventHandler(this.btnSaveODI_Click);
@@ -937,7 +1003,7 @@ namespace OQC
             this.btnDelete.Location = new System.Drawing.Point(6, 491);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(223, 53);
-            this.btnDelete.TabIndex = 48;
+            this.btnDelete.TabIndex = 27;
             this.btnDelete.Text = "DELETE";
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -950,7 +1016,7 @@ namespace OQC
             this.btnSaveODI.Location = new System.Drawing.Point(6, 436);
             this.btnSaveODI.Name = "btnSaveODI";
             this.btnSaveODI.Size = new System.Drawing.Size(103, 49);
-            this.btnSaveODI.TabIndex = 47;
+            this.btnSaveODI.TabIndex = 19;
             this.btnSaveODI.Text = "SUBMIT";
             this.btnSaveODI.UseVisualStyleBackColor = false;
             this.btnSaveODI.Click += new System.EventHandler(this.btnSaveODI_Click);
@@ -985,6 +1051,15 @@ namespace OQC
             this.btnAddOK.UseVisualStyleBackColor = true;
             this.btnAddOK.Click += new System.EventHandler(this.btnAddOK_Click);
             // 
+            // pbOK
+            // 
+            this.pbOK.Location = new System.Drawing.Point(862, 435);
+            this.pbOK.Name = "pbOK";
+            this.pbOK.Size = new System.Drawing.Size(309, 204);
+            this.pbOK.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbOK.TabIndex = 43;
+            this.pbOK.TabStop = false;
+            // 
             // btnAddNG
             // 
             this.btnAddNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -997,6 +1072,15 @@ namespace OQC
             this.btnAddNG.UseVisualStyleBackColor = true;
             this.btnAddNG.Click += new System.EventHandler(this.btnAddNG_Click);
             // 
+            // pbNG
+            // 
+            this.pbNG.Location = new System.Drawing.Point(528, 435);
+            this.pbNG.Name = "pbNG";
+            this.pbNG.Size = new System.Drawing.Size(309, 210);
+            this.pbNG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbNG.TabIndex = 41;
+            this.pbNG.TabStop = false;
+            // 
             // cbbTypeNG
             // 
             this.cbbTypeNG.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -1006,7 +1090,7 @@ namespace OQC
             this.cbbTypeNG.Location = new System.Drawing.Point(366, 522);
             this.cbbTypeNG.Name = "cbbTypeNG";
             this.cbbTypeNG.Size = new System.Drawing.Size(130, 24);
-            this.cbbTypeNG.TabIndex = 40;
+            this.cbbTypeNG.TabIndex = 25;
             // 
             // dtpTimeOccur
             // 
@@ -1018,7 +1102,7 @@ namespace OQC
             this.dtpTimeOccur.Name = "dtpTimeOccur";
             this.dtpTimeOccur.ShowUpDown = true;
             this.dtpTimeOccur.Size = new System.Drawing.Size(130, 20);
-            this.dtpTimeOccur.TabIndex = 39;
+            this.dtpTimeOccur.TabIndex = 21;
             this.dtpTimeOccur.ValueChanged += new System.EventHandler(this.dtpTimeOccur_ValueChanged);
             // 
             // txbNGDetail
@@ -1027,7 +1111,7 @@ namespace OQC
             this.txbNGDetail.Location = new System.Drawing.Point(366, 550);
             this.txbNGDetail.Name = "txbNGDetail";
             this.txbNGDetail.Size = new System.Drawing.Size(130, 20);
-            this.txbNGDetail.TabIndex = 38;
+            this.txbNGDetail.TabIndex = 26;
             this.txbNGDetail.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbNGDetail_PreviewKeyDown);
             // 
             // label25
@@ -1054,11 +1138,12 @@ namespace OQC
             // 
             // txbPosition
             // 
+            this.txbPosition.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbPosition.Location = new System.Drawing.Point(366, 494);
             this.txbPosition.Name = "txbPosition";
             this.txbPosition.Size = new System.Drawing.Size(130, 20);
-            this.txbPosition.TabIndex = 35;
+            this.txbPosition.TabIndex = 24;
             this.txbPosition.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbPosition_PreviewKeyDown);
             // 
             // label27
@@ -1078,7 +1163,7 @@ namespace OQC
             this.txbSerial.Location = new System.Drawing.Point(366, 466);
             this.txbSerial.Name = "txbSerial";
             this.txbSerial.Size = new System.Drawing.Size(130, 20);
-            this.txbSerial.TabIndex = 33;
+            this.txbSerial.TabIndex = 23;
             this.txbSerial.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbSerial_PreviewKeyDown);
             // 
             // label28
@@ -1094,11 +1179,12 @@ namespace OQC
             // 
             // txbLine
             // 
+            this.txbLine.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbLine.Location = new System.Drawing.Point(366, 438);
             this.txbLine.Name = "txbLine";
             this.txbLine.Size = new System.Drawing.Size(130, 20);
-            this.txbLine.TabIndex = 31;
+            this.txbLine.TabIndex = 22;
             this.txbLine.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbLine_PreviewKeyDown);
             // 
             // label29
@@ -1142,75 +1228,10 @@ namespace OQC
             this.claimFormDataSetBindingSource.DataSource = this.claimFormDataSet;
             this.claimFormDataSetBindingSource.Position = 0;
             // 
-            // btnExcel
-            // 
-            this.btnExcel.BackColor = System.Drawing.Color.Transparent;
-            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcel.ForeColor = System.Drawing.Color.Transparent;
-            this.btnExcel.Image = global::OQC.Properties.Resources.import_excel;
-            this.btnExcel.Location = new System.Drawing.Point(1005, 130);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(75, 27);
-            this.btnExcel.TabIndex = 64;
-            this.btnExcel.UseVisualStyleBackColor = false;
-            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::OQC.Properties.Resources.binoculars;
-            this.button1.Location = new System.Drawing.Point(945, 127);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(42, 33);
-            this.button1.TabIndex = 60;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnDateOccur
-            // 
-            this.btnDateOccur.BackColor = System.Drawing.Color.Transparent;
-            this.btnDateOccur.FlatAppearance.BorderSize = 0;
-            this.btnDateOccur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDateOccur.Image = global::OQC.Properties.Resources.calendar;
-            this.btnDateOccur.Location = new System.Drawing.Point(45, 3);
-            this.btnDateOccur.Name = "btnDateOccur";
-            this.btnDateOccur.Size = new System.Drawing.Size(42, 42);
-            this.btnDateOccur.TabIndex = 51;
-            this.btnDateOccur.UseVisualStyleBackColor = false;
-            this.btnDateOccur.Click += new System.EventHandler(this.btnDateOccur_Click);
-            // 
-            // pbOK
-            // 
-            this.pbOK.Location = new System.Drawing.Point(862, 435);
-            this.pbOK.Name = "pbOK";
-            this.pbOK.Size = new System.Drawing.Size(309, 204);
-            this.pbOK.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbOK.TabIndex = 43;
-            this.pbOK.TabStop = false;
-            // 
-            // pbNG
-            // 
-            this.pbNG.Location = new System.Drawing.Point(528, 435);
-            this.pbNG.Name = "pbNG";
-            this.pbNG.Size = new System.Drawing.Size(309, 210);
-            this.pbNG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbNG.TabIndex = 41;
-            this.pbNG.TabStop = false;
-            // 
             // bgWorker
             // 
             this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
             this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
-            // 
-            // lblExport
-            // 
-            this.lblExport.AutoSize = true;
-            this.lblExport.Location = new System.Drawing.Point(1097, 137);
-            this.lblExport.Name = "lblExport";
-            this.lblExport.Size = new System.Drawing.Size(0, 13);
-            this.lblExport.TabIndex = 65;
             // 
             // FormMain
             // 
@@ -1244,11 +1265,11 @@ namespace OQC
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.adgrvODi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOK)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.oDIBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOK)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNG)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -30,6 +30,8 @@ namespace OQC
         public static string ICHIKOH = "ICHIKOH";
         public static string BROTHER = "BROTHER";
         public static string NICHICON = "NICHICON";
+        public static string YASKAWA = "YASKAWA";
+
     }
     public class Areas
     {
