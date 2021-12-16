@@ -128,6 +128,7 @@ namespace OQC
             this.oDITableAdapter = new OQC.ClaimFormDataSetTableAdapters.ODITableAdapter();
             this.claimFormDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.btnCreate = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -379,7 +380,7 @@ namespace OQC
             // 
             this.txbWO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbWO.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbWO.Location = new System.Drawing.Point(79, 114);
+            this.txbWO.Location = new System.Drawing.Point(79, 115);
             this.txbWO.Name = "txbWO";
             this.txbWO.Size = new System.Drawing.Size(163, 20);
             this.txbWO.TabIndex = 14;
@@ -594,6 +595,7 @@ namespace OQC
             this.lblGroup.BackColor = System.Drawing.Color.White;
             this.lblGroup.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGroup.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblGroup.Location = new System.Drawing.Point(0, 49);
             this.lblGroup.Name = "lblGroup";
             this.lblGroup.Size = new System.Drawing.Size(128, 45);
@@ -628,6 +630,7 @@ namespace OQC
             this.lblModel.BackColor = System.Drawing.Color.White;
             this.lblModel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblModel.Location = new System.Drawing.Point(0, 49);
             this.lblModel.Name = "lblModel";
             this.lblModel.Size = new System.Drawing.Size(126, 45);
@@ -662,6 +665,7 @@ namespace OQC
             this.lblOP.BackColor = System.Drawing.Color.White;
             this.lblOP.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblOP.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOP.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblOP.Location = new System.Drawing.Point(0, 49);
             this.lblOP.Name = "lblOP";
             this.lblOP.Size = new System.Drawing.Size(127, 45);
@@ -696,6 +700,7 @@ namespace OQC
             this.lblDay.BackColor = System.Drawing.Color.White;
             this.lblDay.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDay.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblDay.Location = new System.Drawing.Point(0, 48);
             this.lblDay.Name = "lblDay";
             this.lblDay.Size = new System.Drawing.Size(124, 45);
@@ -730,6 +735,7 @@ namespace OQC
             this.lblNight.BackColor = System.Drawing.Color.White;
             this.lblNight.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblNight.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNight.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblNight.Location = new System.Drawing.Point(0, 48);
             this.lblNight.Name = "lblNight";
             this.lblNight.Size = new System.Drawing.Size(120, 45);
@@ -749,6 +755,7 @@ namespace OQC
             // 
             // panelAddWork
             // 
+            this.panelAddWork.Controls.Add(this.btnCreate);
             this.panelAddWork.Controls.Add(this.lblExport);
             this.panelAddWork.Controls.Add(this.btnExcel);
             this.panelAddWork.Controls.Add(this.groupBox4);
@@ -976,7 +983,7 @@ namespace OQC
             this.btnSubmitNext.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.btnSubmitNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmitNext.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnSubmitNext.Location = new System.Drawing.Point(113, 435);
+            this.btnSubmitNext.Location = new System.Drawing.Point(6, 493);
             this.btnSubmitNext.Name = "btnSubmitNext";
             this.btnSubmitNext.Size = new System.Drawing.Size(116, 49);
             this.btnSubmitNext.TabIndex = 20;
@@ -1000,9 +1007,9 @@ namespace OQC
             this.btnDelete.BackColor = System.Drawing.Color.Maroon;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnDelete.Location = new System.Drawing.Point(6, 491);
+            this.btnDelete.Location = new System.Drawing.Point(128, 494);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(223, 53);
+            this.btnDelete.Size = new System.Drawing.Size(142, 53);
             this.btnDelete.TabIndex = 27;
             this.btnDelete.Text = "DELETE";
             this.btnDelete.UseVisualStyleBackColor = false;
@@ -1015,7 +1022,7 @@ namespace OQC
             this.btnSaveODI.ForeColor = System.Drawing.SystemColors.Window;
             this.btnSaveODI.Location = new System.Drawing.Point(6, 436);
             this.btnSaveODI.Name = "btnSaveODI";
-            this.btnSaveODI.Size = new System.Drawing.Size(103, 49);
+            this.btnSaveODI.Size = new System.Drawing.Size(116, 49);
             this.btnSaveODI.TabIndex = 19;
             this.btnSaveODI.Text = "SUBMIT";
             this.btnSaveODI.UseVisualStyleBackColor = false;
@@ -1233,6 +1240,20 @@ namespace OQC
             this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
             this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
             // 
+            // btnCreate
+            // 
+            this.btnCreate.BackColor = System.Drawing.Color.Green;
+            this.btnCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreate.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnCreate.Location = new System.Drawing.Point(128, 436);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(142, 49);
+            this.btnCreate.TabIndex = 66;
+            this.btnCreate.Text = "THÊM MỚI";
+            this.btnCreate.UseVisualStyleBackColor = false;
+            this.btnCreate.Visible = false;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1374,5 +1395,6 @@ namespace OQC
         private System.Windows.Forms.Button btnExcel;
         private System.ComponentModel.BackgroundWorker bgWorker;
         private System.Windows.Forms.Label lblExport;
+        private System.Windows.Forms.Button btnCreate;
     }
 }

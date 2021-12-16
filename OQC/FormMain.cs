@@ -106,7 +106,8 @@ namespace OQC
                 lblStatus.Text = "Chưa chọn station";
                 return false;
             }
-            if(!rb100Per.Checked && !rbAQL.Checked && !rb50Per.Checked){
+            if (!rb100Per.Checked && !rbAQL.Checked && !rb50Per.Checked)
+            {
                 lblStatus.Text = "Chưa chọn hình thức lấy mẫu";
                 return false;
             }
@@ -168,7 +169,7 @@ namespace OQC
                 txbNumberNG.Focus();
                 return false;
             }
-            
+
             if (string.IsNullOrEmpty(txbPosition.Text))
             {
                 lblStatus.Text = "Chưa nhập vị trí lỗi";
@@ -312,7 +313,7 @@ namespace OQC
 
                 MessageBox.Show(ex.Message.ToString());
             }
-          
+
         }
 
         private void btnAddOK_Click(object sender, EventArgs e)
@@ -333,10 +334,14 @@ namespace OQC
             {
                 MessageBox.Show(ex.Message.ToString());
             }
-            
+
         }
 
         private void btnSaveODI_Click(object sender, EventArgs e)
+        {
+            submit(sender);
+        }
+        private void submit(object sender)
         {
             if (ValidateEntry())
             {
@@ -359,10 +364,12 @@ namespace OQC
                     if (rb100Per.Checked)
                     {
                         sampleForm = OQC.SampleForm.SF100PER;
-                    }else if (rb50Per.Checked)
+                    }
+                    else if (rb50Per.Checked)
                     {
                         sampleForm = SampleForm.SF50PER;
-                    }else if (rbAQL.Checked)
+                    }
+                    else if (rbAQL.Checked)
                     {
                         sampleForm = SampleForm.SFAQL;
                     }
@@ -431,13 +438,13 @@ namespace OQC
                             NG_Photo = NG_Photo,
                             OK_Photo = OK_Photo,
                             Sample_Form = sampleForm
-                    };
+                        };
                         db.ODIs.Add(ODI);
                     }
 
                     db.SaveChanges();
                     GetListODIs();
-                    if (((Button)sender).Name == "btnSaveODI")
+                    if (((Button)sender).Name == "btnSaveODI" || ((Button)sender).Name == "btnCreate")
                     {
                         ResetDataKeepInspector();
                     }
@@ -445,11 +452,11 @@ namespace OQC
                     {
                         ResetData();
                     }
+                    btnCreate.Visible = false;
 
                 }
             }
         }
-      
         private void ResetDataKeepInspector()
         {
 
@@ -512,6 +519,7 @@ namespace OQC
             btnSubmitNext.Text = "SUBMIT/NEXT";
             IDODI = 0;
             lblStatus.Text = "";
+            txbDateOccur.Focus();
         }
         private void txbInspector_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
@@ -560,6 +568,9 @@ namespace OQC
                 using (var db = new ClaimFormEntities())
                 {
                     var totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.ModelName == txbModelName.Text.Trim()).Sum(m => m.CheckNumber);
+                    lblModel.Text = totalCheck.ToString();
+                    lblModel.Text = totalCheck.ToString();
+                    lblModel.Text = totalCheck.ToString();
                     lblModel.Text = totalCheck.ToString();
                 }
             }
@@ -815,6 +826,7 @@ namespace OQC
                 IDODI = int.Parse(r.Cells["ID"].Value.ToString());
                 btnSaveODI.Text = "EDIT";
                 btnSubmitNext.Text = "EDIT/NEXT";
+                btnCreate.Visible = true;
                 if (IDODI == 0) return;
                 using (var db = new ClaimFormEntities())
                 {
@@ -843,13 +855,15 @@ namespace OQC
                     {
                         rbShiftNight.Checked = true;
                     }
-                    if(odi.Sample_Form == SampleForm.SFAQL)
+                    if (odi.Sample_Form == SampleForm.SFAQL)
                     {
                         rbAQL.Checked = true;
-                    }else if(odi.Sample_Form == SampleForm.SF100PER)
+                    }
+                    else if (odi.Sample_Form == SampleForm.SF100PER)
                     {
                         rb100Per.Checked = true;
-                    }else if(odi.Sample_Form == SampleForm.SF50PER)
+                    }
+                    else if (odi.Sample_Form == SampleForm.SF50PER)
                     {
                         rb50Per.Checked = true;
                     }
@@ -975,7 +989,7 @@ namespace OQC
                         // Write the stringbuilder text to the the file.
                         sw.WriteLine(sb.ToString());
                     }
-                    MessageBox.Show( "Đã xuất file csv thành công!");
+                    MessageBox.Show("Đã xuất file csv thành công!");
 
                 }
 
@@ -1000,7 +1014,7 @@ namespace OQC
 
         private void bgWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            var result =(Tuple<int, string>) e.Result;
+            var result = (Tuple<int, string>)e.Result;
             MessageBox.Show(result.Item2);
             lblExport.Text = "";
         }
@@ -1058,6 +1072,12 @@ namespace OQC
         private void rb50Per_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             txbInspector.Focus();
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            IDODI = 0;
+            submit(sender);
         }
     }
 }
