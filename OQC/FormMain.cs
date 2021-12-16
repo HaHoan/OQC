@@ -237,7 +237,6 @@ namespace OQC
 
         private void dtpDateOccur_ValueChanged(object sender, EventArgs e)
         {
-
             dpFrom.Value = dtpDateOccur.Value;
             dpTo.Value = dtpDateOccur.Value;
             txbDateOccur.Text = dtpDateOccur.Value.ToString("dd/MM/yyy");
@@ -251,8 +250,19 @@ namespace OQC
             {
                 using (var db = new ClaimFormEntities())
                 {
-                    var totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date).Sum(m => m.CheckNumber);
-                    var totalNG = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date).Sum(m => m.NumberNG);
+                    int totalCheck = 0;
+                    int totalNG = 0;
+                    if (string.IsNullOrEmpty(cbbCustomer.Text))
+                    {
+                        totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date).Sum(m => m.CheckNumber);
+                        totalNG = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date).Sum(m => m.NumberNG);
+                    }
+                    else
+                    {
+                        totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Customer == cbbCustomer.Text.Trim()).Sum(m => m.CheckNumber);
+                        totalNG = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Customer == cbbCustomer.Text.Trim()).Sum(m => m.NumberNG);
+                    }
+
                     lblTotalCheck.Text = totalCheck.ToString();
                     lblNG.Text = totalNG.ToString();
                     if (totalCheck != 0)
@@ -585,7 +595,16 @@ namespace OQC
             {
                 using (var db = new ClaimFormEntities())
                 {
-                    var totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Shift == shift).ToList();
+                    List<ODI> totalCheck = new List<ODI>();
+                    if (string.IsNullOrEmpty(cbbCustomer.Text))
+                    {
+                        totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Shift == shift).ToList();
+                    }
+                    else
+                    {
+                        totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Shift == shift && m.Customer == cbbCustomer.Text()).ToList();
+                    }
+
                     if (totalCheck != null && totalCheck.Count > 0)
                     {
                         if (shift == OQC.Shift.DAY)
@@ -1027,6 +1046,7 @@ namespace OQC
         private void cbbCustomer_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             cbbAreas.Focus();
+            GetTotal();
         }
 
         private void cbbAreas_SelectedIndexChanged_1(object sender, EventArgs e)
