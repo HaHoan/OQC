@@ -43,7 +43,7 @@ namespace OQC
             Areas.PICKUP,
             Areas.OA
         };
-        private string sql = "select  [ID] ,[DateOccur]  ,[Customer] ,[Area],[Shift],[Station],[Inspector],[GroupModel],[ModelName] ,[WO] ,[WOQty],[CheckNumber],[NumberNG] ,[Occur_Time] ,[Occur_Line] ,[Serial_Number] ,[Position],[Defection],[Sample_Form] from ODI";
+        private string sql = "select [ID],[Customer] ,[Station],[Inspector],[GroupModel],[ModelName] ,[WO] ,[WOQty],[CheckNumber],[Area],[Shift],[NumberNG] , [DateOccur],[Occur_Time] ,[Occur_Line] ,[Serial_Number] ,[Position],[Defection],[Sample_Form] from ODI";
         private BindingSource odiDataSource = new BindingSource();
         private SqlDataAdapter dataAdapter = new SqlDataAdapter();
         public FormMain()
@@ -153,6 +153,12 @@ namespace OQC
                 txbNumberNG.Focus();
                 return false;
             }
+            if(int.Parse(txbNumberNG.Text.Trim()) == 0 && !string.IsNullOrEmpty(NG_Photo))
+            {
+                lblStatus.Text = "Số lượng lỗi bằng 0 mà vẫn có ảnh NG!";
+                txbNumberNG.Focus();
+                return false;
+            }
             if (int.Parse(txbNumberNG.Text.Trim()) == 0)
             {
                 return true;
@@ -196,7 +202,7 @@ namespace OQC
                 btnAddNG.Focus();
                 return false;
             }
-
+            
             return true;
         }
 
@@ -286,7 +292,15 @@ namespace OQC
         {
             GetData(dataAdapter.SelectCommand.CommandText);
         }
-
+        private void updateAll()
+        {
+            GetTotal();
+            GetTotalByOP();
+            GetTotalByGroup();
+            GetTotalByModel();
+            GetTotalByShift(Shift.DAY);
+            GetTotalByShift(Shift.NIGHT);
+        }
         private void OnlyNumberPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
@@ -300,8 +314,9 @@ namespace OQC
             {
                 e.Handled = true;
             }
+            
         }
-
+       
         string NG_Photo = "";
         string OK_Photo = "";
         private void btnAddNG_Click(object sender, EventArgs e)
@@ -350,6 +365,7 @@ namespace OQC
         private void btnSaveODI_Click(object sender, EventArgs e)
         {
             submit(sender);
+            adgrvODi.FirstDisplayedScrollingRowIndex = this.odiDataSource.List.Count - 1;
         }
         private void submit(object sender)
         {
@@ -463,7 +479,8 @@ namespace OQC
                         ResetData();
                     }
                     btnCreate.Visible = false;
-
+                   
+                    updateAll();
                 }
             }
         }
@@ -498,14 +515,6 @@ namespace OQC
 
         private void ResetData()
         {
-            txbDateOccur.Text = "";
-            cbbAreas.Text = "";
-            cbbCustomer.Text = "";
-            rbShiftDay.Checked = false;
-            rbShiftNight.Checked = false;
-            rbStationOQC1.Checked = false;
-            rbStationOQC2.Checked = false;
-            rbStationCSL.Checked = false;
             txbInspector.Text = "";
             txbGroupModel.Text = "";
             txbModelName.Text = "";
@@ -529,7 +538,6 @@ namespace OQC
             btnSubmitNext.Text = "SUBMIT/NEXT";
             IDODI = 0;
             lblStatus.Text = "";
-            txbDateOccur.Focus();
         }
         private void txbInspector_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
@@ -602,7 +610,7 @@ namespace OQC
                     }
                     else
                     {
-                        totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Shift == shift && m.Customer == cbbCustomer.Text()).ToList();
+                        totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Shift == shift && m.Customer == cbbCustomer.Text.Trim()).ToList();
                     }
 
                     if (totalCheck != null && totalCheck.Count > 0)
@@ -776,7 +784,7 @@ namespace OQC
                     db.ODIs.Remove(ODI);
                     db.SaveChanges();
                     GetListODIs();
-                    ResetData();
+                    ResetDataKeepInspector();
                 }
             }
 
@@ -1098,6 +1106,8 @@ namespace OQC
         {
             IDODI = 0;
             submit(sender);
+            adgrvODi.FirstDisplayedScrollingRowIndex = this.odiDataSource.List.Count - 1;
+           
         }
     }
 }

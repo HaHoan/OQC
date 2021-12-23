@@ -31,6 +31,8 @@ namespace OQC
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.dtpDateOccur = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
@@ -86,6 +88,7 @@ namespace OQC
             this.lblNight = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.panelAddWork = new System.Windows.Forms.Panel();
+            this.btnCreate = new System.Windows.Forms.Button();
             this.lblExport = new System.Windows.Forms.Label();
             this.btnExcel = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -128,7 +131,6 @@ namespace OQC
             this.oDITableAdapter = new OQC.ClaimFormDataSetTableAdapters.ODITableAdapter();
             this.claimFormDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
-            this.btnCreate = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -809,8 +811,22 @@ namespace OQC
             this.panelAddWork.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelAddWork.Location = new System.Drawing.Point(0, 0);
             this.panelAddWork.Name = "panelAddWork";
-            this.panelAddWork.Size = new System.Drawing.Size(1218, 697);
+            this.panelAddWork.Size = new System.Drawing.Size(1604, 697);
             this.panelAddWork.TabIndex = 2;
+            // 
+            // btnCreate
+            // 
+            this.btnCreate.BackColor = System.Drawing.Color.Green;
+            this.btnCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreate.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnCreate.Location = new System.Drawing.Point(128, 436);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(142, 49);
+            this.btnCreate.TabIndex = 66;
+            this.btnCreate.Text = "THÊM MỚI";
+            this.btnCreate.UseVisualStyleBackColor = false;
+            this.btnCreate.Visible = false;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // lblExport
             // 
@@ -905,14 +921,32 @@ namespace OQC
             // 
             // adgrvODi
             // 
+            this.adgrvODi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.adgrvODi.AutoGenerateContextFilters = true;
             this.adgrvODi.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.adgrvODi.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.adgrvODi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.adgrvODi.DateWithTime = false;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.adgrvODi.DefaultCellStyle = dataGridViewCellStyle2;
             this.adgrvODi.Location = new System.Drawing.Point(522, 169);
             this.adgrvODi.Name = "adgrvODi";
             this.adgrvODi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.adgrvODi.Size = new System.Drawing.Size(679, 230);
+            this.adgrvODi.Size = new System.Drawing.Size(1070, 230);
             this.adgrvODi.TabIndex = 59;
             this.adgrvODi.TimeFilter = false;
             this.adgrvODi.SortStringChanged += new System.EventHandler(this.adgrvODi_SortStringChanged);
@@ -1060,6 +1094,7 @@ namespace OQC
             // 
             // pbOK
             // 
+            this.pbOK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbOK.Location = new System.Drawing.Point(862, 435);
             this.pbOK.Name = "pbOK";
             this.pbOK.Size = new System.Drawing.Size(309, 204);
@@ -1081,6 +1116,7 @@ namespace OQC
             // 
             // pbNG
             // 
+            this.pbNG.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbNG.Location = new System.Drawing.Point(528, 435);
             this.pbNG.Name = "pbNG";
             this.pbNG.Size = new System.Drawing.Size(309, 210);
@@ -1240,25 +1276,11 @@ namespace OQC
             this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
             this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
             // 
-            // btnCreate
-            // 
-            this.btnCreate.BackColor = System.Drawing.Color.Green;
-            this.btnCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreate.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnCreate.Location = new System.Drawing.Point(128, 436);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(142, 49);
-            this.btnCreate.TabIndex = 66;
-            this.btnCreate.Text = "THÊM MỚI";
-            this.btnCreate.UseVisualStyleBackColor = false;
-            this.btnCreate.Visible = false;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1218, 697);
+            this.ClientSize = new System.Drawing.Size(1604, 697);
             this.Controls.Add(this.panelAddWork);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
