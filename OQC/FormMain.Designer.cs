@@ -88,6 +88,7 @@ namespace OQC
             this.lblNight = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.panelAddWork = new System.Windows.Forms.Panel();
+            this.btnEditTargetPPM = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.lblExport = new System.Windows.Forms.Label();
             this.btnExcel = new System.Windows.Forms.Button();
@@ -757,6 +758,7 @@ namespace OQC
             // 
             // panelAddWork
             // 
+            this.panelAddWork.Controls.Add(this.btnEditTargetPPM);
             this.panelAddWork.Controls.Add(this.btnCreate);
             this.panelAddWork.Controls.Add(this.lblExport);
             this.panelAddWork.Controls.Add(this.btnExcel);
@@ -813,6 +815,20 @@ namespace OQC
             this.panelAddWork.Name = "panelAddWork";
             this.panelAddWork.Size = new System.Drawing.Size(1604, 697);
             this.panelAddWork.TabIndex = 2;
+            // 
+            // btnEditTargetPPM
+            // 
+            this.btnEditTargetPPM.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnEditTargetPPM.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditTargetPPM.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnEditTargetPPM.Location = new System.Drawing.Point(6, 586);
+            this.btnEditTargetPPM.Name = "btnEditTargetPPM";
+            this.btnEditTargetPPM.Size = new System.Drawing.Size(264, 53);
+            this.btnEditTargetPPM.TabIndex = 67;
+            this.btnEditTargetPPM.Text = "SỬA TARGET PPM";
+            this.btnEditTargetPPM.UseVisualStyleBackColor = false;
+            this.btnEditTargetPPM.Click += new System.EventHandler(this.btnEditTargetPPM_Click);
+            this.btnEditTargetPPM.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.btnEditTargetPPM_PreviewKeyDown);
             // 
             // btnCreate
             // 
@@ -1418,5 +1434,6 @@ namespace OQC
         private System.ComponentModel.BackgroundWorker bgWorker;
         private System.Windows.Forms.Label lblExport;
         private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.Button btnEditTargetPPM;
     }
 }

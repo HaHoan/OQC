@@ -33,6 +33,14 @@
           <Property Name="Area" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Sample_Form" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="TargetPPM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Area" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Target" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="TypeNG">
           <Key>
             <PropertyRef Name="ID" />
@@ -56,6 +64,7 @@
         </EntityType>
         <EntityContainer Name="ClaimFormModelStoreContainer">
           <EntitySet Name="ODI" EntityType="Self.ODI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TargetPPM" EntityType="Self.TargetPPM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeNG" EntityType="Self.TypeNG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -88,6 +97,7 @@
           <EntitySet Name="TypeNGs" EntityType="Self.TypeNG" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="ODIs" EntityType="ClaimFormModel.ODI" />
+          <EntitySet Name="TargetPPMs" EntityType="ClaimFormModel.TargetPPM" />
         </EntityContainer>
         <EntityType Name="ODI">
           <Key>
@@ -116,6 +126,14 @@
           <Property Name="OK_Photo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Area" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Sample_Form" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TargetPPM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Area" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Target" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -171,6 +189,15 @@
                 <ScalarProperty Name="Shift" ColumnName="Shift" />
                 <ScalarProperty Name="Customer" ColumnName="Customer" />
                 <ScalarProperty Name="DateOccur" ColumnName="DateOccur" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TargetPPMs">
+            <EntityTypeMapping TypeName="ClaimFormModel.TargetPPM">
+              <MappingFragment StoreEntitySet="TargetPPM">
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

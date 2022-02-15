@@ -8,6 +8,7 @@
         <EntityTypeShape EntityType="ClaimFormModel.TypeNG" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ClaimFormModel.User" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ClaimFormModel.ODI" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ClaimFormModel.TargetPPM" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

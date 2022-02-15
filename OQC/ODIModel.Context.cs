@@ -28,5 +28,6 @@ namespace OQC
         public virtual DbSet<TypeNG> TypeNGs { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<ODI> ODIs { get; set; }
+        public virtual DbSet<TargetPPM> TargetPPMs { get; set; }
     }
 }

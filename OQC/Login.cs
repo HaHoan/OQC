@@ -35,6 +35,7 @@ namespace OQC
                     }
                     else
                     {
+                        Properties.Settings.Default.Account = user.RoleId.ToString();
                         this.Hide();
                         FormMain main = new FormMain();
                         main.ShowDialog();

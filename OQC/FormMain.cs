@@ -49,6 +49,14 @@ namespace OQC
         public FormMain()
         {
             InitializeComponent();
+            if(Properties.Settings.Default.Account == "1")
+            {
+                btnEditTargetPPM.Visible = true;
+            }
+            else
+            {
+                btnEditTargetPPM.Visible = false;
+            }
             lblStatus.Text = "";
             foreach (var cus in customers)
             {
@@ -970,58 +978,73 @@ namespace OQC
 
             if (choofdlog.ShowDialog() == DialogResult.OK)
             {
-                string fileName = Utils.GetFileName(choofdlog, Constants.EXCEL_STAFF);
-                //lblExport.Text = "Waiting...";
-                //bgWorker.RunWorkerAsync(argument: fileName);
-
-                // Don't save if no data is returned
-                var dgv = adgrvODi;
-                if (dgv.Rows.Count == 0)
+                try
                 {
-                    return;
-                }
-                StringBuilder sb = new StringBuilder();
-                // Column headers
-                string columnsHeader = "";
-                for (int i = 0; i < dgv.Columns.Count; i++)
-                {
-                    columnsHeader += dgv.Columns[i].Name + ",";
-                }
-                sb.Append(columnsHeader + Environment.NewLine);
-                // Go through each cell in the datagridview
-                foreach (DataGridViewRow dgvRow in dgv.Rows)
-                {
-                    // Make sure it's not an empty row.
-                    if (!dgvRow.IsNewRow)
+                    var number = lblNumberRow.Text.Split(' ');
+                    var countRow = int.Parse(number[0]);
+                    string fileName = Utils.GetFileName(choofdlog, Constants.EXCEL_STAFF);
+                    if (countRow < 65536)
                     {
-                        for (int c = 0; c < dgvRow.Cells.Count; c++)
+                        lblExport.Text = "Waiting...";
+                        bgWorker.RunWorkerAsync(argument: fileName);
+                    }
+                    else
+                    {
+                        // Don't save if no data is returned
+                        var dgv = adgrvODi;
+                        if (dgv.Rows.Count == 0)
                         {
-                            // Append the cells data followed by a comma to delimit.
-
-                            sb.Append(dgvRow.Cells[c].Value + ",");
+                            return;
                         }
-                        // Add a new line in the text file.
-                        sb.Append(Environment.NewLine);
+                        StringBuilder sb = new StringBuilder();
+                        // Column headers
+                        string columnsHeader = "";
+                        for (int i = 0; i < dgv.Columns.Count; i++)
+                        {
+                            columnsHeader += dgv.Columns[i].Name + ",";
+                        }
+                        sb.Append(columnsHeader + Environment.NewLine);
+                        // Go through each cell in the datagridview
+                        foreach (DataGridViewRow dgvRow in dgv.Rows)
+                        {
+                            // Make sure it's not an empty row.
+                            if (!dgvRow.IsNewRow)
+                            {
+                                for (int c = 0; c < dgvRow.Cells.Count; c++)
+                                {
+                                    // Append the cells data followed by a comma to delimit.
+
+                                    sb.Append(dgvRow.Cells[c].Value + ",");
+                                }
+                                // Add a new line in the text file.
+                                sb.Append(Environment.NewLine);
+                            }
+                        }
+                        // Load up the save file dialog with the default option as saving as a .csv file.
+                        SaveFileDialog sfd = new SaveFileDialog();
+                        sfd.Filter = "CSV files (*.csv)|*.csv";
+                        sfd.FileName = fileName;
+                        if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        {
+                            // If they've selected a save location...
+                            using (StreamWriter sw = new System.IO.StreamWriter(sfd.FileName, false))
+                            {
+                                // Write the stringbuilder text to the the file.
+                                sw.WriteLine(sb.ToString());
+                            }
+                            MessageBox.Show("Đã xuất file csv thành công!");
+
+                        }
+
+                        //lblPathRoot.Text = @"C:\DATA_BIVN_PACKING_CSV_FILE";
                     }
+
                 }
-                // Load up the save file dialog with the default option as saving as a .csv file.
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "CSV files (*.csv)|*.csv";
-                sfd.FileName = fileName;
-                if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                catch (Exception ex)
                 {
-                    // If they've selected a save location...
-                    using (StreamWriter sw = new System.IO.StreamWriter(sfd.FileName, false))
-                    {
-                        // Write the stringbuilder text to the the file.
-                        sw.WriteLine(sb.ToString());
-                    }
-                    MessageBox.Show("Đã xuất file csv thành công!");
-
+                    MessageBox.Show(ex.Message.ToString());
                 }
-
-                //lblPathRoot.Text = @"C:\DATA_BIVN_PACKING_CSV_FILE";
-
+           
 
             }
         }
@@ -1108,6 +1131,16 @@ namespace OQC
             submit(sender);
             adgrvODi.FirstDisplayedScrollingRowIndex = this.odiDataSource.List.Count - 1;
            
+        }
+
+        private void btnEditTargetPPM_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+
+        }
+
+        private void btnEditTargetPPM_Click(object sender, EventArgs e)
+        {
+            new FormEditPPM().ShowDialog();
         }
     }
 }
