@@ -15,26 +15,7 @@ namespace OQC
 {
     public partial class FormMain : Form
     {
-        public string[] customers = new string[]
-        {
-            Customers.CANON,
-            Customers.HLDS,
-            Customers.FUJIXEROX,
-            Customers.SCHNEIDER,
-            Customers.KYOCERA,
-            Customers.FORMLABS,
-            Customers.DIGITAL,
-            Customers.TOYODENSO,
-            Customers.YOKOWO,
-            Customers.NIHON,
-            Customers.HONDALOCK,
-            Customers.STANDLEY,
-            Customers.VALEO,
-            Customers.ICHIKOH,
-            Customers.BROTHER,
-            Customers.NICHICON,
-            Customers.YASKAWA
-        };
+      
         List<TypeNG> listNG = new List<TypeNG>();
         public string[] areas = new string[]
         {
@@ -46,10 +27,12 @@ namespace OQC
         private string sql = "select [ID],[Customer] ,[Station],[Inspector],[GroupModel],[ModelName] ,[WO] ,[WOQty],[CheckNumber],[Area],[Shift],[NumberNG] , [DateOccur],[Occur_Time] ,[Occur_Line] ,[Serial_Number] ,[Position],[Defection],[Sample_Form] from ODI";
         private BindingSource odiDataSource = new BindingSource();
         private SqlDataAdapter dataAdapter = new SqlDataAdapter();
+        private List<Area> customers;
         public FormMain()
         {
             InitializeComponent();
-            if(Properties.Settings.Default.Account == "1")
+            getCustomer();
+            if (Properties.Settings.Default.Account == "1")
             {
                 btnEditTargetPPM.Visible = true;
             }
@@ -58,14 +41,7 @@ namespace OQC
                 btnEditTargetPPM.Visible = false;
             }
             lblStatus.Text = "";
-            foreach (var cus in customers)
-            {
-                cbbCustomer.Items.Add(cus);
-            }
-            foreach (var area in areas)
-            {
-                cbbAreas.Items.Add(area);
-            }
+           
             using (var db = new ClaimFormEntities())
             {
                 listNG = db.TypeNGs.ToList();
@@ -79,6 +55,18 @@ namespace OQC
             this.ActiveControl = txbDateOccur;
         }
 
+        private void getCustomer()
+        {
+            using(var db = new ClaimFormEntities())
+            {
+                customers = db.Areas.ToList();
+                foreach (var cus in customers)
+                {
+                    cbbCustomer.Items.Add(cus.Customer);
+                }
+                
+            }
+        }
         private void OdiDataSource_ListChanged(object sender, System.ComponentModel.ListChangedEventArgs e)
         {
             lblNumberRow.Text = string.Format("{0} Rows", this.odiDataSource.List.Count);
@@ -92,12 +80,7 @@ namespace OQC
                 lblStatus.Text = "Chưa Chọn Ngày Phát Sinh Lỗi";
                 return false;
             }
-            if (string.IsNullOrEmpty(cbbAreas.Text))
-            {
-                cbbAreas.Focus();
-                lblStatus.Text = "Chưa chọn khu vực";
-                return false;
-            }
+           
             if (string.IsNullOrEmpty(cbbCustomer.Text))
             {
                 cbbCustomer.Focus();
@@ -137,9 +120,9 @@ namespace OQC
                 txbModelName.Focus();
                 return false;
             }
-            if (string.IsNullOrEmpty(txbWO.Text))
+            if (string.IsNullOrEmpty(txbWO.Text) || txbWO.Text.Length < 6)
             {
-                lblStatus.Text = "Chưa nhập WO";
+                lblStatus.Text = "WO chưa nhập hoặc nhập thiếu";
                 txbWO.Focus();
                 return false;
             }
@@ -161,39 +144,48 @@ namespace OQC
                 txbNumberNG.Focus();
                 return false;
             }
-            if(int.Parse(txbNumberNG.Text.Trim()) == 0 && !string.IsNullOrEmpty(NG_Photo))
+            if (int.Parse(txbNumberNG.Text.Trim()) == 0 && !string.IsNullOrEmpty(NG_Photo))
             {
-                lblStatus.Text = "Số lượng lỗi bằng 0 mà vẫn có ảnh NG!";
-                txbNumberNG.Focus();
+                DialogResult dialogResult = MessageBox.Show("Số lượng lỗi bằng 0 mà vẫn có ảnh NG!", "Xác nhận", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    return true;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    lblStatus.Text = "";
+                    txbNumberNG.Focus();
+                }
+
                 return false;
             }
             if (int.Parse(txbNumberNG.Text.Trim()) == 0)
             {
                 return true;
             }
-            if (string.IsNullOrEmpty(dtpDateOccur.Text))
+            if (string.IsNullOrEmpty(dtpTimeOccur.Text))
             {
                 lblStatus.Text = "Chưa chọn thời gian phát sinh lỗi";
-                txbNumberNG.Focus();
+                dtpTimeOccur.Focus();
                 return false;
             }
             if (string.IsNullOrEmpty(txbLine.Text))
             {
                 lblStatus.Text = "Chưa nhập line phát sinh lỗi";
-                txbNumberNG.Focus();
+                txbLine.Focus();
                 return false;
             }
 
             if (string.IsNullOrEmpty(txbPosition.Text))
             {
                 lblStatus.Text = "Chưa nhập vị trí lỗi";
-                txbNumberNG.Focus();
+                txbPosition.Focus();
                 return false;
             }
             if (string.IsNullOrEmpty(cbbTypeNG.Text))
             {
                 lblStatus.Text = "Chưa chọn loại lỗi";
-                txbNumberNG.Focus();
+                cbbTypeNG.Focus();
                 return false;
             }
             var ng = listNG.Where(m => m.TypeNG1 == cbbTypeNG.Text.Trim()).FirstOrDefault();
@@ -210,7 +202,7 @@ namespace OQC
                 btnAddNG.Focus();
                 return false;
             }
-            
+
             return true;
         }
 
@@ -322,9 +314,9 @@ namespace OQC
             {
                 e.Handled = true;
             }
-            
+
         }
-       
+
         string NG_Photo = "";
         string OK_Photo = "";
         private void btnAddNG_Click(object sender, EventArgs e)
@@ -424,7 +416,7 @@ namespace OQC
                     if (ODI != null)
                     {
                         ODI.DateOccur = dateOccur;
-                        ODI.Area = cbbAreas.Text;
+                        ODI.Area = txbArea.Text;
                         ODI.Customer = cbbCustomer.Text;
                         ODI.Shift = shift;
                         ODI.Station = station;
@@ -436,22 +428,27 @@ namespace OQC
                         ODI.CheckNumber = int.Parse(txbNumerCheck.Text);
                         ODI.NumberNG = int.Parse(txbNumberNG.Text);
                         ODI.Note = txbNote.Text;
-                        ODI.Occur_Time = dtpTimeOccur.Value.ToShortTimeString();
-                        ODI.Occur_Line = txbLine.Text;
-                        ODI.Serial_Number = txbSerial.Text;
-                        ODI.Position = txbPosition.Text;
-                        ODI.Defection = cbbTypeNG.Text;
-                        ODI.Detail = txbNGDetail.Text;
-                        ODI.NG_Photo = NG_Photo;
-                        ODI.OK_Photo = OK_Photo;
+                        if (ODI.NumberNG != 0)
+                        {
+                            ODI.Occur_Time = dtpTimeOccur.Value.ToShortTimeString();
+                            ODI.Occur_Line = txbLine.Text;
+                            ODI.Serial_Number = txbSerial.Text;
+                            ODI.Position = txbPosition.Text;
+                            ODI.Defection = cbbTypeNG.Text;
+                            ODI.Detail = txbNGDetail.Text;
+                            ODI.NG_Photo = NG_Photo;
+                            ODI.OK_Photo = OK_Photo;
+                        }
+
                         ODI.Sample_Form = sampleForm;
                     }
                     else
                     {
+
                         ODI = new ODI()
                         {
                             DateOccur = dtpDateOccur.Value.Date,
-                            Area = cbbAreas.Text,
+                            Area = txbArea.Text,
                             Customer = cbbCustomer.Text,
                             Shift = shift,
                             Station = station,
@@ -473,6 +470,19 @@ namespace OQC
                             OK_Photo = OK_Photo,
                             Sample_Form = sampleForm
                         };
+                        if (ODI.NumberNG == 0)
+                        {
+                            ODI.NG_Photo = "";
+                            ODI.OK_Photo = "";
+                            ODI.Occur_Time = DateTime.Now.ToShortTimeString();
+                            ODI.Occur_Line = "";
+                            ODI.Serial_Number = "";
+                            ODI.Position = "";
+                            ODI.Defection = "";
+                            ODI.Detail = "";
+                            ODI.NG_Photo = NG_Photo;
+                            ODI.OK_Photo = OK_Photo;
+                        }
                         db.ODIs.Add(ODI);
                     }
 
@@ -487,7 +497,7 @@ namespace OQC
                         ResetData();
                     }
                     btnCreate.Visible = false;
-                   
+
                     updateAll();
                 }
             }
@@ -765,11 +775,7 @@ namespace OQC
 
         }
 
-        private void cbbAreas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            lblStatus.Text = "";
-        }
-
+      
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -867,7 +873,7 @@ namespace OQC
                 {
                     var odi = db.ODIs.Where(m => m.ID == IDODI).FirstOrDefault();
                     txbDateOccur.Text = odi.DateOccur.ToString("dd/MM/yyy");
-                    cbbAreas.Text = odi.Area;
+                    txbArea.Text = odi.Area;
                     cbbCustomer.Text = odi.Customer;
                     rbShiftDay.Checked = odi.Shift == OQC.Shift.DAY;
                     if (odi.Station == OQC.Station.OQC1)
@@ -1044,7 +1050,7 @@ namespace OQC
                 {
                     MessageBox.Show(ex.Message.ToString());
                 }
-           
+
 
             }
         }
@@ -1076,12 +1082,12 @@ namespace OQC
 
         private void cbbCustomer_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            cbbAreas.Focus();
+            txbArea.Text = customers.Where(m => m.Customer == cbbCustomer.Text).FirstOrDefault().Area1;
+            if(txbArea.Text == "AUTO")
+            {
+                rb100Per.Checked = true;
+            }
             GetTotal();
-        }
-
-        private void cbbAreas_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
             rbShiftDay.Focus();
         }
 
@@ -1130,7 +1136,7 @@ namespace OQC
             IDODI = 0;
             submit(sender);
             adgrvODi.FirstDisplayedScrollingRowIndex = this.odiDataSource.List.Count - 1;
-           
+
         }
 
         private void btnEditTargetPPM_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)

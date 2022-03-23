@@ -29,5 +29,6 @@ namespace OQC
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<ODI> ODIs { get; set; }
         public virtual DbSet<TargetPPM> TargetPPMs { get; set; }
+        public virtual DbSet<Area> Areas { get; set; }
     }
 }

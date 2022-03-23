@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ClaimFormModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Area" Type="nvarchar" MaxLength="100" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="ODI">
           <Key>
             <PropertyRef Name="ID" />
@@ -63,6 +71,7 @@
           <Property Name="MailCC" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityContainer Name="ClaimFormModelStoreContainer">
+          <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ODI" EntityType="Self.ODI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TargetPPM" EntityType="Self.TargetPPM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeNG" EntityType="Self.TypeNG" Schema="dbo" store:Type="Tables" />
@@ -98,6 +107,7 @@
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="ODIs" EntityType="ClaimFormModel.ODI" />
           <EntitySet Name="TargetPPMs" EntityType="ClaimFormModel.TargetPPM" />
+          <EntitySet Name="Areas" EntityType="ClaimFormModel.Area" />
         </EntityContainer>
         <EntityType Name="ODI">
           <Key>
@@ -134,6 +144,14 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Area" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Target" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Area1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Customer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -198,6 +216,15 @@
               <MappingFragment StoreEntitySet="TargetPPM">
                 <ScalarProperty Name="Target" ColumnName="Target" />
                 <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Areas">
+            <EntityTypeMapping TypeName="ClaimFormModel.Area">
+              <MappingFragment StoreEntitySet="Area">
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Area1" ColumnName="Area" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

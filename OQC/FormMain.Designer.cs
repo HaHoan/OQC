@@ -62,7 +62,6 @@ namespace OQC
             this.txbInspector = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.cbbAreas = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTotalCheck = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -88,6 +87,7 @@ namespace OQC
             this.lblNight = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.panelAddWork = new System.Windows.Forms.Panel();
+            this.txbArea = new System.Windows.Forms.TextBox();
             this.btnEditTargetPPM = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.lblExport = new System.Windows.Forms.Label();
@@ -362,6 +362,7 @@ namespace OQC
             // 
             this.txbWOQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbWOQty.Location = new System.Drawing.Point(321, 21);
+            this.txbWOQty.MaxLength = 6;
             this.txbWOQty.Name = "txbWOQty";
             this.txbWOQty.Size = new System.Drawing.Size(163, 20);
             this.txbWOQty.TabIndex = 15;
@@ -384,6 +385,7 @@ namespace OQC
             this.txbWO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbWO.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbWO.Location = new System.Drawing.Point(79, 115);
+            this.txbWO.MaxLength = 6;
             this.txbWO.Name = "txbWO";
             this.txbWO.Size = new System.Drawing.Size(163, 20);
             this.txbWO.TabIndex = 14;
@@ -471,17 +473,6 @@ namespace OQC
             this.label24.Size = new System.Drawing.Size(55, 13);
             this.label24.TabIndex = 6;
             this.label24.Text = "KHU VỰC";
-            // 
-            // cbbAreas
-            // 
-            this.cbbAreas.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbbAreas.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbbAreas.FormattingEnabled = true;
-            this.cbbAreas.Location = new System.Drawing.Point(94, 76);
-            this.cbbAreas.Name = "cbbAreas";
-            this.cbbAreas.Size = new System.Drawing.Size(121, 21);
-            this.cbbAreas.TabIndex = 2;
-            this.cbbAreas.SelectedIndexChanged += new System.EventHandler(this.cbbAreas_SelectedIndexChanged_1);
             // 
             // panel1
             // 
@@ -758,6 +749,7 @@ namespace OQC
             // 
             // panelAddWork
             // 
+            this.panelAddWork.Controls.Add(this.txbArea);
             this.panelAddWork.Controls.Add(this.btnEditTargetPPM);
             this.panelAddWork.Controls.Add(this.btnCreate);
             this.panelAddWork.Controls.Add(this.lblExport);
@@ -802,7 +794,6 @@ namespace OQC
             this.panelAddWork.Controls.Add(this.panel3);
             this.panelAddWork.Controls.Add(this.panel2);
             this.panelAddWork.Controls.Add(this.panel1);
-            this.panelAddWork.Controls.Add(this.cbbAreas);
             this.panelAddWork.Controls.Add(this.label24);
             this.panelAddWork.Controls.Add(this.groupBox3);
             this.panelAddWork.Controls.Add(this.groupBox2);
@@ -815,6 +806,15 @@ namespace OQC
             this.panelAddWork.Name = "panelAddWork";
             this.panelAddWork.Size = new System.Drawing.Size(1604, 697);
             this.panelAddWork.TabIndex = 2;
+            // 
+            // txbArea
+            // 
+            this.txbArea.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txbArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbArea.Location = new System.Drawing.Point(92, 76);
+            this.txbArea.Name = "txbArea";
+            this.txbArea.Size = new System.Drawing.Size(123, 20);
+            this.txbArea.TabIndex = 68;
             // 
             // btnEditTargetPPM
             // 
@@ -1365,7 +1365,6 @@ namespace OQC
         private System.Windows.Forms.TextBox txbInspector;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.ComboBox cbbAreas;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblTotalCheck;
         private System.Windows.Forms.Label label10;
@@ -1435,5 +1434,6 @@ namespace OQC
         private System.Windows.Forms.Label lblExport;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnEditTargetPPM;
+        private System.Windows.Forms.TextBox txbArea;
     }
 }
