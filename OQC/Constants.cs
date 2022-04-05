@@ -59,4 +59,10 @@ namespace OQC
         public static string SFAQL = "AQL";
 
     }
+    public class RoleName
+    {
+        public static int ADMIN = 1;
+        public static int LEADER = 2;
+        public static int OPERATOR = 3;
+    }
 }

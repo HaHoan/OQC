@@ -40,6 +40,14 @@
           <Property Name="OK_Photo" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Area" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Sample_Form" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsConfirm" Type="bit" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="TargetPPM">
           <Key>
@@ -70,12 +78,29 @@
           <Property Name="RoleId" Type="int" />
           <Property Name="MailCC" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <Association Name="FK_RolesUser">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ClaimFormModelStoreContainer">
           <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ODI" EntityType="Self.ODI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TargetPPM" EntityType="Self.TargetPPM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeNG" EntityType="Self.TypeNG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_RolesUser" Association="Self.FK_RolesUser">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -101,14 +126,36 @@
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="RoleId" Type="Int32" />
           <Property Name="MailCC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Role" Relationship="ClaimFormModel.FK_RolesUser" FromRole="User" ToRole="Role" />
         </EntityType>
         <EntityContainer Name="ClaimFormEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TypeNGs" EntityType="Self.TypeNG" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="ODIs" EntityType="ClaimFormModel.ODI" />
           <EntitySet Name="TargetPPMs" EntityType="ClaimFormModel.TargetPPM" />
           <EntitySet Name="Areas" EntityType="ClaimFormModel.Area" />
+          <EntitySet Name="ODIs" EntityType="ClaimFormModel.ODI" />
+          <EntitySet Name="Roles" EntityType="ClaimFormModel.Role" />
+          <AssociationSet Name="FK_RolesUser" Association="ClaimFormModel.FK_RolesUser">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="TargetPPM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Area" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Target" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Area1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Customer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="ODI">
           <Key>
             <PropertyRef Name="ID" />
@@ -136,23 +183,28 @@
           <Property Name="OK_Photo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Area" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Sample_Form" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsConfirm" Type="Boolean" />
         </EntityType>
-        <EntityType Name="TargetPPM">
+        <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Area" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Target" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="ClaimFormModel.FK_RolesUser" FromRole="Role" ToRole="User" />
         </EntityType>
-        <EntityType Name="Area">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Area1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Customer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
+        <Association Name="FK_RolesUser">
+          <End Type="ClaimFormModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="ClaimFormModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -182,9 +234,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TargetPPMs">
+            <EntityTypeMapping TypeName="ClaimFormModel.TargetPPM">
+              <MappingFragment StoreEntitySet="TargetPPM">
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Areas">
+            <EntityTypeMapping TypeName="ClaimFormModel.Area">
+              <MappingFragment StoreEntitySet="Area">
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Area1" ColumnName="Area" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ODIs">
             <EntityTypeMapping TypeName="ClaimFormModel.ODI">
               <MappingFragment StoreEntitySet="ODI">
+                <ScalarProperty Name="IsConfirm" ColumnName="IsConfirm" />
                 <ScalarProperty Name="Sample_Form" ColumnName="Sample_Form" />
                 <ScalarProperty Name="Area" ColumnName="Area" />
                 <ScalarProperty Name="OK_Photo" ColumnName="OK_Photo" />
@@ -211,21 +282,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TargetPPMs">
-            <EntityTypeMapping TypeName="ClaimFormModel.TargetPPM">
-              <MappingFragment StoreEntitySet="TargetPPM">
-                <ScalarProperty Name="Target" ColumnName="Target" />
-                <ScalarProperty Name="Area" ColumnName="Area" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Areas">
-            <EntityTypeMapping TypeName="ClaimFormModel.Area">
-              <MappingFragment StoreEntitySet="Area">
-                <ScalarProperty Name="Customer" ColumnName="Customer" />
-                <ScalarProperty Name="Area1" ColumnName="Area" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="ClaimFormModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -35,7 +35,10 @@ namespace OQC
                     }
                     else
                     {
-                        Properties.Settings.Default.Account = user.RoleId.ToString();
+                        Properties.Settings.Default.Account = user.RoleId is int role ? role : 0;
+                        Properties.Settings.Default.Code = user.Id;
+                        Properties.Settings.Default.Name = user.Name;
+                        Properties.Settings.Default.Role = user.Role.Name;
                         this.Hide();
                         FormMain main = new FormMain();
                         main.ShowDialog();

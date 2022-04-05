@@ -12,17 +12,18 @@ namespace OQC
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Role
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public Nullable<int> Department_id { get; set; }
-        public Nullable<int> Position_id { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public Nullable<int> RoleId { get; set; }
-        public string MailCC { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Role()
+        {
+            this.Users = new HashSet<User>();
+        }
     
-        public virtual Role Role { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }

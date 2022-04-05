@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
@@ -15,7 +16,7 @@ namespace OQC
 {
     public partial class FormMain : Form
     {
-      
+
         List<TypeNG> listNG = new List<TypeNG>();
         public string[] areas = new string[]
         {
@@ -24,24 +25,36 @@ namespace OQC
             Areas.PICKUP,
             Areas.OA
         };
-        private string sql = "select [ID],[Customer] ,[Station],[Inspector],[GroupModel],[ModelName] ,[WO] ,[WOQty],[CheckNumber],[Area],[Shift],[NumberNG] , [DateOccur],[Occur_Time] ,[Occur_Line] ,[Serial_Number] ,[Position],[Defection],[Sample_Form] from ODI";
+        private string sql = "select [ID],[Customer] ,[Station],[Inspector],[GroupModel],[ModelName] ,[WO] ,[WOQty],[CheckNumber],[Area],[Shift],[NumberNG] , [DateOccur],[Occur_Time] ,[Occur_Line] ,[Serial_Number] ,[Position],[Defection],[Sample_Form],[IsConfirm] from ODI";
         private BindingSource odiDataSource = new BindingSource();
         private SqlDataAdapter dataAdapter = new SqlDataAdapter();
         private List<Area> customers;
         public FormMain()
         {
             InitializeComponent();
+            lblcode.Text = Properties.Settings.Default.Code.ToUpper();
+            lblName.Text = Properties.Settings.Default.Name.ToUpper();
+            lblRole.Text = Properties.Settings.Default.Role.ToUpper();
             getCustomer();
-            if (Properties.Settings.Default.Account == "1")
+            if (Properties.Settings.Default.Account == RoleName.ADMIN)
             {
                 btnEditTargetPPM.Visible = true;
             }
             else
             {
                 btnEditTargetPPM.Visible = false;
+
+            }
+            if (Properties.Settings.Default.Account <= RoleName.LEADER && Properties.Settings.Default.Account > 0)
+            {
+                btnConfirmData.Visible = true;
+            }
+            else
+            {
+                btnEditTargetPPM.Visible = false;
             }
             lblStatus.Text = "";
-           
+
             using (var db = new ClaimFormEntities())
             {
                 listNG = db.TypeNGs.ToList();
@@ -57,14 +70,14 @@ namespace OQC
 
         private void getCustomer()
         {
-            using(var db = new ClaimFormEntities())
+            using (var db = new ClaimFormEntities())
             {
                 customers = db.Areas.ToList();
                 foreach (var cus in customers)
                 {
                     cbbCustomer.Items.Add(cus.Customer);
                 }
-                
+
             }
         }
         private void OdiDataSource_ListChanged(object sender, System.ComponentModel.ListChangedEventArgs e)
@@ -80,7 +93,7 @@ namespace OQC
                 lblStatus.Text = "Chưa Chọn Ngày Phát Sinh Lỗi";
                 return false;
             }
-           
+
             if (string.IsNullOrEmpty(cbbCustomer.Text))
             {
                 cbbCustomer.Focus();
@@ -260,13 +273,13 @@ namespace OQC
                     int totalNG = 0;
                     if (string.IsNullOrEmpty(cbbCustomer.Text))
                     {
-                        totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date).Sum(m => m.CheckNumber);
-                        totalNG = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date).Sum(m => m.NumberNG);
+                        totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.IsConfirm == true).Sum(m => m.CheckNumber);
+                        totalNG = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.IsConfirm == true).Sum(m => m.NumberNG);
                     }
                     else
                     {
-                        totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Customer == cbbCustomer.Text.Trim()).Sum(m => m.CheckNumber);
-                        totalNG = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Customer == cbbCustomer.Text.Trim()).Sum(m => m.NumberNG);
+                        totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Customer == cbbCustomer.Text.Trim() && m.IsConfirm == true).Sum(m => m.CheckNumber);
+                        totalNG = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Customer == cbbCustomer.Text.Trim() && m.IsConfirm == true).Sum(m => m.NumberNG);
                     }
 
                     lblTotalCheck.Text = totalCheck.ToString();
@@ -369,7 +382,8 @@ namespace OQC
         private void btnSaveODI_Click(object sender, EventArgs e)
         {
             submit(sender);
-            adgrvODi.FirstDisplayedScrollingRowIndex = this.odiDataSource.List.Count - 1;
+            if (this.odiDataSource.List.Count > 1)
+                adgrvODi.FirstDisplayedScrollingRowIndex = this.odiDataSource.List.Count - 1;
         }
         private void submit(object sender)
         {
@@ -576,7 +590,7 @@ namespace OQC
             {
                 using (var db = new ClaimFormEntities())
                 {
-                    var totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Inspector == txbInspector.Text.Trim()).Sum(m => m.CheckNumber);
+                    var totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Inspector == txbInspector.Text.Trim() && m.IsConfirm == true).Sum(m => m.CheckNumber);
                     lblOP.Text = totalCheck.ToString();
                 }
             }
@@ -591,7 +605,7 @@ namespace OQC
             {
                 using (var db = new ClaimFormEntities())
                 {
-                    var totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.GroupModel == txbGroupModel.Text.Trim()).Sum(m => m.CheckNumber);
+                    var totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.GroupModel == txbGroupModel.Text.Trim() && m.IsConfirm == true).Sum(m => m.CheckNumber);
 
                     lblGroup.Text = totalCheck.ToString();
                 }
@@ -607,7 +621,7 @@ namespace OQC
             {
                 using (var db = new ClaimFormEntities())
                 {
-                    var totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.ModelName == txbModelName.Text.Trim()).Sum(m => m.CheckNumber);
+                    var totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.ModelName == txbModelName.Text.Trim() && m.IsConfirm == true).Sum(m => m.CheckNumber);
                     lblModel.Text = totalCheck.ToString();
                     lblModel.Text = totalCheck.ToString();
                     lblModel.Text = totalCheck.ToString();
@@ -628,11 +642,11 @@ namespace OQC
                     List<ODI> totalCheck = new List<ODI>();
                     if (string.IsNullOrEmpty(cbbCustomer.Text))
                     {
-                        totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Shift == shift).ToList();
+                        totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Shift == shift && m.IsConfirm == true).ToList();
                     }
                     else
                     {
-                        totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Shift == shift && m.Customer == cbbCustomer.Text.Trim()).ToList();
+                        totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Shift == shift && m.Customer == cbbCustomer.Text.Trim() && m.IsConfirm == true).ToList();
                     }
 
                     if (totalCheck != null && totalCheck.Count > 0)
@@ -645,6 +659,11 @@ namespace OQC
                         {
                             lblNight.Text = totalCheck.Sum(m => m.CheckNumber).ToString();
                         }
+                    }
+                    else
+                    {
+                        lblDay.Text = "0";
+                        lblNight.Text = "0";
                     }
 
 
@@ -779,7 +798,7 @@ namespace OQC
 
         }
 
-      
+
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -802,6 +821,7 @@ namespace OQC
                     db.ODIs.Remove(ODI);
                     db.SaveChanges();
                     GetListODIs();
+                    updateAll();
                     ResetDataKeepInspector();
                 }
             }
@@ -1087,12 +1107,12 @@ namespace OQC
         private void cbbCustomer_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             txbArea.Text = customers.Where(m => m.Customer == cbbCustomer.Text).FirstOrDefault().Area1;
-            if(txbArea.Text == "AUTO")
+            if (txbArea.Text == "AUTO")
             {
                 rb100Per.Checked = true;
             }
             GetTotal();
-            rbShiftDay.Focus();
+           
         }
 
         private void rbShiftDay_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -1152,5 +1172,56 @@ namespace OQC
         {
             new FormEditPPM().ShowDialog();
         }
+
+        private void btnConfirmData_Click(object sender, EventArgs e)
+        {
+            using (var db = new ClaimFormEntities())
+            {
+                using (DbContextTransaction transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        int count = 0;
+                        foreach (DataGridViewRow r in adgrvODi.SelectedRows)
+                        {
+                            if (r.Cells["ID"].Value != null)
+                            {
+                                int IDODI = int.Parse(r.Cells["ID"].Value.ToString());
+                                var odi = db.ODIs.Where(m => m.ID == IDODI).FirstOrDefault();
+                                if (odi != null)
+                                {
+                                    if (odi.IsConfirm == null || (odi.IsConfirm is bool isconfirm && !isconfirm))
+                                    {
+                                        odi.IsConfirm = true;
+                                        db.SaveChanges();
+                                        count++;
+                                    }
+                                }
+                            }
+
+
+                        }
+                        transaction.Commit();
+                        GetListODIs();
+                        updateAll();
+                        MessageBox.Show("Confirm thành công " + count.ToString() + " rows!");
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show(ex.Message.ToString());
+                    }
+                }
+
+            }
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Hide();
+            Properties.Settings.Default.Account = 0;
+            new Login().ShowDialog();
+        }
     }
 }
+

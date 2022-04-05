@@ -37,5 +37,6 @@ namespace OQC
         public string OK_Photo { get; set; }
         public string Area { get; set; }
         public string Sample_Form { get; set; }
+        public Nullable<bool> IsConfirm { get; set; }
     }
 }

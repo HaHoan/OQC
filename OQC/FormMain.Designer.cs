@@ -87,6 +87,11 @@ namespace OQC
             this.lblNight = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.panelAddWork = new System.Windows.Forms.Panel();
+            this.lblRole = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblcode = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnConfirmData = new System.Windows.Forms.Button();
             this.txbArea = new System.Windows.Forms.TextBox();
             this.btnEditTargetPPM = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
@@ -127,11 +132,12 @@ namespace OQC
             this.txbLine = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.oDIBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.claimFormDataSet = new OQC.ClaimFormDataSet();
             this.oDITableAdapter = new OQC.ClaimFormDataSetTableAdapters.ODITableAdapter();
             this.claimFormDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -144,6 +150,7 @@ namespace OQC
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panelAddWork.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.adgrvODi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOK)).BeginInit();
@@ -749,6 +756,12 @@ namespace OQC
             // 
             // panelAddWork
             // 
+            this.panelAddWork.Controls.Add(this.btnLogout);
+            this.panelAddWork.Controls.Add(this.lblRole);
+            this.panelAddWork.Controls.Add(this.lblName);
+            this.panelAddWork.Controls.Add(this.lblcode);
+            this.panelAddWork.Controls.Add(this.pictureBox1);
+            this.panelAddWork.Controls.Add(this.btnConfirmData);
             this.panelAddWork.Controls.Add(this.txbArea);
             this.panelAddWork.Controls.Add(this.btnEditTargetPPM);
             this.panelAddWork.Controls.Add(this.btnCreate);
@@ -807,6 +820,59 @@ namespace OQC
             this.panelAddWork.Size = new System.Drawing.Size(1604, 697);
             this.panelAddWork.TabIndex = 2;
             // 
+            // lblRole
+            // 
+            this.lblRole.AutoSize = true;
+            this.lblRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRole.Location = new System.Drawing.Point(1463, 54);
+            this.lblRole.Name = "lblRole";
+            this.lblRole.Size = new System.Drawing.Size(61, 15);
+            this.lblRole.TabIndex = 73;
+            this.lblRole.Text = "LEADER";
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(1463, 36);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(88, 13);
+            this.lblName.TabIndex = 72;
+            this.lblName.Text = "HÀ THỊ HOÀN";
+            // 
+            // lblcode
+            // 
+            this.lblcode.AutoSize = true;
+            this.lblcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcode.Location = new System.Drawing.Point(1461, 14);
+            this.lblcode.Name = "lblcode";
+            this.lblcode.Size = new System.Drawing.Size(42, 13);
+            this.lblcode.TabIndex = 71;
+            this.lblcode.Text = "34811";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::OQC.Properties.Resources.profile;
+            this.pictureBox1.Location = new System.Drawing.Point(1368, 14);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(80, 80);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 70;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnConfirmData
+            // 
+            this.btnConfirmData.BackColor = System.Drawing.Color.Red;
+            this.btnConfirmData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirmData.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnConfirmData.Location = new System.Drawing.Point(1217, 130);
+            this.btnConfirmData.Name = "btnConfirmData";
+            this.btnConfirmData.Size = new System.Drawing.Size(127, 30);
+            this.btnConfirmData.TabIndex = 69;
+            this.btnConfirmData.Text = "CONFIRM DỮ LIỆU";
+            this.btnConfirmData.UseVisualStyleBackColor = false;
+            this.btnConfirmData.Click += new System.EventHandler(this.btnConfirmData_Click);
+            // 
             // txbArea
             // 
             this.txbArea.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
@@ -821,7 +887,7 @@ namespace OQC
             this.btnEditTargetPPM.BackColor = System.Drawing.Color.DarkOrange;
             this.btnEditTargetPPM.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditTargetPPM.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnEditTargetPPM.Location = new System.Drawing.Point(6, 586);
+            this.btnEditTargetPPM.Location = new System.Drawing.Point(6, 557);
             this.btnEditTargetPPM.Name = "btnEditTargetPPM";
             this.btnEditTargetPPM.Size = new System.Drawing.Size(264, 53);
             this.btnEditTargetPPM.TabIndex = 67;
@@ -1059,7 +1125,7 @@ namespace OQC
             this.btnDelete.ForeColor = System.Drawing.SystemColors.Window;
             this.btnDelete.Location = new System.Drawing.Point(128, 494);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(142, 53);
+            this.btnDelete.Size = new System.Drawing.Size(142, 48);
             this.btnDelete.TabIndex = 27;
             this.btnDelete.Text = "DELETE";
             this.btnDelete.UseVisualStyleBackColor = false;
@@ -1268,6 +1334,23 @@ namespace OQC
             this.label30.TabIndex = 29;
             this.label30.Text = "Thời điểm(hh:mm)";
             // 
+            // bgWorker
+            // 
+            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
+            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.BackColor = System.Drawing.Color.Maroon;
+            this.btnLogout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnLogout.Location = new System.Drawing.Point(1466, 72);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(75, 23);
+            this.btnLogout.TabIndex = 74;
+            this.btnLogout.Text = "Đăng xuất";
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
             // oDIBindingSource
             // 
             this.oDIBindingSource.DataMember = "ODI";
@@ -1286,11 +1369,6 @@ namespace OQC
             // 
             this.claimFormDataSetBindingSource.DataSource = this.claimFormDataSet;
             this.claimFormDataSetBindingSource.Position = 0;
-            // 
-            // bgWorker
-            // 
-            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
-            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
             // 
             // FormMain
             // 
@@ -1321,6 +1399,7 @@ namespace OQC
             this.panel8.ResumeLayout(false);
             this.panelAddWork.ResumeLayout(false);
             this.panelAddWork.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.adgrvODi)).EndInit();
@@ -1435,5 +1514,11 @@ namespace OQC
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnEditTargetPPM;
         private System.Windows.Forms.TextBox txbArea;
+        private System.Windows.Forms.Button btnConfirmData;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblcode;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblRole;
+        private System.Windows.Forms.Button btnLogout;
     }
 }
