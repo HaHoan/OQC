@@ -8,11 +8,26 @@ using FluentFTP;
 using Spire.Xls;
 using System.Windows.Forms;
 using System.IO;
+using System.Deployment.Application;
+using System.Reflection;
 
 namespace OQC.Business
 {
     public static class Utils
     {
+        public static string GetRunningVersion()
+        {
+
+            try
+            {
+                return ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+            }
+            catch
+            {
+                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            }
+
+        }
         public static void UploadFile(string host, string username, string password, string localPath, string remotePath)
         {
 

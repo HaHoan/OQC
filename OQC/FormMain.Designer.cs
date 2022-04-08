@@ -87,6 +87,9 @@ namespace OQC
             this.lblNight = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.panelAddWork = new System.Windows.Forms.Panel();
+            this.lblVersion = new System.Windows.Forms.Label();
+            this.lblNotice = new System.Windows.Forms.Label();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.lblRole = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.lblcode = new System.Windows.Forms.Label();
@@ -133,7 +136,6 @@ namespace OQC
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
-            this.btnLogout = new System.Windows.Forms.Button();
             this.oDIBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.claimFormDataSet = new OQC.ClaimFormDataSet();
             this.oDITableAdapter = new OQC.ClaimFormDataSetTableAdapters.ODITableAdapter();
@@ -756,6 +758,8 @@ namespace OQC
             // 
             // panelAddWork
             // 
+            this.panelAddWork.Controls.Add(this.lblVersion);
+            this.panelAddWork.Controls.Add(this.lblNotice);
             this.panelAddWork.Controls.Add(this.btnLogout);
             this.panelAddWork.Controls.Add(this.lblRole);
             this.panelAddWork.Controls.Add(this.lblName);
@@ -820,11 +824,45 @@ namespace OQC
             this.panelAddWork.Size = new System.Drawing.Size(1604, 697);
             this.panelAddWork.TabIndex = 2;
             // 
+            // lblVersion
+            // 
+            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersion.ForeColor = System.Drawing.Color.Maroon;
+            this.lblVersion.Location = new System.Drawing.Point(1544, 675);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(48, 13);
+            this.lblVersion.TabIndex = 76;
+            this.lblVersion.Text = "version";
+            // 
+            // lblNotice
+            // 
+            this.lblNotice.AutoSize = true;
+            this.lblNotice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNotice.ForeColor = System.Drawing.Color.Maroon;
+            this.lblNotice.Location = new System.Drawing.Point(1350, 137);
+            this.lblNotice.Name = "lblNotice";
+            this.lblNotice.Size = new System.Drawing.Size(0, 13);
+            this.lblNotice.TabIndex = 75;
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.BackColor = System.Drawing.Color.Maroon;
+            this.btnLogout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnLogout.Location = new System.Drawing.Point(1466, 72);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(75, 23);
+            this.btnLogout.TabIndex = 74;
+            this.btnLogout.Text = "Đăng xuất";
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
             // lblRole
             // 
             this.lblRole.AutoSize = true;
             this.lblRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRole.Location = new System.Drawing.Point(1463, 54);
+            this.lblRole.Location = new System.Drawing.Point(1468, 54);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(61, 15);
             this.lblRole.TabIndex = 73;
@@ -834,7 +872,7 @@ namespace OQC
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(1463, 36);
+            this.lblName.Location = new System.Drawing.Point(1468, 36);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(88, 13);
             this.lblName.TabIndex = 72;
@@ -844,7 +882,7 @@ namespace OQC
             // 
             this.lblcode.AutoSize = true;
             this.lblcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcode.Location = new System.Drawing.Point(1461, 14);
+            this.lblcode.Location = new System.Drawing.Point(1468, 14);
             this.lblcode.Name = "lblcode";
             this.lblcode.Size = new System.Drawing.Size(42, 13);
             this.lblcode.TabIndex = 71;
@@ -1339,18 +1377,6 @@ namespace OQC
             this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
             this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
             // 
-            // btnLogout
-            // 
-            this.btnLogout.BackColor = System.Drawing.Color.Maroon;
-            this.btnLogout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLogout.Location = new System.Drawing.Point(1466, 72);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(75, 23);
-            this.btnLogout.TabIndex = 74;
-            this.btnLogout.Text = "Đăng xuất";
-            this.btnLogout.UseVisualStyleBackColor = false;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
             // oDIBindingSource
             // 
             this.oDIBindingSource.DataMember = "ODI";
@@ -1520,5 +1546,7 @@ namespace OQC
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblRole;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Label lblNotice;
+        private System.Windows.Forms.Label lblVersion;
     }
 }

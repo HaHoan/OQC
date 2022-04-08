@@ -35,6 +35,8 @@ namespace OQC
             lblcode.Text = Properties.Settings.Default.Code.ToUpper();
             lblName.Text = Properties.Settings.Default.Name.ToUpper();
             lblRole.Text = Properties.Settings.Default.Role.ToUpper();
+            txbInspector.Text = Properties.Settings.Default.Code;
+            lblVersion.Text = Utils.GetRunningVersion();
             getCustomer();
             if (Properties.Settings.Default.Account == RoleName.ADMIN)
             {
@@ -62,7 +64,9 @@ namespace OQC
                 {
                     cbbTypeNG.Items.Add(ng.TypeNG1);
                 }
+               
             }
+            updateLabelConfirm();
             odiDataSource.ListChanged += OdiDataSource_ListChanged;
             GetTotal();
             this.ActiveControl = txbDateOccur;
@@ -305,8 +309,22 @@ namespace OQC
         {
             GetData(dataAdapter.SelectCommand.CommandText);
         }
+        private void updateLabelConfirm()
+        {
+            using (var db = new ClaimFormEntities())
+            {
+                var countNotConfirm = db.ODIs.Where(m => m.IsConfirm == false).Count();
+                if (countNotConfirm == 0)
+                {
+                    lblNotice.Text = "";
+                }
+                else
+                    lblNotice.Text = countNotConfirm + " bản chưa được xác nhận";
+            }
+        }
         private void updateAll()
         {
+            updateLabelConfirm();
             GetTotal();
             GetTotalByOP();
             GetTotalByGroup();
@@ -486,8 +504,13 @@ namespace OQC
                             Detail = txbNGDetail.Text,
                             NG_Photo = NG_Photo,
                             OK_Photo = OK_Photo,
-                            Sample_Form = sampleForm
+                            Sample_Form = sampleForm,
+                            IsConfirm = false
                         };
+                        if (Properties.Settings.Default.Account < 2 && Properties.Settings.Default.Account > 0)
+                        {
+                            ODI.IsConfirm = true;
+                        }
                         if (ODI.NumberNG == 0)
                         {
                             ODI.NG_Photo = "";
@@ -1112,7 +1135,7 @@ namespace OQC
                 rb100Per.Checked = true;
             }
             GetTotal();
-           
+
         }
 
         private void rbShiftDay_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -1175,45 +1198,50 @@ namespace OQC
 
         private void btnConfirmData_Click(object sender, EventArgs e)
         {
-            using (var db = new ClaimFormEntities())
+            if (MessageBox.Show("Bạn có muốn xác nhận dữ liệu đã nhập không?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                using (DbContextTransaction transaction = db.Database.BeginTransaction())
+
+                using (var db = new ClaimFormEntities())
                 {
-                    try
+                    using (DbContextTransaction transaction = db.Database.BeginTransaction())
                     {
-                        int count = 0;
-                        foreach (DataGridViewRow r in adgrvODi.SelectedRows)
+                        try
                         {
-                            if (r.Cells["ID"].Value != null)
+                            int count = 0;
+                            foreach (DataGridViewRow r in adgrvODi.SelectedRows)
                             {
-                                int IDODI = int.Parse(r.Cells["ID"].Value.ToString());
-                                var odi = db.ODIs.Where(m => m.ID == IDODI).FirstOrDefault();
-                                if (odi != null)
+                                if (r.Cells["ID"].Value != null)
                                 {
-                                    if (odi.IsConfirm == null || (odi.IsConfirm is bool isconfirm && !isconfirm))
+                                    int IDODI = int.Parse(r.Cells["ID"].Value.ToString());
+                                    var odi = db.ODIs.Where(m => m.ID == IDODI).FirstOrDefault();
+                                    if (odi != null)
                                     {
-                                        odi.IsConfirm = true;
-                                        db.SaveChanges();
-                                        count++;
+                                        if (odi.IsConfirm == null || (odi.IsConfirm is bool isconfirm && !isconfirm))
+                                        {
+                                            odi.IsConfirm = true;
+                                            db.SaveChanges();
+                                            count++;
+                                        }
                                     }
                                 }
+
+
                             }
-
-
+                            transaction.Commit();
+                            GetListODIs();
+                            updateAll();
+                            MessageBox.Show("Confirm thành công " + count.ToString() + " rows!");
                         }
-                        transaction.Commit();
-                        GetListODIs();
-                        updateAll();
-                        MessageBox.Show("Confirm thành công " + count.ToString() + " rows!");
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            MessageBox.Show(ex.Message.ToString());
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                        MessageBox.Show(ex.Message.ToString());
-                    }
-                }
 
+                }
             }
+
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
