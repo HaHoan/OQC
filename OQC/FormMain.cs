@@ -1250,6 +1250,13 @@ namespace OQC
             Properties.Settings.Default.Account = 0;
             new Login().ShowDialog();
         }
+
+        private void btnChangePass_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var changePass = new FormChangePassword();
+            changePass.ShowDialog();
+        }
     }
 }
 

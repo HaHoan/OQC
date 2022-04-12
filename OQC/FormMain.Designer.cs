@@ -140,6 +140,7 @@ namespace OQC
             this.claimFormDataSet = new OQC.ClaimFormDataSet();
             this.oDITableAdapter = new OQC.ClaimFormDataSetTableAdapters.ODITableAdapter();
             this.claimFormDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnChangePass = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -758,6 +759,7 @@ namespace OQC
             // 
             // panelAddWork
             // 
+            this.panelAddWork.Controls.Add(this.btnChangePass);
             this.panelAddWork.Controls.Add(this.lblVersion);
             this.panelAddWork.Controls.Add(this.lblNotice);
             this.panelAddWork.Controls.Add(this.btnLogout);
@@ -850,7 +852,7 @@ namespace OQC
             // 
             this.btnLogout.BackColor = System.Drawing.Color.Maroon;
             this.btnLogout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLogout.Location = new System.Drawing.Point(1466, 72);
+            this.btnLogout.Location = new System.Drawing.Point(1357, 78);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(75, 23);
             this.btnLogout.TabIndex = 74;
@@ -862,7 +864,7 @@ namespace OQC
             // 
             this.lblRole.AutoSize = true;
             this.lblRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRole.Location = new System.Drawing.Point(1468, 54);
+            this.lblRole.Location = new System.Drawing.Point(1359, 60);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(61, 15);
             this.lblRole.TabIndex = 73;
@@ -872,7 +874,7 @@ namespace OQC
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(1468, 36);
+            this.lblName.Location = new System.Drawing.Point(1359, 42);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(88, 13);
             this.lblName.TabIndex = 72;
@@ -882,7 +884,7 @@ namespace OQC
             // 
             this.lblcode.AutoSize = true;
             this.lblcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcode.Location = new System.Drawing.Point(1468, 14);
+            this.lblcode.Location = new System.Drawing.Point(1359, 20);
             this.lblcode.Name = "lblcode";
             this.lblcode.Size = new System.Drawing.Size(42, 13);
             this.lblcode.TabIndex = 71;
@@ -891,7 +893,7 @@ namespace OQC
             // pictureBox1
             // 
             this.pictureBox1.Image = global::OQC.Properties.Resources.profile;
-            this.pictureBox1.Location = new System.Drawing.Point(1368, 14);
+            this.pictureBox1.Location = new System.Drawing.Point(1264, 18);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(80, 80);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -1396,6 +1398,18 @@ namespace OQC
             this.claimFormDataSetBindingSource.DataSource = this.claimFormDataSet;
             this.claimFormDataSetBindingSource.Position = 0;
             // 
+            // btnChangePass
+            // 
+            this.btnChangePass.BackColor = System.Drawing.Color.OliveDrab;
+            this.btnChangePass.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnChangePass.Location = new System.Drawing.Point(1438, 78);
+            this.btnChangePass.Name = "btnChangePass";
+            this.btnChangePass.Size = new System.Drawing.Size(98, 23);
+            this.btnChangePass.TabIndex = 77;
+            this.btnChangePass.Text = "Đổi mật khẩu";
+            this.btnChangePass.UseVisualStyleBackColor = false;
+            this.btnChangePass.Click += new System.EventHandler(this.btnChangePass_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1548,5 +1562,6 @@ namespace OQC
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Label lblNotice;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Button btnChangePass;
     }
 }
