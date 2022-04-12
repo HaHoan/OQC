@@ -53,7 +53,7 @@ namespace OQC
             }
             else
             {
-                btnEditTargetPPM.Visible = false;
+                btnConfirmData.Visible = false;
             }
             lblStatus.Text = "";
 

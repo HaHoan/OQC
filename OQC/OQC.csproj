@@ -24,7 +24,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>26</ApplicationRevision>
+    <ApplicationRevision>28</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -53,7 +53,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0AD9707248B5D08F39AD7DEDF718131D9157C3F1</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>0ED5B71130EFB05817485A71ECBEF5307740B21E</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -66,6 +66,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>OQC_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AdvancedDataGridView, Version=0.1.0.10, Culture=neutral, processorArchitecture=MSIL">
@@ -225,6 +228,7 @@
     <None Include="ODIModel.edmx.diagram">
       <DependentUpon>ODIModel.edmx</DependentUpon>
     </None>
+    <None Include="OQC_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
