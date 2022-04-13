@@ -45,6 +45,7 @@ namespace OQC
             this.rbStationOQC2 = new System.Windows.Forms.RadioButton();
             this.rbStationOQC1 = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnSum = new System.Windows.Forms.Button();
             this.txbNote = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txbNumberNG = new System.Windows.Forms.TextBox();
@@ -87,15 +88,11 @@ namespace OQC
             this.lblNight = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.panelAddWork = new System.Windows.Forms.Panel();
-            this.btnSum = new System.Windows.Forms.Button();
             this.btnChangePass = new System.Windows.Forms.Button();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblNotice = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.lblRole = new System.Windows.Forms.Label();
-            this.lblName = new System.Windows.Forms.Label();
             this.lblcode = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnConfirmData = new System.Windows.Forms.Button();
             this.txbArea = new System.Windows.Forms.TextBox();
             this.btnEditTargetPPM = new System.Windows.Forms.Button();
@@ -142,6 +139,7 @@ namespace OQC
             this.claimFormDataSet = new OQC.ClaimFormDataSet();
             this.oDITableAdapter = new OQC.ClaimFormDataSetTableAdapters.ODITableAdapter();
             this.claimFormDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblName = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -154,7 +152,6 @@ namespace OQC
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panelAddWork.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.adgrvODi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOK)).BeginInit();
@@ -177,7 +174,7 @@ namespace OQC
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 56);
+            this.label1.Location = new System.Drawing.Point(10, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 1;
@@ -188,9 +185,9 @@ namespace OQC
             this.cbbCustomer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbbCustomer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbbCustomer.FormattingEnabled = true;
-            this.cbbCustomer.Location = new System.Drawing.Point(94, 49);
+            this.cbbCustomer.Location = new System.Drawing.Point(91, 40);
             this.cbbCustomer.Name = "cbbCustomer";
-            this.cbbCustomer.Size = new System.Drawing.Size(121, 21);
+            this.cbbCustomer.Size = new System.Drawing.Size(123, 21);
             this.cbbCustomer.TabIndex = 1;
             this.cbbCustomer.SelectedIndexChanged += new System.EventHandler(this.cbbCustomer_SelectedIndexChanged_1);
             // 
@@ -198,9 +195,9 @@ namespace OQC
             // 
             this.groupBox1.Controls.Add(this.rbShiftNight);
             this.groupBox1.Controls.Add(this.rbShiftDay);
-            this.groupBox1.Location = new System.Drawing.Point(14, 112);
+            this.groupBox1.Location = new System.Drawing.Point(14, 91);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 57);
+            this.groupBox1.Size = new System.Drawing.Size(200, 41);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Shift";
@@ -208,7 +205,7 @@ namespace OQC
             // rbShiftNight
             // 
             this.rbShiftNight.AutoSize = true;
-            this.rbShiftNight.Location = new System.Drawing.Point(109, 26);
+            this.rbShiftNight.Location = new System.Drawing.Point(109, 15);
             this.rbShiftNight.Name = "rbShiftNight";
             this.rbShiftNight.Size = new System.Drawing.Size(50, 17);
             this.rbShiftNight.TabIndex = 4;
@@ -221,7 +218,7 @@ namespace OQC
             // rbShiftDay
             // 
             this.rbShiftDay.AutoSize = true;
-            this.rbShiftDay.Location = new System.Drawing.Point(24, 26);
+            this.rbShiftDay.Location = new System.Drawing.Point(24, 15);
             this.rbShiftDay.Name = "rbShiftDay";
             this.rbShiftDay.Size = new System.Drawing.Size(44, 17);
             this.rbShiftDay.TabIndex = 3;
@@ -236,9 +233,9 @@ namespace OQC
             this.groupBox2.Controls.Add(this.rbStationCSL);
             this.groupBox2.Controls.Add(this.rbStationOQC2);
             this.groupBox2.Controls.Add(this.rbStationOQC1);
-            this.groupBox2.Location = new System.Drawing.Point(15, 177);
+            this.groupBox2.Location = new System.Drawing.Point(15, 138);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(202, 57);
+            this.groupBox2.Size = new System.Drawing.Size(200, 41);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Station";
@@ -246,7 +243,7 @@ namespace OQC
             // rbStationCSL
             // 
             this.rbStationCSL.AutoSize = true;
-            this.rbStationCSL.Location = new System.Drawing.Point(126, 26);
+            this.rbStationCSL.Location = new System.Drawing.Point(126, 19);
             this.rbStationCSL.Name = "rbStationCSL";
             this.rbStationCSL.Size = new System.Drawing.Size(45, 17);
             this.rbStationCSL.TabIndex = 7;
@@ -258,7 +255,7 @@ namespace OQC
             // rbStationOQC2
             // 
             this.rbStationOQC2.AutoSize = true;
-            this.rbStationOQC2.Location = new System.Drawing.Point(66, 26);
+            this.rbStationOQC2.Location = new System.Drawing.Point(66, 19);
             this.rbStationOQC2.Name = "rbStationOQC2";
             this.rbStationOQC2.Size = new System.Drawing.Size(54, 17);
             this.rbStationOQC2.TabIndex = 6;
@@ -270,7 +267,7 @@ namespace OQC
             // rbStationOQC1
             // 
             this.rbStationOQC1.AutoSize = true;
-            this.rbStationOQC1.Location = new System.Drawing.Point(6, 26);
+            this.rbStationOQC1.Location = new System.Drawing.Point(6, 19);
             this.rbStationOQC1.Name = "rbStationOQC1";
             this.rbStationOQC1.Size = new System.Drawing.Size(54, 17);
             this.rbStationOQC1.TabIndex = 5;
@@ -281,6 +278,7 @@ namespace OQC
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnSum);
             this.groupBox3.Controls.Add(this.txbNote);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.txbNumberNG);
@@ -301,18 +299,30 @@ namespace OQC
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.groupBox3.Location = new System.Drawing.Point(12, 241);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(527, 158);
+            this.groupBox3.Size = new System.Drawing.Size(203, 285);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Productivity";
             // 
+            // btnSum
+            // 
+            this.btnSum.FlatAppearance.BorderSize = 0;
+            this.btnSum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSum.Image = global::OQC.Properties.Resources.edit;
+            this.btnSum.Location = new System.Drawing.Point(248, 192);
+            this.btnSum.Name = "btnSum";
+            this.btnSum.Size = new System.Drawing.Size(31, 23);
+            this.btnSum.TabIndex = 19;
+            this.btnSum.UseVisualStyleBackColor = true;
+            this.btnSum.Click += new System.EventHandler(this.btnSum_Click);
+            // 
             // txbNote
             // 
             this.txbNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbNote.Location = new System.Drawing.Point(320, 99);
+            this.txbNote.Location = new System.Drawing.Point(71, 223);
             this.txbNote.Multiline = true;
             this.txbNote.Name = "txbNote";
-            this.txbNote.Size = new System.Drawing.Size(164, 37);
+            this.txbNote.Size = new System.Drawing.Size(125, 37);
             this.txbNote.TabIndex = 18;
             this.txbNote.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbNote_PreviewKeyDown);
             // 
@@ -321,7 +331,7 @@ namespace OQC
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label9.Location = new System.Drawing.Point(267, 97);
+            this.label9.Location = new System.Drawing.Point(19, 225);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(44, 13);
             this.label9.TabIndex = 14;
@@ -330,9 +340,9 @@ namespace OQC
             // txbNumberNG
             // 
             this.txbNumberNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbNumberNG.Location = new System.Drawing.Point(321, 73);
+            this.txbNumberNG.Location = new System.Drawing.Point(71, 195);
             this.txbNumberNG.Name = "txbNumberNG";
-            this.txbNumberNG.Size = new System.Drawing.Size(163, 20);
+            this.txbNumberNG.Size = new System.Drawing.Size(124, 20);
             this.txbNumberNG.TabIndex = 17;
             this.txbNumberNG.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyNumberPress);
             this.txbNumberNG.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbNumberNG_PreviewKeyDown);
@@ -342,7 +352,7 @@ namespace OQC
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label8.Location = new System.Drawing.Point(272, 82);
+            this.label8.Location = new System.Drawing.Point(26, 198);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(37, 13);
             this.label8.TabIndex = 12;
@@ -351,9 +361,9 @@ namespace OQC
             // txbNumerCheck
             // 
             this.txbNumerCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbNumerCheck.Location = new System.Drawing.Point(321, 47);
+            this.txbNumerCheck.Location = new System.Drawing.Point(71, 167);
             this.txbNumerCheck.Name = "txbNumerCheck";
-            this.txbNumerCheck.Size = new System.Drawing.Size(163, 20);
+            this.txbNumerCheck.Size = new System.Drawing.Size(124, 20);
             this.txbNumerCheck.TabIndex = 16;
             this.txbNumerCheck.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyNumberPress);
             this.txbNumerCheck.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbNumerCheck_PreviewKeyDown);
@@ -363,7 +373,7 @@ namespace OQC
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label7.Location = new System.Drawing.Point(263, 56);
+            this.label7.Location = new System.Drawing.Point(17, 171);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(46, 13);
             this.label7.TabIndex = 10;
@@ -372,10 +382,10 @@ namespace OQC
             // txbWOQty
             // 
             this.txbWOQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbWOQty.Location = new System.Drawing.Point(321, 21);
+            this.txbWOQty.Location = new System.Drawing.Point(71, 139);
             this.txbWOQty.MaxLength = 6;
             this.txbWOQty.Name = "txbWOQty";
-            this.txbWOQty.Size = new System.Drawing.Size(163, 20);
+            this.txbWOQty.Size = new System.Drawing.Size(124, 20);
             this.txbWOQty.TabIndex = 15;
             this.txbWOQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyNumberPress);
             this.txbWOQty.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbWOQty_PreviewKeyDown);
@@ -385,7 +395,7 @@ namespace OQC
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label6.Location = new System.Drawing.Point(264, 29);
+            this.label6.Location = new System.Drawing.Point(18, 144);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 13);
             this.label6.TabIndex = 8;
@@ -395,10 +405,10 @@ namespace OQC
             // 
             this.txbWO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbWO.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbWO.Location = new System.Drawing.Point(79, 115);
+            this.txbWO.Location = new System.Drawing.Point(71, 111);
             this.txbWO.MaxLength = 6;
             this.txbWO.Name = "txbWO";
-            this.txbWO.Size = new System.Drawing.Size(163, 20);
+            this.txbWO.Size = new System.Drawing.Size(124, 20);
             this.txbWO.TabIndex = 14;
             this.txbWO.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbWO_PreviewKeyDown);
             // 
@@ -407,7 +417,7 @@ namespace OQC
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label5.Location = new System.Drawing.Point(34, 123);
+            this.label5.Location = new System.Drawing.Point(30, 117);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(33, 13);
             this.label5.TabIndex = 6;
@@ -417,9 +427,9 @@ namespace OQC
             // 
             this.txbModelName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbModelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbModelName.Location = new System.Drawing.Point(80, 83);
+            this.txbModelName.Location = new System.Drawing.Point(71, 83);
             this.txbModelName.Name = "txbModelName";
-            this.txbModelName.Size = new System.Drawing.Size(163, 20);
+            this.txbModelName.Size = new System.Drawing.Size(124, 20);
             this.txbModelName.TabIndex = 13;
             this.txbModelName.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbModelName_PreviewKeyDown);
             // 
@@ -428,7 +438,7 @@ namespace OQC
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(10, 92);
+            this.label4.Location = new System.Drawing.Point(5, 90);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 4;
@@ -438,9 +448,9 @@ namespace OQC
             // 
             this.txbGroupModel.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbGroupModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbGroupModel.Location = new System.Drawing.Point(80, 55);
+            this.txbGroupModel.Location = new System.Drawing.Point(71, 55);
             this.txbGroupModel.Name = "txbGroupModel";
-            this.txbGroupModel.Size = new System.Drawing.Size(163, 20);
+            this.txbGroupModel.Size = new System.Drawing.Size(124, 20);
             this.txbGroupModel.TabIndex = 12;
             this.txbGroupModel.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbGroupModel_PreviewKeyDown);
             // 
@@ -449,7 +459,7 @@ namespace OQC
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(1, 64);
+            this.label3.Location = new System.Drawing.Point(-4, 63);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 2;
@@ -459,9 +469,9 @@ namespace OQC
             // 
             this.txbInspector.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbInspector.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbInspector.Location = new System.Drawing.Point(80, 27);
+            this.txbInspector.Location = new System.Drawing.Point(71, 27);
             this.txbInspector.Name = "txbInspector";
-            this.txbInspector.Size = new System.Drawing.Size(163, 20);
+            this.txbInspector.Size = new System.Drawing.Size(124, 20);
             this.txbInspector.TabIndex = 11;
             this.txbInspector.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbInspector_PreviewKeyDown);
             // 
@@ -470,7 +480,7 @@ namespace OQC
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(17, 36);
+            this.label2.Location = new System.Drawing.Point(12, 36);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 0;
@@ -479,7 +489,7 @@ namespace OQC
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(35, 82);
+            this.label24.Location = new System.Drawing.Point(33, 72);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(55, 13);
             this.label24.TabIndex = 6;
@@ -491,19 +501,19 @@ namespace OQC
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.lblTotalCheck);
             this.panel1.Controls.Add(this.label10);
-            this.panel1.Location = new System.Drawing.Point(237, 10);
+            this.panel1.Location = new System.Drawing.Point(221, 10);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(131, 96);
+            this.panel1.Size = new System.Drawing.Size(83, 96);
             this.panel1.TabIndex = 9;
             // 
             // lblTotalCheck
             // 
             this.lblTotalCheck.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblTotalCheck.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblTotalCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalCheck.Location = new System.Drawing.Point(0, 51);
             this.lblTotalCheck.Name = "lblTotalCheck";
-            this.lblTotalCheck.Size = new System.Drawing.Size(129, 43);
+            this.lblTotalCheck.Size = new System.Drawing.Size(81, 43);
             this.lblTotalCheck.TabIndex = 1;
             this.lblTotalCheck.Text = "0";
             this.lblTotalCheck.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -511,11 +521,11 @@ namespace OQC
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(18, 7);
+            this.label10.Location = new System.Drawing.Point(3, 7);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(102, 41);
+            this.label10.Size = new System.Drawing.Size(75, 41);
             this.label10.TabIndex = 0;
-            this.label10.Text = "Số lượng kiểm của dự án";
+            this.label10.Text = "SL kiểm của dự án";
             // 
             // panel2
             // 
@@ -523,19 +533,19 @@ namespace OQC
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.lblNG);
             this.panel2.Controls.Add(this.label12);
-            this.panel2.Location = new System.Drawing.Point(373, 10);
+            this.panel2.Location = new System.Drawing.Point(307, 10);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(78, 96);
+            this.panel2.Size = new System.Drawing.Size(65, 96);
             this.panel2.TabIndex = 10;
             // 
             // lblNG
             // 
             this.lblNG.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblNG.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNG.Location = new System.Drawing.Point(0, 51);
             this.lblNG.Name = "lblNG";
-            this.lblNG.Size = new System.Drawing.Size(76, 43);
+            this.lblNG.Size = new System.Drawing.Size(63, 43);
             this.lblNG.TabIndex = 1;
             this.lblNG.Text = "0";
             this.lblNG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -556,19 +566,19 @@ namespace OQC
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.lblPPM);
             this.panel3.Controls.Add(this.label13);
-            this.panel3.Location = new System.Drawing.Point(456, 11);
+            this.panel3.Location = new System.Drawing.Point(376, 11);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(78, 95);
+            this.panel3.Size = new System.Drawing.Size(63, 95);
             this.panel3.TabIndex = 11;
             // 
             // lblPPM
             // 
             this.lblPPM.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblPPM.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblPPM.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPPM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPPM.Location = new System.Drawing.Point(0, 49);
             this.lblPPM.Name = "lblPPM";
-            this.lblPPM.Size = new System.Drawing.Size(76, 44);
+            this.lblPPM.Size = new System.Drawing.Size(61, 44);
             this.lblPPM.TabIndex = 1;
             this.lblPPM.Text = "0";
             this.lblPPM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -590,20 +600,20 @@ namespace OQC
             this.panel4.Controls.Add(this.lblGroup);
             this.panel4.Controls.Add(this.label15);
             this.panel4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel4.Location = new System.Drawing.Point(540, 10);
+            this.panel4.Location = new System.Drawing.Point(442, 10);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(130, 96);
+            this.panel4.Size = new System.Drawing.Size(93, 96);
             this.panel4.TabIndex = 12;
             // 
             // lblGroup
             // 
             this.lblGroup.BackColor = System.Drawing.Color.White;
             this.lblGroup.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGroup.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblGroup.Location = new System.Drawing.Point(0, 49);
             this.lblGroup.Name = "lblGroup";
-            this.lblGroup.Size = new System.Drawing.Size(128, 45);
+            this.lblGroup.Size = new System.Drawing.Size(91, 45);
             this.lblGroup.TabIndex = 1;
             this.lblGroup.Text = "0";
             this.lblGroup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -611,7 +621,7 @@ namespace OQC
             // label15
             // 
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(22, 6);
+            this.label15.Location = new System.Drawing.Point(5, 6);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(90, 35);
             this.label15.TabIndex = 0;
@@ -625,20 +635,20 @@ namespace OQC
             this.panel5.Controls.Add(this.lblModel);
             this.panel5.Controls.Add(this.label17);
             this.panel5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel5.Location = new System.Drawing.Point(676, 10);
+            this.panel5.Location = new System.Drawing.Point(539, 9);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(128, 96);
+            this.panel5.Size = new System.Drawing.Size(88, 96);
             this.panel5.TabIndex = 13;
             // 
             // lblModel
             // 
             this.lblModel.BackColor = System.Drawing.Color.White;
             this.lblModel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblModel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblModel.Location = new System.Drawing.Point(0, 49);
             this.lblModel.Name = "lblModel";
-            this.lblModel.Size = new System.Drawing.Size(126, 45);
+            this.lblModel.Size = new System.Drawing.Size(86, 45);
             this.lblModel.TabIndex = 1;
             this.lblModel.Text = "0";
             this.lblModel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -646,7 +656,7 @@ namespace OQC
             // label17
             // 
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(22, 6);
+            this.label17.Location = new System.Drawing.Point(2, 6);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(90, 35);
             this.label17.TabIndex = 0;
@@ -660,20 +670,20 @@ namespace OQC
             this.panel6.Controls.Add(this.lblOP);
             this.panel6.Controls.Add(this.label19);
             this.panel6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel6.Location = new System.Drawing.Point(810, 10);
+            this.panel6.Location = new System.Drawing.Point(631, 10);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(129, 96);
+            this.panel6.Size = new System.Drawing.Size(88, 96);
             this.panel6.TabIndex = 14;
             // 
             // lblOP
             // 
             this.lblOP.BackColor = System.Drawing.Color.White;
             this.lblOP.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblOP.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOP.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblOP.Location = new System.Drawing.Point(0, 49);
             this.lblOP.Name = "lblOP";
-            this.lblOP.Size = new System.Drawing.Size(127, 45);
+            this.lblOP.Size = new System.Drawing.Size(86, 45);
             this.lblOP.TabIndex = 1;
             this.lblOP.Text = "0";
             this.lblOP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -681,7 +691,7 @@ namespace OQC
             // label19
             // 
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(22, 6);
+            this.label19.Location = new System.Drawing.Point(-1, 6);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(90, 35);
             this.label19.TabIndex = 0;
@@ -695,20 +705,20 @@ namespace OQC
             this.panel7.Controls.Add(this.lblDay);
             this.panel7.Controls.Add(this.label21);
             this.panel7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel7.Location = new System.Drawing.Point(945, 11);
+            this.panel7.Location = new System.Drawing.Point(723, 11);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(126, 95);
+            this.panel7.Size = new System.Drawing.Size(94, 95);
             this.panel7.TabIndex = 15;
             // 
             // lblDay
             // 
             this.lblDay.BackColor = System.Drawing.Color.White;
             this.lblDay.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDay.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblDay.Location = new System.Drawing.Point(0, 48);
             this.lblDay.Name = "lblDay";
-            this.lblDay.Size = new System.Drawing.Size(124, 45);
+            this.lblDay.Size = new System.Drawing.Size(92, 45);
             this.lblDay.TabIndex = 1;
             this.lblDay.Text = "0";
             this.lblDay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -716,7 +726,7 @@ namespace OQC
             // label21
             // 
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(22, 6);
+            this.label21.Location = new System.Drawing.Point(-1, 6);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(90, 35);
             this.label21.TabIndex = 0;
@@ -730,20 +740,20 @@ namespace OQC
             this.panel8.Controls.Add(this.lblNight);
             this.panel8.Controls.Add(this.label23);
             this.panel8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel8.Location = new System.Drawing.Point(1080, 11);
+            this.panel8.Location = new System.Drawing.Point(823, 11);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(122, 95);
+            this.panel8.Size = new System.Drawing.Size(91, 95);
             this.panel8.TabIndex = 16;
             // 
             // lblNight
             // 
             this.lblNight.BackColor = System.Drawing.Color.White;
             this.lblNight.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblNight.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNight.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblNight.Location = new System.Drawing.Point(0, 48);
             this.lblNight.Name = "lblNight";
-            this.lblNight.Size = new System.Drawing.Size(120, 45);
+            this.lblNight.Size = new System.Drawing.Size(89, 45);
             this.lblNight.TabIndex = 1;
             this.lblNight.Text = "0";
             this.lblNight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -751,7 +761,7 @@ namespace OQC
             // label23
             // 
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(22, 6);
+            this.label23.Location = new System.Drawing.Point(-2, 6);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(90, 35);
             this.label23.TabIndex = 0;
@@ -760,15 +770,12 @@ namespace OQC
             // 
             // panelAddWork
             // 
-            this.panelAddWork.Controls.Add(this.btnSum);
             this.panelAddWork.Controls.Add(this.btnChangePass);
             this.panelAddWork.Controls.Add(this.lblVersion);
             this.panelAddWork.Controls.Add(this.lblNotice);
             this.panelAddWork.Controls.Add(this.btnLogout);
-            this.panelAddWork.Controls.Add(this.lblRole);
             this.panelAddWork.Controls.Add(this.lblName);
             this.panelAddWork.Controls.Add(this.lblcode);
-            this.panelAddWork.Controls.Add(this.pictureBox1);
             this.panelAddWork.Controls.Add(this.btnConfirmData);
             this.panelAddWork.Controls.Add(this.txbArea);
             this.panelAddWork.Controls.Add(this.btnEditTargetPPM);
@@ -825,28 +832,17 @@ namespace OQC
             this.panelAddWork.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelAddWork.Location = new System.Drawing.Point(0, 0);
             this.panelAddWork.Name = "panelAddWork";
-            this.panelAddWork.Size = new System.Drawing.Size(1604, 697);
+            this.panelAddWork.Size = new System.Drawing.Size(1008, 747);
             this.panelAddWork.TabIndex = 2;
-            // 
-            // btnSum
-            // 
-            this.btnSum.FlatAppearance.BorderSize = 0;
-            this.btnSum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSum.Image = global::OQC.Properties.Resources.edit;
-            this.btnSum.Location = new System.Drawing.Point(502, 288);
-            this.btnSum.Name = "btnSum";
-            this.btnSum.Size = new System.Drawing.Size(31, 23);
-            this.btnSum.TabIndex = 19;
-            this.btnSum.UseVisualStyleBackColor = true;
-            this.btnSum.Click += new System.EventHandler(this.btnSum_Click);
             // 
             // btnChangePass
             // 
+            this.btnChangePass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnChangePass.BackColor = System.Drawing.Color.OliveDrab;
             this.btnChangePass.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnChangePass.Location = new System.Drawing.Point(1438, 78);
+            this.btnChangePass.Location = new System.Drawing.Point(922, 78);
             this.btnChangePass.Name = "btnChangePass";
-            this.btnChangePass.Size = new System.Drawing.Size(98, 23);
+            this.btnChangePass.Size = new System.Drawing.Size(80, 23);
             this.btnChangePass.TabIndex = 77;
             this.btnChangePass.Text = "Đổi mật khẩu";
             this.btnChangePass.UseVisualStyleBackColor = false;
@@ -858,7 +854,7 @@ namespace OQC
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersion.ForeColor = System.Drawing.Color.Maroon;
-            this.lblVersion.Location = new System.Drawing.Point(1544, 675);
+            this.lblVersion.Location = new System.Drawing.Point(948, 725);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(48, 13);
             this.lblVersion.TabIndex = 76;
@@ -869,16 +865,18 @@ namespace OQC
             this.lblNotice.AutoSize = true;
             this.lblNotice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNotice.ForeColor = System.Drawing.Color.Maroon;
-            this.lblNotice.Location = new System.Drawing.Point(1350, 137);
+            this.lblNotice.Location = new System.Drawing.Point(832, 138);
             this.lblNotice.Name = "lblNotice";
-            this.lblNotice.Size = new System.Drawing.Size(0, 13);
+            this.lblNotice.Size = new System.Drawing.Size(99, 13);
             this.lblNotice.TabIndex = 75;
+            this.lblNotice.Text = "total not confirm";
             // 
             // btnLogout
             // 
+            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLogout.BackColor = System.Drawing.Color.Maroon;
             this.btnLogout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLogout.Location = new System.Drawing.Point(1357, 78);
+            this.btnLogout.Location = new System.Drawing.Point(922, 50);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(75, 23);
             this.btnLogout.TabIndex = 74;
@@ -886,52 +884,23 @@ namespace OQC
             this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // lblRole
-            // 
-            this.lblRole.AutoSize = true;
-            this.lblRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRole.Location = new System.Drawing.Point(1359, 60);
-            this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(61, 15);
-            this.lblRole.TabIndex = 73;
-            this.lblRole.Text = "LEADER";
-            // 
-            // lblName
-            // 
-            this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(1359, 42);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(88, 13);
-            this.lblName.TabIndex = 72;
-            this.lblName.Text = "HÀ THỊ HOÀN";
-            // 
             // lblcode
             // 
+            this.lblcode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblcode.AutoSize = true;
             this.lblcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcode.Location = new System.Drawing.Point(1359, 20);
+            this.lblcode.Location = new System.Drawing.Point(922, 14);
             this.lblcode.Name = "lblcode";
             this.lblcode.Size = new System.Drawing.Size(42, 13);
             this.lblcode.TabIndex = 71;
             this.lblcode.Text = "34811";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::OQC.Properties.Resources.profile;
-            this.pictureBox1.Location = new System.Drawing.Point(1264, 18);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(80, 80);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 70;
-            this.pictureBox1.TabStop = false;
             // 
             // btnConfirmData
             // 
             this.btnConfirmData.BackColor = System.Drawing.Color.Red;
             this.btnConfirmData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmData.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnConfirmData.Location = new System.Drawing.Point(1217, 130);
+            this.btnConfirmData.Location = new System.Drawing.Point(643, 128);
             this.btnConfirmData.Name = "btnConfirmData";
             this.btnConfirmData.Size = new System.Drawing.Size(127, 30);
             this.btnConfirmData.TabIndex = 69;
@@ -943,7 +912,7 @@ namespace OQC
             // 
             this.txbArea.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbArea.Location = new System.Drawing.Point(92, 76);
+            this.txbArea.Location = new System.Drawing.Point(91, 65);
             this.txbArea.Name = "txbArea";
             this.txbArea.Size = new System.Drawing.Size(123, 20);
             this.txbArea.TabIndex = 68;
@@ -951,11 +920,11 @@ namespace OQC
             // btnEditTargetPPM
             // 
             this.btnEditTargetPPM.BackColor = System.Drawing.Color.DarkOrange;
-            this.btnEditTargetPPM.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditTargetPPM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditTargetPPM.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnEditTargetPPM.Location = new System.Drawing.Point(6, 557);
+            this.btnEditTargetPPM.Location = new System.Drawing.Point(6, 693);
             this.btnEditTargetPPM.Name = "btnEditTargetPPM";
-            this.btnEditTargetPPM.Size = new System.Drawing.Size(264, 53);
+            this.btnEditTargetPPM.Size = new System.Drawing.Size(180, 44);
             this.btnEditTargetPPM.TabIndex = 67;
             this.btnEditTargetPPM.Text = "SỬA TARGET PPM";
             this.btnEditTargetPPM.UseVisualStyleBackColor = false;
@@ -967,7 +936,7 @@ namespace OQC
             this.btnCreate.BackColor = System.Drawing.Color.Green;
             this.btnCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreate.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnCreate.Location = new System.Drawing.Point(128, 436);
+            this.btnCreate.Location = new System.Drawing.Point(130, 582);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(142, 49);
             this.btnCreate.TabIndex = 66;
@@ -990,7 +959,7 @@ namespace OQC
             this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExcel.ForeColor = System.Drawing.Color.Transparent;
             this.btnExcel.Image = global::OQC.Properties.Resources.import_excel;
-            this.btnExcel.Location = new System.Drawing.Point(1005, 130);
+            this.btnExcel.Location = new System.Drawing.Point(556, 131);
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Size = new System.Drawing.Size(75, 27);
             this.btnExcel.TabIndex = 64;
@@ -1002,9 +971,9 @@ namespace OQC
             this.groupBox4.Controls.Add(this.rb50Per);
             this.groupBox4.Controls.Add(this.rbAQL);
             this.groupBox4.Controls.Add(this.rb100Per);
-            this.groupBox4.Location = new System.Drawing.Point(220, 111);
+            this.groupBox4.Location = new System.Drawing.Point(12, 185);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(200, 52);
+            this.groupBox4.Size = new System.Drawing.Size(200, 41);
             this.groupBox4.TabIndex = 63;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Hình thức lấy mẫu";
@@ -1048,7 +1017,7 @@ namespace OQC
             // lblNumberRow
             // 
             this.lblNumberRow.AutoSize = true;
-            this.lblNumberRow.Location = new System.Drawing.Point(1149, 143);
+            this.lblNumberRow.Location = new System.Drawing.Point(783, 139);
             this.lblNumberRow.Name = "lblNumberRow";
             this.lblNumberRow.Size = new System.Drawing.Size(43, 13);
             this.lblNumberRow.TabIndex = 62;
@@ -1060,7 +1029,7 @@ namespace OQC
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::OQC.Properties.Resources.binoculars;
-            this.button1.Location = new System.Drawing.Point(945, 127);
+            this.button1.Location = new System.Drawing.Point(496, 128);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(42, 33);
             this.button1.TabIndex = 60;
@@ -1072,6 +1041,7 @@ namespace OQC
             this.adgrvODi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.adgrvODi.AutoGenerateContextFilters = true;
+            this.adgrvODi.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.adgrvODi.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -1091,10 +1061,10 @@ namespace OQC
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.adgrvODi.DefaultCellStyle = dataGridViewCellStyle2;
-            this.adgrvODi.Location = new System.Drawing.Point(545, 169);
+            this.adgrvODi.Location = new System.Drawing.Point(228, 169);
             this.adgrvODi.Name = "adgrvODi";
             this.adgrvODi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.adgrvODi.Size = new System.Drawing.Size(1047, 230);
+            this.adgrvODi.Size = new System.Drawing.Size(768, 230);
             this.adgrvODi.TabIndex = 59;
             this.adgrvODi.TimeFilter = false;
             this.adgrvODi.SortStringChanged += new System.EventHandler(this.adgrvODi_SortStringChanged);
@@ -1104,7 +1074,7 @@ namespace OQC
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(806, 138);
+            this.label14.Location = new System.Drawing.Point(357, 139);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(27, 13);
             this.label14.TabIndex = 56;
@@ -1114,7 +1084,7 @@ namespace OQC
             // 
             this.dpTo.CustomFormat = "dd-MM-yyyy";
             this.dpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpTo.Location = new System.Drawing.Point(836, 134);
+            this.dpTo.Location = new System.Drawing.Point(387, 135);
             this.dpTo.Name = "dpTo";
             this.dpTo.Size = new System.Drawing.Size(77, 20);
             this.dpTo.TabIndex = 55;
@@ -1122,7 +1092,7 @@ namespace OQC
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(675, 137);
+            this.label11.Location = new System.Drawing.Point(226, 138);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(20, 13);
             this.label11.TabIndex = 54;
@@ -1132,7 +1102,7 @@ namespace OQC
             // 
             this.dpFrom.CustomFormat = "dd-MM-yyyy";
             this.dpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpFrom.Location = new System.Drawing.Point(698, 134);
+            this.dpFrom.Location = new System.Drawing.Point(249, 135);
             this.dpFrom.Name = "dpFrom";
             this.dpFrom.Size = new System.Drawing.Size(77, 20);
             this.dpFrom.TabIndex = 53;
@@ -1165,7 +1135,7 @@ namespace OQC
             this.btnSubmitNext.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.btnSubmitNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmitNext.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnSubmitNext.Location = new System.Drawing.Point(6, 493);
+            this.btnSubmitNext.Location = new System.Drawing.Point(5, 640);
             this.btnSubmitNext.Name = "btnSubmitNext";
             this.btnSubmitNext.Size = new System.Drawing.Size(116, 49);
             this.btnSubmitNext.TabIndex = 20;
@@ -1178,7 +1148,7 @@ namespace OQC
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.ForeColor = System.Drawing.Color.Maroon;
-            this.lblStatus.Location = new System.Drawing.Point(11, 411);
+            this.lblStatus.Location = new System.Drawing.Point(10, 544);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(20, 16);
             this.lblStatus.TabIndex = 49;
@@ -1187,9 +1157,9 @@ namespace OQC
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.Maroon;
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnDelete.Location = new System.Drawing.Point(128, 494);
+            this.btnDelete.Location = new System.Drawing.Point(130, 639);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(142, 48);
             this.btnDelete.TabIndex = 27;
@@ -1202,7 +1172,7 @@ namespace OQC
             this.btnSaveODI.BackColor = System.Drawing.Color.Green;
             this.btnSaveODI.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveODI.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnSaveODI.Location = new System.Drawing.Point(6, 436);
+            this.btnSaveODI.Location = new System.Drawing.Point(8, 582);
             this.btnSaveODI.Name = "btnSaveODI";
             this.btnSaveODI.Size = new System.Drawing.Size(116, 49);
             this.btnSaveODI.TabIndex = 19;
@@ -1213,7 +1183,7 @@ namespace OQC
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(859, 407);
+            this.label31.Location = new System.Drawing.Point(758, 408);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(44, 13);
             this.label31.TabIndex = 46;
@@ -1222,7 +1192,7 @@ namespace OQC
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(530, 407);
+            this.label32.Location = new System.Drawing.Point(476, 406);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(45, 13);
             this.label32.TabIndex = 45;
@@ -1232,9 +1202,9 @@ namespace OQC
             // 
             this.btnAddOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddOK.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAddOK.Location = new System.Drawing.Point(862, 645);
+            this.btnAddOK.Location = new System.Drawing.Point(756, 649);
             this.btnAddOK.Name = "btnAddOK";
-            this.btnAddOK.Size = new System.Drawing.Size(75, 35);
+            this.btnAddOK.Size = new System.Drawing.Size(68, 29);
             this.btnAddOK.TabIndex = 44;
             this.btnAddOK.Text = "Chọn Ảnh";
             this.btnAddOK.UseVisualStyleBackColor = true;
@@ -1243,9 +1213,9 @@ namespace OQC
             // pbOK
             // 
             this.pbOK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbOK.Location = new System.Drawing.Point(862, 435);
+            this.pbOK.Location = new System.Drawing.Point(743, 433);
             this.pbOK.Name = "pbOK";
-            this.pbOK.Size = new System.Drawing.Size(309, 204);
+            this.pbOK.Size = new System.Drawing.Size(248, 210);
             this.pbOK.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbOK.TabIndex = 43;
             this.pbOK.TabStop = false;
@@ -1254,9 +1224,9 @@ namespace OQC
             // 
             this.btnAddNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddNG.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAddNG.Location = new System.Drawing.Point(528, 651);
+            this.btnAddNG.Location = new System.Drawing.Point(470, 651);
             this.btnAddNG.Name = "btnAddNG";
-            this.btnAddNG.Size = new System.Drawing.Size(75, 35);
+            this.btnAddNG.Size = new System.Drawing.Size(68, 29);
             this.btnAddNG.TabIndex = 42;
             this.btnAddNG.Text = "Chọn Ảnh";
             this.btnAddNG.UseVisualStyleBackColor = true;
@@ -1265,9 +1235,9 @@ namespace OQC
             // pbNG
             // 
             this.pbNG.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbNG.Location = new System.Drawing.Point(528, 435);
+            this.pbNG.Location = new System.Drawing.Point(472, 432);
             this.pbNG.Name = "pbNG";
-            this.pbNG.Size = new System.Drawing.Size(309, 210);
+            this.pbNG.Size = new System.Drawing.Size(265, 210);
             this.pbNG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbNG.TabIndex = 41;
             this.pbNG.TabStop = false;
@@ -1276,11 +1246,11 @@ namespace OQC
             // 
             this.cbbTypeNG.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbbTypeNG.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbbTypeNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbTypeNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbTypeNG.FormattingEnabled = true;
-            this.cbbTypeNG.Location = new System.Drawing.Point(366, 522);
+            this.cbbTypeNG.Location = new System.Drawing.Point(328, 520);
             this.cbbTypeNG.Name = "cbbTypeNG";
-            this.cbbTypeNG.Size = new System.Drawing.Size(130, 24);
+            this.cbbTypeNG.Size = new System.Drawing.Size(130, 21);
             this.cbbTypeNG.TabIndex = 25;
             // 
             // dtpTimeOccur
@@ -1289,7 +1259,7 @@ namespace OQC
             this.dtpTimeOccur.CustomFormat = "HH:mm";
             this.dtpTimeOccur.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpTimeOccur.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTimeOccur.Location = new System.Drawing.Point(366, 411);
+            this.dtpTimeOccur.Location = new System.Drawing.Point(328, 409);
             this.dtpTimeOccur.Name = "dtpTimeOccur";
             this.dtpTimeOccur.ShowUpDown = true;
             this.dtpTimeOccur.Size = new System.Drawing.Size(130, 20);
@@ -1299,7 +1269,7 @@ namespace OQC
             // txbNGDetail
             // 
             this.txbNGDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbNGDetail.Location = new System.Drawing.Point(366, 550);
+            this.txbNGDetail.Location = new System.Drawing.Point(328, 548);
             this.txbNGDetail.Name = "txbNGDetail";
             this.txbNGDetail.Size = new System.Drawing.Size(130, 20);
             this.txbNGDetail.TabIndex = 26;
@@ -1310,7 +1280,7 @@ namespace OQC
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label25.Location = new System.Drawing.Point(303, 559);
+            this.label25.Location = new System.Drawing.Point(273, 554);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(47, 13);
             this.label25.TabIndex = 37;
@@ -1321,7 +1291,7 @@ namespace OQC
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label26.Location = new System.Drawing.Point(310, 531);
+            this.label26.Location = new System.Drawing.Point(280, 526);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(40, 13);
             this.label26.TabIndex = 36;
@@ -1331,7 +1301,7 @@ namespace OQC
             // 
             this.txbPosition.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbPosition.Location = new System.Drawing.Point(366, 494);
+            this.txbPosition.Location = new System.Drawing.Point(328, 492);
             this.txbPosition.Name = "txbPosition";
             this.txbPosition.Size = new System.Drawing.Size(130, 20);
             this.txbPosition.TabIndex = 24;
@@ -1342,7 +1312,7 @@ namespace OQC
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label27.Location = new System.Drawing.Point(321, 503);
+            this.label27.Location = new System.Drawing.Point(291, 498);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(29, 13);
             this.label27.TabIndex = 34;
@@ -1351,7 +1321,7 @@ namespace OQC
             // txbSerial
             // 
             this.txbSerial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbSerial.Location = new System.Drawing.Point(366, 466);
+            this.txbSerial.Location = new System.Drawing.Point(328, 464);
             this.txbSerial.Name = "txbSerial";
             this.txbSerial.Size = new System.Drawing.Size(130, 20);
             this.txbSerial.TabIndex = 23;
@@ -1362,7 +1332,7 @@ namespace OQC
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label28.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label28.Location = new System.Drawing.Point(296, 475);
+            this.label28.Location = new System.Drawing.Point(273, 470);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(47, 13);
             this.label28.TabIndex = 32;
@@ -1372,7 +1342,7 @@ namespace OQC
             // 
             this.txbLine.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbLine.Location = new System.Drawing.Point(366, 438);
+            this.txbLine.Location = new System.Drawing.Point(328, 436);
             this.txbLine.Name = "txbLine";
             this.txbLine.Size = new System.Drawing.Size(130, 20);
             this.txbLine.TabIndex = 22;
@@ -1383,7 +1353,7 @@ namespace OQC
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label29.Location = new System.Drawing.Point(287, 447);
+            this.label29.Location = new System.Drawing.Point(247, 442);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(73, 13);
             this.label29.TabIndex = 30;
@@ -1394,7 +1364,7 @@ namespace OQC
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label30.Location = new System.Drawing.Point(263, 419);
+            this.label30.Location = new System.Drawing.Point(229, 414);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(91, 13);
             this.label30.TabIndex = 29;
@@ -1424,11 +1394,22 @@ namespace OQC
             this.claimFormDataSetBindingSource.DataSource = this.claimFormDataSet;
             this.claimFormDataSetBindingSource.Position = 0;
             // 
+            // lblName
+            // 
+            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(922, 32);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(41, 13);
+            this.lblName.TabIndex = 72;
+            this.lblName.Text = "phanmj";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1604, 697);
+            this.ClientSize = new System.Drawing.Size(1008, 747);
             this.Controls.Add(this.panelAddWork);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
@@ -1453,7 +1434,6 @@ namespace OQC
             this.panel8.ResumeLayout(false);
             this.panelAddWork.ResumeLayout(false);
             this.panelAddWork.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.adgrvODi)).EndInit();
@@ -1569,14 +1549,12 @@ namespace OQC
         private System.Windows.Forms.Button btnEditTargetPPM;
         private System.Windows.Forms.TextBox txbArea;
         private System.Windows.Forms.Button btnConfirmData;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblcode;
-        private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.Label lblRole;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Label lblNotice;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Button btnChangePass;
         private System.Windows.Forms.Button btnSum;
+        private System.Windows.Forms.Label lblName;
     }
 }

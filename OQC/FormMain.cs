@@ -33,8 +33,8 @@ namespace OQC
         {
             InitializeComponent();
             lblcode.Text = Properties.Settings.Default.Code.ToUpper();
-            lblName.Text = Properties.Settings.Default.Name.ToUpper();
-            lblRole.Text = Properties.Settings.Default.Role.ToUpper();
+            lblName.Text = Properties.Settings.Default.Name;
+            //lblRole.Text = Properties.Settings.Default.Role.ToUpper();
             txbInspector.Text = Properties.Settings.Default.Code;
             lblVersion.Text = Utils.GetRunningVersion();
             getCustomer();
@@ -319,7 +319,7 @@ namespace OQC
                     lblNotice.Text = "";
                 }
                 else
-                    lblNotice.Text = countNotConfirm + " bản chưa được xác nhận";
+                    lblNotice.Text = countNotConfirm + " rows not confirm!";
             }
         }
         private void updateAll()
