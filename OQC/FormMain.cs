@@ -1257,6 +1257,21 @@ namespace OQC
             var changePass = new FormChangePassword();
             changePass.ShowDialog();
         }
+
+        private void btnSum_Click(object sender, EventArgs e)
+        {
+            var sumDialog = new FormCaculator();
+            sumDialog.result = (sum) =>
+            {
+                if (!string.IsNullOrEmpty(txbNumerCheck.Text))
+                {
+                    sum += int.Parse(txbNumerCheck.Text.Trim());
+                }
+                txbNumerCheck.Text = sum.ToString();
+            };
+            sumDialog.ShowDialog();
+
+        }
     }
 }
 

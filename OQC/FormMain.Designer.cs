@@ -87,6 +87,8 @@ namespace OQC
             this.lblNight = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.panelAddWork = new System.Windows.Forms.Panel();
+            this.btnSum = new System.Windows.Forms.Button();
+            this.btnChangePass = new System.Windows.Forms.Button();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblNotice = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
@@ -140,7 +142,6 @@ namespace OQC
             this.claimFormDataSet = new OQC.ClaimFormDataSet();
             this.oDITableAdapter = new OQC.ClaimFormDataSetTableAdapters.ODITableAdapter();
             this.claimFormDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnChangePass = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -300,7 +301,7 @@ namespace OQC
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.groupBox3.Location = new System.Drawing.Point(12, 241);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(504, 158);
+            this.groupBox3.Size = new System.Drawing.Size(527, 158);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Productivity";
@@ -759,6 +760,7 @@ namespace OQC
             // 
             // panelAddWork
             // 
+            this.panelAddWork.Controls.Add(this.btnSum);
             this.panelAddWork.Controls.Add(this.btnChangePass);
             this.panelAddWork.Controls.Add(this.lblVersion);
             this.panelAddWork.Controls.Add(this.lblNotice);
@@ -825,6 +827,30 @@ namespace OQC
             this.panelAddWork.Name = "panelAddWork";
             this.panelAddWork.Size = new System.Drawing.Size(1604, 697);
             this.panelAddWork.TabIndex = 2;
+            // 
+            // btnSum
+            // 
+            this.btnSum.FlatAppearance.BorderSize = 0;
+            this.btnSum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSum.Image = global::OQC.Properties.Resources.edit;
+            this.btnSum.Location = new System.Drawing.Point(502, 288);
+            this.btnSum.Name = "btnSum";
+            this.btnSum.Size = new System.Drawing.Size(31, 23);
+            this.btnSum.TabIndex = 19;
+            this.btnSum.UseVisualStyleBackColor = true;
+            this.btnSum.Click += new System.EventHandler(this.btnSum_Click);
+            // 
+            // btnChangePass
+            // 
+            this.btnChangePass.BackColor = System.Drawing.Color.OliveDrab;
+            this.btnChangePass.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnChangePass.Location = new System.Drawing.Point(1438, 78);
+            this.btnChangePass.Name = "btnChangePass";
+            this.btnChangePass.Size = new System.Drawing.Size(98, 23);
+            this.btnChangePass.TabIndex = 77;
+            this.btnChangePass.Text = "Đổi mật khẩu";
+            this.btnChangePass.UseVisualStyleBackColor = false;
+            this.btnChangePass.Click += new System.EventHandler(this.btnChangePass_Click);
             // 
             // lblVersion
             // 
@@ -1065,10 +1091,10 @@ namespace OQC
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.adgrvODi.DefaultCellStyle = dataGridViewCellStyle2;
-            this.adgrvODi.Location = new System.Drawing.Point(522, 169);
+            this.adgrvODi.Location = new System.Drawing.Point(545, 169);
             this.adgrvODi.Name = "adgrvODi";
             this.adgrvODi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.adgrvODi.Size = new System.Drawing.Size(1070, 230);
+            this.adgrvODi.Size = new System.Drawing.Size(1047, 230);
             this.adgrvODi.TabIndex = 59;
             this.adgrvODi.TimeFilter = false;
             this.adgrvODi.SortStringChanged += new System.EventHandler(this.adgrvODi_SortStringChanged);
@@ -1398,18 +1424,6 @@ namespace OQC
             this.claimFormDataSetBindingSource.DataSource = this.claimFormDataSet;
             this.claimFormDataSetBindingSource.Position = 0;
             // 
-            // btnChangePass
-            // 
-            this.btnChangePass.BackColor = System.Drawing.Color.OliveDrab;
-            this.btnChangePass.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnChangePass.Location = new System.Drawing.Point(1438, 78);
-            this.btnChangePass.Name = "btnChangePass";
-            this.btnChangePass.Size = new System.Drawing.Size(98, 23);
-            this.btnChangePass.TabIndex = 77;
-            this.btnChangePass.Text = "Đổi mật khẩu";
-            this.btnChangePass.UseVisualStyleBackColor = false;
-            this.btnChangePass.Click += new System.EventHandler(this.btnChangePass_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1563,5 +1577,6 @@ namespace OQC
         private System.Windows.Forms.Label lblNotice;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Button btnChangePass;
+        private System.Windows.Forms.Button btnSum;
     }
 }
