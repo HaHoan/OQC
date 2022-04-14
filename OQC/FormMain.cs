@@ -307,7 +307,7 @@ namespace OQC
         }
         private void GetListODIs()
         {
-            GetData(dataAdapter.SelectCommand.CommandText);
+            bgwLoading.RunWorkerAsync(argument: dataAdapter.SelectCommand.CommandText);
         }
         private void updateLabelConfirm()
         {
@@ -871,7 +871,7 @@ namespace OQC
             var dateFrom = dpFrom.Value.Date;
             var dateTo = dpTo.Value.Date;
             adgrvODi.DataSource = odiDataSource;
-            GetData(sql + " where DateOccur  >='" + dateFrom + "' AND DateOccur <= '" + dateTo + "'");
+            bgwLoading.RunWorkerAsync(sql + " where DateOccur  >='" + dateFrom + "' AND DateOccur <= '" + dateTo + "'");
         }
 
 
@@ -887,9 +887,8 @@ namespace OQC
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-
             adgrvODi.DataSource = odiDataSource;
-            GetData(sql + " where DateOccur = '" + DateTime.Now.ToShortDateString() + "'");
+            bgwLoading.RunWorkerAsync(sql + " where DateOccur = '" + DateTime.Now.ToShortDateString() + "'");
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -920,6 +919,7 @@ namespace OQC
                 {
                     var odi = db.ODIs.Where(m => m.ID == IDODI).FirstOrDefault();
                     txbDateOccur.Text = odi.DateOccur.ToString("dd/MM/yyy");
+                    dtpDateOccur.Value = odi.DateOccur;
                     txbArea.Text = odi.Area;
                     cbbCustomer.Text = odi.Customer;
                     rbShiftDay.Checked = odi.Shift == OQC.Shift.DAY;
@@ -1000,31 +1000,6 @@ namespace OQC
             }
         }
 
-
-        private void GetData(string selectCommand)
-        {
-            try
-            {
-
-                string connectionString = "Data Source=172.28.10.17;Initial Catalog=ClaimForm;Persist Security Info=True;User ID=sa;Password=umc@2019";
-
-                dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
-                DataTable table = new DataTable
-                {
-                    Locale = CultureInfo.InvariantCulture
-                };
-                dataAdapter.Fill(table);
-                odiDataSource.DataSource = table;
-
-            }
-            catch (SqlException)
-            {
-                MessageBox.Show("To run this example, replace the value of the " +
-                    "connectionString variable with a connection string that is " +
-                    "valid for your system.");
-            }
-        }
-
         private void btnExcel_Click(object sender, EventArgs e)
         {
             var choofdlog = new FolderBrowserDialog();
@@ -1102,18 +1077,7 @@ namespace OQC
             }
         }
 
-        private void bgWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-            var fileName = (string)e.Argument;
-            using (var db = new ClaimFormEntities())
-            {
-                var dateFrom = dpFrom.Value.Date;
-                var dateTo = dpTo.Value.Date;
-                var odis = db.ODIs.Where(m => m.DateOccur >= dateFrom && m.DateOccur <= dateTo).ToList();
-                var result = Utils.ExportStaff(odis, fileName);
-                e.Result = result;
-            }
-        }
+        
 
         private void bgWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
@@ -1271,6 +1235,56 @@ namespace OQC
             };
             sumDialog.ShowDialog();
 
+        }
+
+        private void bgwLoading_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            try
+            {
+                string selectCommand = (string)e.Argument;
+                string connectionString = "Data Source=172.28.10.17;Initial Catalog=ClaimForm;Persist Security Info=True;User ID=sa;Password=umc@2019";
+                dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
+                DataTable table = new DataTable
+                {
+                    Locale = CultureInfo.InvariantCulture
+                };
+                dataAdapter.Fill(table);
+                e.Result = table;
+
+            }
+            catch (SqlException)
+            {
+                e.Result = null;
+            }
+        }
+
+
+        private void bgwLoading_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            if(e.Result == null)
+            {
+                MessageBox.Show("To run this example, replace the value of the " +
+                   "connectionString variable with a connection string that is " +
+                   "valid for your system.");
+            }
+            else
+            {
+                var table = (DataTable)e.Result;
+                odiDataSource.DataSource = table;
+            }
+        }
+
+        private void bgWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            var fileName = (string)e.Argument;
+            using (var db = new ClaimFormEntities())
+            {
+                var dateFrom = dpFrom.Value.Date;
+                var dateTo = dpTo.Value.Date;
+                var odis = db.ODIs.Where(m => m.DateOccur >= dateFrom && m.DateOccur <= dateTo).ToList();
+                var result = Utils.ExportStaff(odis, fileName);
+                e.Result = result;
+            }
         }
     }
 }

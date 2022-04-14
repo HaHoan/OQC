@@ -24,7 +24,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>31</ApplicationRevision>
+    <ApplicationRevision>32</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -273,6 +273,8 @@
       <DependentUpon>ODIModel.edmx</DependentUpon>
       <LastGenOutput>ODIModel.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\loading.gif" />
+    <None Include="Resources\loading-transparent.gif" />
     <None Include="Resources\edit.png" />
     <None Include="Resources\profile.png" />
     <None Include="Resources\import-excel.png" />
