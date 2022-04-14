@@ -28,6 +28,18 @@ namespace OQC.Business
             }
 
         }
+
+        public static void SetDoubleBuffering(this DataGridView dgv, bool value)
+        {
+            // Double buffering can make DGV slow in remote desktop
+            if (!System.Windows.Forms.SystemInformation.TerminalServerSession)
+            {
+                Type dgvType = dgv.GetType();
+                PropertyInfo pi = dgvType.GetProperty("DoubleBuffered",
+                        BindingFlags.Instance | BindingFlags.NonPublic);
+                pi.SetValue(dgv, value, null);
+            }
+        }
         public static void UploadFile(string host, string username, string password, string localPath, string remotePath)
         {
 

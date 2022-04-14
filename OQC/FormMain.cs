@@ -1,4 +1,5 @@
 ﻿using OQC.Business;
+using OQC.ServiceReference1;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,6 +19,7 @@ namespace OQC
     {
 
         List<TypeNG> listNG = new List<TypeNG>();
+        private PVSWebServiceSoapClient pvsWebService = new PVSWebServiceSoapClient();
         public string[] areas = new string[]
         {
             Areas.AUTO,
@@ -64,7 +66,7 @@ namespace OQC
                 {
                     cbbTypeNG.Items.Add(ng.TypeNG1);
                 }
-               
+
             }
             updateLabelConfirm();
             odiDataSource.ListChanged += OdiDataSource_ListChanged;
@@ -602,8 +604,8 @@ namespace OQC
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txbGroupModel.SelectAll();
-                txbGroupModel.Focus();
+                txbModelName.SelectAll();
+                txbModelName.Focus();
                 GetTotalByOP();
             }
         }
@@ -702,8 +704,8 @@ namespace OQC
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txbModelName.SelectAll();
-                txbModelName.Focus();
+                txbWO.SelectAll();
+                txbWO.Focus();
                 GetTotalByGroup();
             }
         }
@@ -804,9 +806,14 @@ namespace OQC
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txbWO.SelectAll();
-                txbWO.Focus();
                 GetTotalByModel();
+                var modelInfo = pvsWebService.GetModelInfo(txbModelName.Text.Trim());
+                if (modelInfo != null && !string.IsNullOrEmpty(modelInfo.Group_Id))
+                {
+                    txbGroupModel.Text = modelInfo.Group_Id;
+                }
+                txbGroupModel.SelectAll();
+                txbGroupModel.Focus();
             }
         }
 
@@ -895,15 +902,6 @@ namespace OQC
             compareDate();
         }
 
-        private void adgrvODi_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-
-        }
-
-        private void adgrvODi_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void adgrvODi_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -1077,7 +1075,7 @@ namespace OQC
             }
         }
 
-        
+
 
         private void bgWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {

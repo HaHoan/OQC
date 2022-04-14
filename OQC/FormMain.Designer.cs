@@ -45,6 +45,7 @@ namespace OQC
             this.rbStationOQC2 = new System.Windows.Forms.RadioButton();
             this.rbStationOQC1 = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnSum = new System.Windows.Forms.Button();
             this.txbNote = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txbNumberNG = new System.Windows.Forms.TextBox();
@@ -87,6 +88,8 @@ namespace OQC
             this.lblNight = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.panelAddWork = new System.Windows.Forms.Panel();
+            this.btnSettingModel = new System.Windows.Forms.Button();
+            this.btnEditTargetPPM = new System.Windows.Forms.Button();
             this.btnChangePass = new System.Windows.Forms.Button();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblNotice = new System.Windows.Forms.Label();
@@ -95,20 +98,22 @@ namespace OQC
             this.lblcode = new System.Windows.Forms.Label();
             this.btnConfirmData = new System.Windows.Forms.Button();
             this.txbArea = new System.Windows.Forms.TextBox();
-            this.btnEditTargetPPM = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.lblExport = new System.Windows.Forms.Label();
+            this.btnExcel = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.rb50Per = new System.Windows.Forms.RadioButton();
             this.rbAQL = new System.Windows.Forms.RadioButton();
             this.rb100Per = new System.Windows.Forms.RadioButton();
             this.lblNumberRow = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.adgrvODi = new ADGV.AdvancedDataGridView();
             this.label14 = new System.Windows.Forms.Label();
             this.dpTo = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
             this.dpFrom = new System.Windows.Forms.DateTimePicker();
             this.txbDateOccur = new System.Windows.Forms.TextBox();
+            this.btnDateOccur = new System.Windows.Forms.Button();
             this.btnSubmitNext = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -116,7 +121,9 @@ namespace OQC
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.btnAddOK = new System.Windows.Forms.Button();
+            this.pbOK = new System.Windows.Forms.PictureBox();
             this.btnAddNG = new System.Windows.Forms.Button();
+            this.pbNG = new System.Windows.Forms.PictureBox();
             this.cbbTypeNG = new System.Windows.Forms.ComboBox();
             this.dtpTimeOccur = new System.Windows.Forms.DateTimePicker();
             this.txbNGDetail = new System.Windows.Forms.TextBox();
@@ -136,12 +143,7 @@ namespace OQC
             this.claimFormDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bgwLoading = new System.ComponentModel.BackgroundWorker();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.btnExcel = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnDateOccur = new System.Windows.Forms.Button();
-            this.pbOK = new System.Windows.Forms.PictureBox();
-            this.pbNG = new System.Windows.Forms.PictureBox();
-            this.btnSum = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -156,11 +158,11 @@ namespace OQC
             this.panelAddWork.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.adgrvODi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOK)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oDIBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOK)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNG)).BeginInit();
             this.SuspendLayout();
             // 
             // dtpDateOccur
@@ -306,6 +308,18 @@ namespace OQC
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Productivity";
             // 
+            // btnSum
+            // 
+            this.btnSum.FlatAppearance.BorderSize = 0;
+            this.btnSum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSum.Image = global::OQC.Properties.Resources.edit;
+            this.btnSum.Location = new System.Drawing.Point(170, 164);
+            this.btnSum.Name = "btnSum";
+            this.btnSum.Size = new System.Drawing.Size(31, 23);
+            this.btnSum.TabIndex = 19;
+            this.btnSum.UseVisualStyleBackColor = true;
+            this.btnSum.Click += new System.EventHandler(this.btnSum_Click);
+            // 
             // txbNote
             // 
             this.txbNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -417,7 +431,7 @@ namespace OQC
             // 
             this.txbModelName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbModelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbModelName.Location = new System.Drawing.Point(71, 83);
+            this.txbModelName.Location = new System.Drawing.Point(71, 55);
             this.txbModelName.Name = "txbModelName";
             this.txbModelName.Size = new System.Drawing.Size(131, 20);
             this.txbModelName.TabIndex = 13;
@@ -428,7 +442,7 @@ namespace OQC
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(5, 90);
+            this.label4.Location = new System.Drawing.Point(6, 62);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 4;
@@ -438,7 +452,7 @@ namespace OQC
             // 
             this.txbGroupModel.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbGroupModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbGroupModel.Location = new System.Drawing.Point(71, 55);
+            this.txbGroupModel.Location = new System.Drawing.Point(71, 82);
             this.txbGroupModel.Name = "txbGroupModel";
             this.txbGroupModel.Size = new System.Drawing.Size(131, 20);
             this.txbGroupModel.TabIndex = 12;
@@ -449,7 +463,7 @@ namespace OQC
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(-4, 63);
+            this.label3.Location = new System.Drawing.Point(-4, 90);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 2;
@@ -760,6 +774,8 @@ namespace OQC
             // 
             // panelAddWork
             // 
+            this.panelAddWork.Controls.Add(this.btnSettingModel);
+            this.panelAddWork.Controls.Add(this.btnEditTargetPPM);
             this.panelAddWork.Controls.Add(this.btnChangePass);
             this.panelAddWork.Controls.Add(this.lblVersion);
             this.panelAddWork.Controls.Add(this.lblNotice);
@@ -768,7 +784,6 @@ namespace OQC
             this.panelAddWork.Controls.Add(this.lblcode);
             this.panelAddWork.Controls.Add(this.btnConfirmData);
             this.panelAddWork.Controls.Add(this.txbArea);
-            this.panelAddWork.Controls.Add(this.btnEditTargetPPM);
             this.panelAddWork.Controls.Add(this.btnCreate);
             this.panelAddWork.Controls.Add(this.lblExport);
             this.panelAddWork.Controls.Add(this.btnExcel);
@@ -824,6 +839,33 @@ namespace OQC
             this.panelAddWork.Name = "panelAddWork";
             this.panelAddWork.Size = new System.Drawing.Size(1008, 747);
             this.panelAddWork.TabIndex = 2;
+            // 
+            // btnSettingModel
+            // 
+            this.btnSettingModel.BackColor = System.Drawing.Color.Transparent;
+            this.btnSettingModel.FlatAppearance.BorderSize = 0;
+            this.btnSettingModel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettingModel.Image = global::OQC.Properties.Resources.construction;
+            this.btnSettingModel.Location = new System.Drawing.Point(854, 712);
+            this.btnSettingModel.Name = "btnSettingModel";
+            this.btnSettingModel.Size = new System.Drawing.Size(77, 32);
+            this.btnSettingModel.TabIndex = 79;
+            this.toolTip1.SetToolTip(this.btnSettingModel, "Cài đặt nhóm model");
+            this.btnSettingModel.UseVisualStyleBackColor = false;
+            // 
+            // btnEditTargetPPM
+            // 
+            this.btnEditTargetPPM.BackColor = System.Drawing.Color.Transparent;
+            this.btnEditTargetPPM.FlatAppearance.BorderSize = 0;
+            this.btnEditTargetPPM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditTargetPPM.Image = global::OQC.Properties.Resources.tools_16;
+            this.btnEditTargetPPM.Location = new System.Drawing.Point(786, 712);
+            this.btnEditTargetPPM.Name = "btnEditTargetPPM";
+            this.btnEditTargetPPM.Size = new System.Drawing.Size(61, 32);
+            this.btnEditTargetPPM.TabIndex = 78;
+            this.toolTip1.SetToolTip(this.btnEditTargetPPM, "Cài đặt Target");
+            this.btnEditTargetPPM.UseVisualStyleBackColor = false;
+            this.btnEditTargetPPM.Click += new System.EventHandler(this.btnEditTargetPPM_Click);
             // 
             // btnChangePass
             // 
@@ -918,20 +960,6 @@ namespace OQC
             this.txbArea.Size = new System.Drawing.Size(123, 20);
             this.txbArea.TabIndex = 68;
             // 
-            // btnEditTargetPPM
-            // 
-            this.btnEditTargetPPM.BackColor = System.Drawing.Color.DarkOrange;
-            this.btnEditTargetPPM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditTargetPPM.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnEditTargetPPM.Location = new System.Drawing.Point(6, 693);
-            this.btnEditTargetPPM.Name = "btnEditTargetPPM";
-            this.btnEditTargetPPM.Size = new System.Drawing.Size(180, 44);
-            this.btnEditTargetPPM.TabIndex = 67;
-            this.btnEditTargetPPM.Text = "SỬA TARGET PPM";
-            this.btnEditTargetPPM.UseVisualStyleBackColor = false;
-            this.btnEditTargetPPM.Click += new System.EventHandler(this.btnEditTargetPPM_Click);
-            this.btnEditTargetPPM.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.btnEditTargetPPM_PreviewKeyDown);
-            // 
             // btnCreate
             // 
             this.btnCreate.BackColor = System.Drawing.Color.Green;
@@ -953,6 +981,19 @@ namespace OQC
             this.lblExport.Name = "lblExport";
             this.lblExport.Size = new System.Drawing.Size(0, 13);
             this.lblExport.TabIndex = 65;
+            // 
+            // btnExcel
+            // 
+            this.btnExcel.BackColor = System.Drawing.Color.Transparent;
+            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcel.ForeColor = System.Drawing.Color.Transparent;
+            this.btnExcel.Image = global::OQC.Properties.Resources.import_excel;
+            this.btnExcel.Location = new System.Drawing.Point(556, 131);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(75, 27);
+            this.btnExcel.TabIndex = 64;
+            this.btnExcel.UseVisualStyleBackColor = false;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
             // groupBox4
             // 
@@ -1010,6 +1051,19 @@ namespace OQC
             this.lblNumberRow.Size = new System.Drawing.Size(43, 13);
             this.lblNumberRow.TabIndex = 62;
             this.lblNumberRow.Text = "0 Rows";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = global::OQC.Properties.Resources.binoculars;
+            this.button1.Location = new System.Drawing.Point(496, 128);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(42, 33);
+            this.button1.TabIndex = 60;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // adgrvODi
             // 
@@ -1093,6 +1147,19 @@ namespace OQC
             this.txbDateOccur.TabIndex = 0;
             this.txbDateOccur.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbDateOccur_PreviewKeyDown);
             // 
+            // btnDateOccur
+            // 
+            this.btnDateOccur.BackColor = System.Drawing.Color.Transparent;
+            this.btnDateOccur.FlatAppearance.BorderSize = 0;
+            this.btnDateOccur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDateOccur.Image = global::OQC.Properties.Resources.calendar;
+            this.btnDateOccur.Location = new System.Drawing.Point(45, 3);
+            this.btnDateOccur.Name = "btnDateOccur";
+            this.btnDateOccur.Size = new System.Drawing.Size(42, 42);
+            this.btnDateOccur.TabIndex = 51;
+            this.btnDateOccur.UseVisualStyleBackColor = false;
+            this.btnDateOccur.Click += new System.EventHandler(this.btnDateOccur_Click);
+            // 
             // btnSubmitNext
             // 
             this.btnSubmitNext.BackColor = System.Drawing.Color.DarkGoldenrod;
@@ -1173,6 +1240,16 @@ namespace OQC
             this.btnAddOK.UseVisualStyleBackColor = true;
             this.btnAddOK.Click += new System.EventHandler(this.btnAddOK_Click);
             // 
+            // pbOK
+            // 
+            this.pbOK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbOK.Location = new System.Drawing.Point(743, 433);
+            this.pbOK.Name = "pbOK";
+            this.pbOK.Size = new System.Drawing.Size(248, 210);
+            this.pbOK.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbOK.TabIndex = 43;
+            this.pbOK.TabStop = false;
+            // 
             // btnAddNG
             // 
             this.btnAddNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1184,6 +1261,16 @@ namespace OQC
             this.btnAddNG.Text = "Chọn Ảnh";
             this.btnAddNG.UseVisualStyleBackColor = true;
             this.btnAddNG.Click += new System.EventHandler(this.btnAddNG_Click);
+            // 
+            // pbNG
+            // 
+            this.pbNG.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbNG.Location = new System.Drawing.Point(472, 432);
+            this.pbNG.Name = "pbNG";
+            this.pbNG.Size = new System.Drawing.Size(265, 210);
+            this.pbNG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbNG.TabIndex = 41;
+            this.pbNG.TabStop = false;
             // 
             // cbbTypeNG
             // 
@@ -1348,76 +1435,9 @@ namespace OQC
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "loading-transparent.gif");
             // 
-            // btnExcel
+            // toolTip1
             // 
-            this.btnExcel.BackColor = System.Drawing.Color.Transparent;
-            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcel.ForeColor = System.Drawing.Color.Transparent;
-            this.btnExcel.Image = global::OQC.Properties.Resources.import_excel;
-            this.btnExcel.Location = new System.Drawing.Point(556, 131);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(75, 27);
-            this.btnExcel.TabIndex = 64;
-            this.btnExcel.UseVisualStyleBackColor = false;
-            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::OQC.Properties.Resources.binoculars;
-            this.button1.Location = new System.Drawing.Point(496, 128);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(42, 33);
-            this.button1.TabIndex = 60;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnDateOccur
-            // 
-            this.btnDateOccur.BackColor = System.Drawing.Color.Transparent;
-            this.btnDateOccur.FlatAppearance.BorderSize = 0;
-            this.btnDateOccur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDateOccur.Image = global::OQC.Properties.Resources.calendar;
-            this.btnDateOccur.Location = new System.Drawing.Point(45, 3);
-            this.btnDateOccur.Name = "btnDateOccur";
-            this.btnDateOccur.Size = new System.Drawing.Size(42, 42);
-            this.btnDateOccur.TabIndex = 51;
-            this.btnDateOccur.UseVisualStyleBackColor = false;
-            this.btnDateOccur.Click += new System.EventHandler(this.btnDateOccur_Click);
-            // 
-            // pbOK
-            // 
-            this.pbOK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbOK.Location = new System.Drawing.Point(743, 433);
-            this.pbOK.Name = "pbOK";
-            this.pbOK.Size = new System.Drawing.Size(248, 210);
-            this.pbOK.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbOK.TabIndex = 43;
-            this.pbOK.TabStop = false;
-            // 
-            // pbNG
-            // 
-            this.pbNG.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbNG.Location = new System.Drawing.Point(472, 432);
-            this.pbNG.Name = "pbNG";
-            this.pbNG.Size = new System.Drawing.Size(265, 210);
-            this.pbNG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbNG.TabIndex = 41;
-            this.pbNG.TabStop = false;
-            // 
-            // btnSum
-            // 
-            this.btnSum.FlatAppearance.BorderSize = 0;
-            this.btnSum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSum.Image = global::OQC.Properties.Resources.edit;
-            this.btnSum.Location = new System.Drawing.Point(170, 164);
-            this.btnSum.Name = "btnSum";
-            this.btnSum.Size = new System.Drawing.Size(31, 23);
-            this.btnSum.TabIndex = 19;
-            this.btnSum.UseVisualStyleBackColor = true;
-            this.btnSum.Click += new System.EventHandler(this.btnSum_Click);
+            this.toolTip1.AutomaticDelay = 200;
             // 
             // FormMain
             // 
@@ -1451,11 +1471,11 @@ namespace OQC
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.adgrvODi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOK)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.oDIBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOK)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNG)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1560,7 +1580,6 @@ namespace OQC
         private System.ComponentModel.BackgroundWorker bgWorker;
         private System.Windows.Forms.Label lblExport;
         private System.Windows.Forms.Button btnCreate;
-        private System.Windows.Forms.Button btnEditTargetPPM;
         private System.Windows.Forms.TextBox txbArea;
         private System.Windows.Forms.Button btnConfirmData;
         private System.Windows.Forms.Label lblcode;
@@ -1572,5 +1591,8 @@ namespace OQC
         private System.Windows.Forms.Label lblName;
         private System.ComponentModel.BackgroundWorker bgwLoading;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button btnEditTargetPPM;
+        private System.Windows.Forms.Button btnSettingModel;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
