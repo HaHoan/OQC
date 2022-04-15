@@ -586,8 +586,22 @@ namespace OQC
                        ODI.WOQty, ODI.CheckNumber, ODI.Area, ODI.Shift, ODI.NumberNG, ODI.DateOccur, ODI.Occur_Time, ODI.Occur_Line,
                        ODI.Serial_Number, ODI.Position, ODI.Defection, ODI.Sample_Form, ODI.IsConfirm);
                         adgrvODi.Refresh();
+                        var model = pvsWebService.GetModelInfo(ODI.ModelName);
+                        var entity = new Base_ModelsEntity();
+                        entity.Customer = "";
+                        entity.Des = ODI.Customer;
+                        entity.Pcb = 1;
+                        entity.Group_Id = ODI.GroupModel;
+                        entity.Product_Id = ODI.ModelName;
+                        if (model == null)
+                        {
+                            pvsWebService.SaveModelInfo(entity, "");
+                        }
+                        else if(string.IsNullOrEmpty(model.Group_Id))
+                        {
+                            pvsWebService.SaveModelInfo(entity, ODI.ModelName);
+                        }
                     }
-
 
                     if (((Button)sender).Name == "btnSaveODI" || ((Button)sender).Name == "btnCreate")
                     {
@@ -1428,6 +1442,11 @@ namespace OQC
             {
                 dr["Check"] = isAll;
             }
+        }
+
+        private void btnSettingModel_Click(object sender, EventArgs e)
+        {
+            new FormListModel().ShowDialog();
         }
     }
 }

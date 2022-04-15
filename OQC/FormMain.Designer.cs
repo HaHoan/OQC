@@ -136,15 +136,6 @@ namespace OQC
             this.bgwLoading = new System.ComponentModel.BackgroundWorker();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.pbLoading = new System.Windows.Forms.PictureBox();
-            this.btnSettingModel = new System.Windows.Forms.Button();
-            this.btnEditTargetPPM = new System.Windows.Forms.Button();
-            this.btnExcel = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnDateOccur = new System.Windows.Forms.Button();
-            this.pbOK = new System.Windows.Forms.PictureBox();
-            this.pbNG = new System.Windows.Forms.PictureBox();
-            this.btnSum = new System.Windows.Forms.Button();
             this.cbAll = new System.Windows.Forms.CheckBox();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -166,6 +157,15 @@ namespace OQC
             this.Defection = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sample_Form = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsConfirm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pbLoading = new System.Windows.Forms.PictureBox();
+            this.btnSettingModel = new System.Windows.Forms.Button();
+            this.btnEditTargetPPM = new System.Windows.Forms.Button();
+            this.btnExcel = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnDateOccur = new System.Windows.Forms.Button();
+            this.pbOK = new System.Windows.Forms.PictureBox();
+            this.pbNG = new System.Windows.Forms.PictureBox();
+            this.btnSum = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1388,113 +1388,6 @@ namespace OQC
             // 
             this.toolTip1.AutomaticDelay = 200;
             // 
-            // pbLoading
-            // 
-            this.pbLoading.Image = global::OQC.Properties.Resources.loading;
-            this.pbLoading.Location = new System.Drawing.Point(564, 248);
-            this.pbLoading.Name = "pbLoading";
-            this.pbLoading.Size = new System.Drawing.Size(63, 68);
-            this.pbLoading.TabIndex = 80;
-            this.pbLoading.TabStop = false;
-            // 
-            // btnSettingModel
-            // 
-            this.btnSettingModel.BackColor = System.Drawing.Color.Transparent;
-            this.btnSettingModel.FlatAppearance.BorderSize = 0;
-            this.btnSettingModel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettingModel.Image = global::OQC.Properties.Resources.construction;
-            this.btnSettingModel.Location = new System.Drawing.Point(854, 712);
-            this.btnSettingModel.Name = "btnSettingModel";
-            this.btnSettingModel.Size = new System.Drawing.Size(77, 32);
-            this.btnSettingModel.TabIndex = 79;
-            this.toolTip1.SetToolTip(this.btnSettingModel, "Cài đặt nhóm model");
-            this.btnSettingModel.UseVisualStyleBackColor = false;
-            // 
-            // btnEditTargetPPM
-            // 
-            this.btnEditTargetPPM.BackColor = System.Drawing.Color.Transparent;
-            this.btnEditTargetPPM.FlatAppearance.BorderSize = 0;
-            this.btnEditTargetPPM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditTargetPPM.Image = global::OQC.Properties.Resources.tools_16;
-            this.btnEditTargetPPM.Location = new System.Drawing.Point(786, 712);
-            this.btnEditTargetPPM.Name = "btnEditTargetPPM";
-            this.btnEditTargetPPM.Size = new System.Drawing.Size(61, 32);
-            this.btnEditTargetPPM.TabIndex = 78;
-            this.toolTip1.SetToolTip(this.btnEditTargetPPM, "Cài đặt Target");
-            this.btnEditTargetPPM.UseVisualStyleBackColor = false;
-            this.btnEditTargetPPM.Click += new System.EventHandler(this.btnEditTargetPPM_Click);
-            // 
-            // btnExcel
-            // 
-            this.btnExcel.BackColor = System.Drawing.Color.Transparent;
-            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcel.ForeColor = System.Drawing.Color.Transparent;
-            this.btnExcel.Image = global::OQC.Properties.Resources.import_excel;
-            this.btnExcel.Location = new System.Drawing.Point(556, 131);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(75, 27);
-            this.btnExcel.TabIndex = 64;
-            this.btnExcel.UseVisualStyleBackColor = false;
-            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::OQC.Properties.Resources.find_icon;
-            this.button1.Location = new System.Drawing.Point(496, 128);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(42, 33);
-            this.button1.TabIndex = 60;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnDateOccur
-            // 
-            this.btnDateOccur.BackColor = System.Drawing.Color.Transparent;
-            this.btnDateOccur.FlatAppearance.BorderSize = 0;
-            this.btnDateOccur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDateOccur.Image = global::OQC.Properties.Resources.calendar;
-            this.btnDateOccur.Location = new System.Drawing.Point(45, 3);
-            this.btnDateOccur.Name = "btnDateOccur";
-            this.btnDateOccur.Size = new System.Drawing.Size(42, 42);
-            this.btnDateOccur.TabIndex = 51;
-            this.btnDateOccur.UseVisualStyleBackColor = false;
-            this.btnDateOccur.Click += new System.EventHandler(this.btnDateOccur_Click);
-            // 
-            // pbOK
-            // 
-            this.pbOK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbOK.Location = new System.Drawing.Point(743, 433);
-            this.pbOK.Name = "pbOK";
-            this.pbOK.Size = new System.Drawing.Size(248, 210);
-            this.pbOK.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbOK.TabIndex = 43;
-            this.pbOK.TabStop = false;
-            // 
-            // pbNG
-            // 
-            this.pbNG.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbNG.Location = new System.Drawing.Point(472, 432);
-            this.pbNG.Name = "pbNG";
-            this.pbNG.Size = new System.Drawing.Size(265, 210);
-            this.pbNG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbNG.TabIndex = 41;
-            this.pbNG.TabStop = false;
-            // 
-            // btnSum
-            // 
-            this.btnSum.FlatAppearance.BorderSize = 0;
-            this.btnSum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSum.Image = global::OQC.Properties.Resources.edit;
-            this.btnSum.Location = new System.Drawing.Point(170, 164);
-            this.btnSum.Name = "btnSum";
-            this.btnSum.Size = new System.Drawing.Size(31, 23);
-            this.btnSum.TabIndex = 19;
-            this.btnSum.UseVisualStyleBackColor = true;
-            this.btnSum.Click += new System.EventHandler(this.btnSum_Click);
-            // 
             // cbAll
             // 
             this.cbAll.AutoSize = true;
@@ -1503,6 +1396,7 @@ namespace OQC
             this.cbAll.Size = new System.Drawing.Size(37, 17);
             this.cbAll.TabIndex = 81;
             this.cbAll.Text = "All";
+            this.toolTip1.SetToolTip(this.cbAll, "Chọn confirm tất cả");
             this.cbAll.UseVisualStyleBackColor = true;
             this.cbAll.CheckedChanged += new System.EventHandler(this.cbAll_CheckedChanged);
             // 
@@ -1685,6 +1579,115 @@ namespace OQC
             this.IsConfirm.Name = "IsConfirm";
             this.IsConfirm.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.IsConfirm.Width = 36;
+            // 
+            // pbLoading
+            // 
+            this.pbLoading.Image = global::OQC.Properties.Resources.loading;
+            this.pbLoading.Location = new System.Drawing.Point(564, 248);
+            this.pbLoading.Name = "pbLoading";
+            this.pbLoading.Size = new System.Drawing.Size(63, 68);
+            this.pbLoading.TabIndex = 80;
+            this.pbLoading.TabStop = false;
+            // 
+            // btnSettingModel
+            // 
+            this.btnSettingModel.BackColor = System.Drawing.Color.Transparent;
+            this.btnSettingModel.FlatAppearance.BorderSize = 0;
+            this.btnSettingModel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettingModel.Image = global::OQC.Properties.Resources.construction;
+            this.btnSettingModel.Location = new System.Drawing.Point(854, 712);
+            this.btnSettingModel.Name = "btnSettingModel";
+            this.btnSettingModel.Size = new System.Drawing.Size(77, 32);
+            this.btnSettingModel.TabIndex = 79;
+            this.toolTip1.SetToolTip(this.btnSettingModel, "Cài đặt nhóm model");
+            this.btnSettingModel.UseVisualStyleBackColor = false;
+            this.btnSettingModel.Visible = false;
+            this.btnSettingModel.Click += new System.EventHandler(this.btnSettingModel_Click);
+            // 
+            // btnEditTargetPPM
+            // 
+            this.btnEditTargetPPM.BackColor = System.Drawing.Color.Transparent;
+            this.btnEditTargetPPM.FlatAppearance.BorderSize = 0;
+            this.btnEditTargetPPM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditTargetPPM.Image = global::OQC.Properties.Resources.tools_16;
+            this.btnEditTargetPPM.Location = new System.Drawing.Point(786, 712);
+            this.btnEditTargetPPM.Name = "btnEditTargetPPM";
+            this.btnEditTargetPPM.Size = new System.Drawing.Size(61, 32);
+            this.btnEditTargetPPM.TabIndex = 78;
+            this.toolTip1.SetToolTip(this.btnEditTargetPPM, "Cài đặt Target");
+            this.btnEditTargetPPM.UseVisualStyleBackColor = false;
+            this.btnEditTargetPPM.Click += new System.EventHandler(this.btnEditTargetPPM_Click);
+            // 
+            // btnExcel
+            // 
+            this.btnExcel.BackColor = System.Drawing.Color.Transparent;
+            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcel.ForeColor = System.Drawing.Color.Transparent;
+            this.btnExcel.Image = global::OQC.Properties.Resources.import_excel;
+            this.btnExcel.Location = new System.Drawing.Point(556, 131);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(75, 27);
+            this.btnExcel.TabIndex = 64;
+            this.btnExcel.UseVisualStyleBackColor = false;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = global::OQC.Properties.Resources.find_icon;
+            this.button1.Location = new System.Drawing.Point(496, 128);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(42, 33);
+            this.button1.TabIndex = 60;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnDateOccur
+            // 
+            this.btnDateOccur.BackColor = System.Drawing.Color.Transparent;
+            this.btnDateOccur.FlatAppearance.BorderSize = 0;
+            this.btnDateOccur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDateOccur.Image = global::OQC.Properties.Resources.calendar;
+            this.btnDateOccur.Location = new System.Drawing.Point(45, 3);
+            this.btnDateOccur.Name = "btnDateOccur";
+            this.btnDateOccur.Size = new System.Drawing.Size(42, 42);
+            this.btnDateOccur.TabIndex = 51;
+            this.btnDateOccur.UseVisualStyleBackColor = false;
+            this.btnDateOccur.Click += new System.EventHandler(this.btnDateOccur_Click);
+            // 
+            // pbOK
+            // 
+            this.pbOK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbOK.Location = new System.Drawing.Point(743, 433);
+            this.pbOK.Name = "pbOK";
+            this.pbOK.Size = new System.Drawing.Size(248, 210);
+            this.pbOK.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbOK.TabIndex = 43;
+            this.pbOK.TabStop = false;
+            // 
+            // pbNG
+            // 
+            this.pbNG.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbNG.Location = new System.Drawing.Point(472, 432);
+            this.pbNG.Name = "pbNG";
+            this.pbNG.Size = new System.Drawing.Size(265, 210);
+            this.pbNG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbNG.TabIndex = 41;
+            this.pbNG.TabStop = false;
+            // 
+            // btnSum
+            // 
+            this.btnSum.FlatAppearance.BorderSize = 0;
+            this.btnSum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSum.Image = global::OQC.Properties.Resources.edit;
+            this.btnSum.Location = new System.Drawing.Point(170, 164);
+            this.btnSum.Name = "btnSum";
+            this.btnSum.Size = new System.Drawing.Size(31, 23);
+            this.btnSum.TabIndex = 19;
+            this.btnSum.UseVisualStyleBackColor = true;
+            this.btnSum.Click += new System.EventHandler(this.btnSum_Click);
             // 
             // FormMain
             // 

@@ -157,6 +157,12 @@
     <Compile Include="FormEditPPM.Designer.cs">
       <DependentUpon>FormEditPPM.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormListModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListModel.Designer.cs">
+      <DependentUpon>FormListModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEditPPM.resx">
       <DependentUpon>FormEditPPM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListModel.resx">
+      <DependentUpon>FormListModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
