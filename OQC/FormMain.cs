@@ -31,9 +31,33 @@ namespace OQC
         private BindingSource odiDataSource = new BindingSource();
         private SqlDataAdapter dataAdapter = new SqlDataAdapter();
         private List<Area> customers;
+        DataTable table;
         public FormMain()
         {
             InitializeComponent();
+            table = new DataTable();
+            table.Columns.Add("ID", typeof(int));
+            table.Columns.Add("Customer", typeof(string));
+            table.Columns.Add("Station", typeof(string));
+            table.Columns.Add("Inspector", typeof(string));
+            table.Columns.Add("GroupModel", typeof(string));
+            table.Columns.Add("ModelName", typeof(string));
+            table.Columns.Add("WO", typeof(string));
+            table.Columns.Add("WOQty", typeof(string));
+            table.Columns.Add("CheckNumber", typeof(string));
+            table.Columns.Add("Area", typeof(string));
+            table.Columns.Add("Shift", typeof(string));
+            table.Columns.Add("NumberNG", typeof(string));
+            table.Columns.Add("DateOccur", typeof(string));
+            table.Columns.Add("Occur_Time", typeof(string));
+            table.Columns.Add("Occur_Line", typeof(string));
+            table.Columns.Add("Serial_Number", typeof(string));
+            table.Columns.Add("Position", typeof(string));
+            table.Columns.Add("Defection", typeof(string));
+            table.Columns.Add("Sample_Form", typeof(string));
+            table.Columns.Add("IsConfirm", typeof(string));
+            table.Columns.Add("Check", typeof(bool));
+
             lblcode.Text = Properties.Settings.Default.Code.ToUpper();
             lblName.Text = Properties.Settings.Default.Name;
             //lblRole.Text = Properties.Settings.Default.Role.ToUpper();
@@ -68,7 +92,10 @@ namespace OQC
                 }
 
             }
-            updateLabelConfirm();
+
+            adgrvODi.DataSource = odiDataSource;
+            odiDataSource.DataSource = table;
+            GetListODIs();
             odiDataSource.ListChanged += OdiDataSource_ListChanged;
             GetTotal();
             this.ActiveControl = txbDateOccur;
@@ -262,8 +289,6 @@ namespace OQC
 
         private void dtpDateOccur_ValueChanged(object sender, EventArgs e)
         {
-            dpFrom.Value = dtpDateOccur.Value;
-            dpTo.Value = dtpDateOccur.Value;
             txbDateOccur.Text = dtpDateOccur.Value.ToString("dd/MM/yyy");
             compareDate();
             GetTotal();
@@ -277,15 +302,16 @@ namespace OQC
                 {
                     int totalCheck = 0;
                     int totalNG = 0;
+                    var dateOccur = DateTime.ParseExact(txbDateOccur.Text.Trim(), "dd/MM/yyyy", null);
                     if (string.IsNullOrEmpty(cbbCustomer.Text))
                     {
-                        totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.IsConfirm == true).Sum(m => m.CheckNumber);
-                        totalNG = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.IsConfirm == true).Sum(m => m.NumberNG);
+                        totalCheck = db.ODIs.Where(m => m.DateOccur == dateOccur && m.IsConfirm == true).Sum(m => m.CheckNumber);
+                        totalNG = db.ODIs.Where(m => m.DateOccur == dateOccur && m.IsConfirm == true).Sum(m => m.NumberNG);
                     }
                     else
                     {
-                        totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Customer == cbbCustomer.Text.Trim() && m.IsConfirm == true).Sum(m => m.CheckNumber);
-                        totalNG = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Customer == cbbCustomer.Text.Trim() && m.IsConfirm == true).Sum(m => m.NumberNG);
+                        totalCheck = db.ODIs.Where(m => m.DateOccur == dateOccur && m.Customer == cbbCustomer.Text.Trim() && m.IsConfirm == true).Sum(m => m.CheckNumber);
+                        totalNG = db.ODIs.Where(m => m.DateOccur == dateOccur && m.Customer == cbbCustomer.Text.Trim() && m.IsConfirm == true).Sum(m => m.NumberNG);
                     }
 
                     lblTotalCheck.Text = totalCheck.ToString();
@@ -309,7 +335,9 @@ namespace OQC
         }
         private void GetListODIs()
         {
-            bgwLoading.RunWorkerAsync(argument: dataAdapter.SelectCommand.CommandText);
+            pbLoading.Visible = true;
+            odiDataSource.Filter = "";
+            bgwLoading.RunWorkerAsync();
         }
         private void updateLabelConfirm()
         {
@@ -331,8 +359,8 @@ namespace OQC
             GetTotalByOP();
             GetTotalByGroup();
             GetTotalByModel();
-            GetTotalByShift(Shift.DAY);
-            GetTotalByShift(Shift.NIGHT);
+            GetTotalByShift(SHIFT.DAY);
+            GetTotalByShift(SHIFT.NIGHT);
         }
         private void OnlyNumberPress(object sender, KeyPressEventArgs e)
         {
@@ -402,8 +430,7 @@ namespace OQC
         private void btnSaveODI_Click(object sender, EventArgs e)
         {
             submit(sender);
-            if (this.odiDataSource.List.Count > 1)
-                adgrvODi.FirstDisplayedScrollingRowIndex = this.odiDataSource.List.Count - 1;
+
         }
         private void submit(object sender)
         {
@@ -437,7 +464,7 @@ namespace OQC
                     {
                         sampleForm = SampleForm.SFAQL;
                     }
-                    string shift = rbShiftDay.Checked ? OQC.Shift.DAY : OQC.Shift.NIGHT;
+                    string shift = rbShiftDay.Checked ? OQC.SHIFT.DAY : OQC.SHIFT.NIGHT;
                     var ODI = db.ODIs.Where(m => m.ID == IDODI).FirstOrDefault();
                     DateTime dateOccur = DateTime.Now;
                     try
@@ -479,13 +506,40 @@ namespace OQC
                         }
 
                         ODI.Sample_Form = sampleForm;
+                        db.SaveChanges();
+
+                        DataRow dr = table.Select("ID=" + ODI.ID).FirstOrDefault();
+                        if (dr != null)
+                        {
+                            dr["DateOccur"] = ODI.DateOccur;
+                            dr["Area"] = ODI.Area;
+                            dr["Customer"] = ODI.Customer;
+                            dr["Shift"] = ODI.Shift;
+                            dr["Station"] = ODI.Station;
+                            dr["Inspector"] = ODI.Inspector;
+                            dr["GroupModel"] = ODI.GroupModel;
+                            dr["ModelName"] = ODI.ModelName;
+                            dr["WO"] = ODI.WO;
+                            dr["WOQty"] = ODI.WOQty;
+                            dr["CheckNumber"] = ODI.CheckNumber;
+                            dr["NumberNG"] = ODI.NumberNG;
+                            dr["Occur_Time"] = ODI.Occur_Time;
+                            dr["Occur_Line"] = ODI.Occur_Line;
+                            dr["Serial_Number"] = ODI.Serial_Number;
+                            dr["Position"] = ODI.Position;
+                            dr["Defection"] = ODI.Defection;
+                            dr["Sample_Form"] = ODI.Sample_Form;
+                            dr["IsConfirm"] = ODI.IsConfirm;
+
+                        }
+                        adgrvODi.Refresh();
                     }
                     else
                     {
 
                         ODI = new ODI()
                         {
-                            DateOccur = dtpDateOccur.Value.Date,
+                            DateOccur = dateOccur,
                             Area = txbArea.Text,
                             Customer = cbbCustomer.Text,
                             Shift = shift,
@@ -507,11 +561,11 @@ namespace OQC
                             NG_Photo = NG_Photo,
                             OK_Photo = OK_Photo,
                             Sample_Form = sampleForm,
-                            IsConfirm = false
+                            IsConfirm = true
                         };
-                        if (Properties.Settings.Default.Account < 2 && Properties.Settings.Default.Account > 0)
+                        if (Properties.Settings.Default.Account == 3)
                         {
-                            ODI.IsConfirm = true;
+                            ODI.IsConfirm = false;
                         }
                         if (ODI.NumberNG == 0)
                         {
@@ -527,10 +581,14 @@ namespace OQC
                             ODI.OK_Photo = OK_Photo;
                         }
                         db.ODIs.Add(ODI);
+                        db.SaveChanges();
+                        table.Rows.Add(ODI.ID, ODI.Customer, ODI.Station, ODI.Inspector, ODI.GroupModel, ODI.ModelName, ODI.WO,
+                       ODI.WOQty, ODI.CheckNumber, ODI.Area, ODI.Shift, ODI.NumberNG, ODI.DateOccur, ODI.Occur_Time, ODI.Occur_Line,
+                       ODI.Serial_Number, ODI.Position, ODI.Defection, ODI.Sample_Form, ODI.IsConfirm);
+                        adgrvODi.Refresh();
                     }
 
-                    db.SaveChanges();
-                    GetListODIs();
+
                     if (((Button)sender).Name == "btnSaveODI" || ((Button)sender).Name == "btnCreate")
                     {
                         ResetDataKeepInspector();
@@ -540,8 +598,8 @@ namespace OQC
                         ResetData();
                     }
                     btnCreate.Visible = false;
-
                     updateAll();
+
                 }
             }
         }
@@ -615,7 +673,8 @@ namespace OQC
             {
                 using (var db = new ClaimFormEntities())
                 {
-                    var totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Inspector == txbInspector.Text.Trim() && m.IsConfirm == true).Sum(m => m.CheckNumber);
+                    var dateOccur = DateTime.ParseExact(txbDateOccur.Text.Trim(), "dd/MM/yyyy", null);
+                    var totalCheck = db.ODIs.Where(m => m.DateOccur == dateOccur && m.Inspector == txbInspector.Text.Trim() && m.IsConfirm == true).Sum(m => m.CheckNumber);
                     lblOP.Text = totalCheck.ToString();
                 }
             }
@@ -630,7 +689,8 @@ namespace OQC
             {
                 using (var db = new ClaimFormEntities())
                 {
-                    var totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.GroupModel == txbGroupModel.Text.Trim() && m.IsConfirm == true).Sum(m => m.CheckNumber);
+                    var dateOccur = DateTime.ParseExact(txbDateOccur.Text.Trim(), "dd/MM/yyyy", null);
+                    var totalCheck = db.ODIs.Where(m => m.DateOccur == dateOccur && m.GroupModel == txbGroupModel.Text.Trim() && m.IsConfirm == true).Sum(m => m.CheckNumber);
 
                     lblGroup.Text = totalCheck.ToString();
                 }
@@ -646,7 +706,8 @@ namespace OQC
             {
                 using (var db = new ClaimFormEntities())
                 {
-                    var totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.ModelName == txbModelName.Text.Trim() && m.IsConfirm == true).Sum(m => m.CheckNumber);
+                    var dateOccur = DateTime.ParseExact(txbDateOccur.Text.Trim(), "dd/MM/yyyy", null);
+                    var totalCheck = db.ODIs.Where(m => m.DateOccur == dateOccur && m.ModelName == txbModelName.Text.Trim() && m.IsConfirm == true).Sum(m => m.CheckNumber);
                     lblModel.Text = totalCheck.ToString();
                     lblModel.Text = totalCheck.ToString();
                     lblModel.Text = totalCheck.ToString();
@@ -665,18 +726,19 @@ namespace OQC
                 using (var db = new ClaimFormEntities())
                 {
                     List<ODI> totalCheck = new List<ODI>();
+                    var dateOccur = DateTime.ParseExact(txbDateOccur.Text.Trim(), "dd/MM/yyyy", null);
                     if (string.IsNullOrEmpty(cbbCustomer.Text))
                     {
-                        totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Shift == shift && m.IsConfirm == true).ToList();
+                        totalCheck = db.ODIs.Where(m => m.DateOccur == dateOccur && m.Shift == shift && m.IsConfirm == true).ToList();
                     }
                     else
                     {
-                        totalCheck = db.ODIs.Where(m => m.DateOccur == dtpDateOccur.Value.Date && m.Shift == shift && m.Customer == cbbCustomer.Text.Trim() && m.IsConfirm == true).ToList();
+                        totalCheck = db.ODIs.Where(m => m.DateOccur == dateOccur && m.Shift == shift && m.Customer == cbbCustomer.Text.Trim() && m.IsConfirm == true).ToList();
                     }
 
                     if (totalCheck != null && totalCheck.Count > 0)
                     {
-                        if (shift == OQC.Shift.DAY)
+                        if (shift == OQC.SHIFT.DAY)
                         {
                             lblDay.Text = totalCheck.Sum(m => m.CheckNumber).ToString();
                         }
@@ -850,9 +912,15 @@ namespace OQC
                     }
                     db.ODIs.Remove(ODI);
                     db.SaveChanges();
-                    GetListODIs();
+                    DataRow dr = table.Select("ID=" + ODI.ID).FirstOrDefault();
+                    if (dr != null)
+                    {
+                        dr.Delete();
+                        adgrvODi.Refresh();
+                    }
                     updateAll();
                     ResetDataKeepInspector();
+
                 }
             }
 
@@ -862,7 +930,7 @@ namespace OQC
             // Do stuff only if the radio button is checked (or the action will run twice).
             if (((RadioButton)sender).Checked)
             {
-                GetTotalByShift(rbShiftDay.Checked == true ? OQC.Shift.DAY : OQC.Shift.NIGHT);
+                GetTotalByShift(rbShiftDay.Checked == true ? OQC.SHIFT.DAY : OQC.SHIFT.NIGHT);
 
             }
         }
@@ -875,10 +943,9 @@ namespace OQC
 
         private void compareDate()
         {
-            var dateFrom = dpFrom.Value.Date;
-            var dateTo = dpTo.Value.Date;
-            adgrvODi.DataSource = odiDataSource;
-            bgwLoading.RunWorkerAsync(sql + " where DateOccur  >='" + dateFrom + "' AND DateOccur <= '" + dateTo + "'");
+            dpFrom.Value = dtpDateOccur.Value.Date;
+            dpTo.Value = dtpDateOccur.Value.Date;
+            GetListODIs();
         }
 
 
@@ -894,12 +961,11 @@ namespace OQC
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            adgrvODi.DataSource = odiDataSource;
-            bgwLoading.RunWorkerAsync(sql + " where DateOccur = '" + DateTime.Now.ToShortDateString() + "'");
+         
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            compareDate();
+            GetListODIs();
         }
 
 
@@ -917,10 +983,9 @@ namespace OQC
                 {
                     var odi = db.ODIs.Where(m => m.ID == IDODI).FirstOrDefault();
                     txbDateOccur.Text = odi.DateOccur.ToString("dd/MM/yyy");
-                    dtpDateOccur.Value = odi.DateOccur;
                     txbArea.Text = odi.Area;
                     cbbCustomer.Text = odi.Customer;
-                    rbShiftDay.Checked = odi.Shift == OQC.Shift.DAY;
+                    rbShiftDay.Checked = odi.Shift == OQC.SHIFT.DAY;
                     if (odi.Station == OQC.Station.OQC1)
                     {
                         rbStationOQC1.Checked = true;
@@ -933,7 +998,7 @@ namespace OQC
                     {
                         rbStationCSL.Checked = true;
                     }
-                    if (odi.Shift == OQC.Shift.DAY)
+                    if (odi.Shift == OQC.SHIFT.DAY)
                     {
                         rbShiftDay.Checked = true;
                     }
@@ -1144,7 +1209,6 @@ namespace OQC
         {
             IDODI = 0;
             submit(sender);
-            adgrvODi.FirstDisplayedScrollingRowIndex = this.odiDataSource.List.Count - 1;
 
         }
 
@@ -1170,11 +1234,12 @@ namespace OQC
                         try
                         {
                             int count = 0;
-                            foreach (DataGridViewRow r in adgrvODi.SelectedRows)
+                            var list = table.Select("Check = True").ToList();
+                            foreach (var r in list)
                             {
-                                if (r.Cells["ID"].Value != null)
+                                if ((bool)r["Check"] == true && r["ID"] != null)
                                 {
-                                    int IDODI = int.Parse(r.Cells["ID"].Value.ToString());
+                                    int IDODI = int.Parse(r["ID"].ToString());
                                     var odi = db.ODIs.Where(m => m.ID == IDODI).FirstOrDefault();
                                     if (odi != null)
                                     {
@@ -1186,9 +1251,8 @@ namespace OQC
                                         }
                                     }
                                 }
-
-
                             }
+                          
                             transaction.Commit();
                             GetListODIs();
                             updateAll();
@@ -1234,20 +1298,71 @@ namespace OQC
             sumDialog.ShowDialog();
 
         }
+        private void getData()
+        {
+            using (var db = new ClaimFormEntities())
+            {
+                var dateFrom = dpFrom.Value.Date;
+                var dateTo = dpTo.Value.Date;
+                var list = db.ODIs.Where(m => m.DateOccur >= dateFrom && m.DateOccur <= dateTo).Take(10).ToList();
+                table.Clear();
+                foreach (var item in list)
+                {
+                    table.Rows.Add(item.ID, item.Customer, item.Station, item.Inspector, item.GroupModel, item.ModelName, item.WO,
+                    item.WOQty, item.CheckNumber, item.Area, item.Shift, item.NumberNG, item.DateOccur, item.Occur_Time, item.Occur_Line,
+                    item.Serial_Number, item.Position, item.Defection, item.Sample_Form, item.IsConfirm);
+                }
 
+                odiDataSource.DataSource = null;
+                odiDataSource.DataSource = table;
+                for (int i = 0; i < adgrvODi.ColumnCount; i++)
+                {
+                    var width = adgrvODi.Columns[i].ToString().Length * 1 + 20;
+                    if (width < 35)
+                    {
+                        adgrvODi.Columns[0].Width = 35;
+                    }
+                    else
+                    {
+                        adgrvODi.Columns[i].Width = width;
+                    }
+
+                }
+                updateAll();
+                if (adgrvODi.RowCount > 1)
+                    adgrvODi.FirstDisplayedScrollingRowIndex = adgrvODi.RowCount - 1;
+            }
+
+        }
         private void bgwLoading_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             try
             {
-                string selectCommand = (string)e.Argument;
-                string connectionString = "Data Source=172.28.10.17;Initial Catalog=ClaimForm;Persist Security Info=True;User ID=sa;Password=umc@2019";
-                dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
-                DataTable table = new DataTable
+                //string selectCommand = (string)e.Argument;
+                //string connectionString = "Data Source=172.28.10.17;Initial Catalog=ClaimForm;Persist Security Info=True;User ID=sa;Password=umc@2019";
+                //dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
+                //DataTable table = new DataTable
+                //{
+                //    Locale = CultureInfo.InvariantCulture
+                //};
+                //dataAdapter.Fill(table);
+
+                using (var db = new ClaimFormEntities())
                 {
-                    Locale = CultureInfo.InvariantCulture
-                };
-                dataAdapter.Fill(table);
-                e.Result = table;
+                    var dateFrom = dpFrom.Value.Date;
+                    var dateTo = dpTo.Value.Date;
+                    var list = db.ODIs.Where(m => m.DateOccur >= dateFrom && m.DateOccur <= dateTo).ToList();
+                    table.Clear();
+                    foreach (var item in list)
+                    {
+                        table.Rows.Add(item.ID, item.Customer, item.Station, item.Inspector, item.GroupModel, item.ModelName, item.WO,
+                        item.WOQty, item.CheckNumber, item.Area, item.Shift, item.NumberNG, item.DateOccur, item.Occur_Time, item.Occur_Line,
+                        item.Serial_Number, item.Position, item.Defection, item.Sample_Form, item.IsConfirm);
+                    }
+
+                    e.Result = table;
+                }
+
 
             }
             catch (SqlException)
@@ -1256,20 +1371,32 @@ namespace OQC
             }
         }
 
-
         private void bgwLoading_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            if(e.Result == null)
-            {
-                MessageBox.Show("To run this example, replace the value of the " +
-                   "connectionString variable with a connection string that is " +
-                   "valid for your system.");
-            }
-            else
+            if (e.Result != null)
             {
                 var table = (DataTable)e.Result;
+                odiDataSource.DataSource = null;
                 odiDataSource.DataSource = table;
+                for (int i = 0; i < adgrvODi.ColumnCount; i++)
+                {
+                    var width = adgrvODi.Columns[i].ToString().Length * 1 + 20;
+                    if (width < 35)
+                    {
+                        adgrvODi.Columns[0].Width = 35;
+                    }
+                    else
+                    {
+                        adgrvODi.Columns[i].Width = width;
+                    }
+                   
+                }
+                updateAll();
+                if (adgrvODi.RowCount > 1)
+                    adgrvODi.FirstDisplayedScrollingRowIndex = adgrvODi.RowCount - 1;
             }
+            lblStatus.Text = "";
+            pbLoading.Visible = false;
         }
 
         private void bgWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -1282,6 +1409,24 @@ namespace OQC
                 var odis = db.ODIs.Where(m => m.DateOccur >= dateFrom && m.DateOccur <= dateTo).ToList();
                 var result = Utils.ExportStaff(odis, fileName);
                 e.Result = result;
+            }
+        }
+
+        private void adgrvODi_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+
+        }
+
+        private void cbAll_CheckedChanged(object sender, EventArgs e)
+        {
+            TickAll(cbAll.Checked);
+        }
+        private void TickAll(bool isAll)
+        {
+            var list = table.Select("IsConfirm = False").ToList();
+            foreach (var dr in list)
+            {
+                dr["Check"] = isAll;
             }
         }
     }

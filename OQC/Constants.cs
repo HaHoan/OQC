@@ -40,7 +40,7 @@ namespace OQC
         public static string OA = "OA";
         public static string PICKUP = "PICKUP";
     }
-    public class Shift
+    public class SHIFT
     {
         public static string DAY = "Day";
         public static string NIGHT = "Night";

@@ -24,7 +24,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>33</ApplicationRevision>
+    <ApplicationRevision>34</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -509,6 +509,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\list-icon.png" />
+    <None Include="Resources\filter-icon.png" />
+    <None Include="Resources\find-icon.png" />
     <None Include="Resources\construction.png" />
     <None Include="Resources\tools-16.png" />
     <None Include="Connected Services\ServiceReference1\PVSWebService.disco" />
