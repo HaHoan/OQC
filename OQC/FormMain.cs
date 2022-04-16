@@ -249,6 +249,7 @@ namespace OQC
                 return false;
             }
 
+           
             return true;
         }
 
@@ -480,6 +481,7 @@ namespace OQC
 
                     if (ODI != null)
                     {
+                        if (!CheckOverLoad(ODI.Station,ODI.CheckNumber)) return;
                         ODI.DateOccur = dateOccur;
                         ODI.Area = txbArea.Text;
                         ODI.Customer = cbbCustomer.Text;
@@ -506,6 +508,7 @@ namespace OQC
                         }
 
                         ODI.Sample_Form = sampleForm;
+                      
                         db.SaveChanges();
 
                         DataRow dr = table.Select("ID=" + ODI.ID).FirstOrDefault();
@@ -581,6 +584,7 @@ namespace OQC
                             ODI.OK_Photo = OK_Photo;
                         }
                         db.ODIs.Add(ODI);
+                        if (!CheckOverLoad(ODI.Station,0)) return;
                         db.SaveChanges();
                         table.Rows.Add(ODI.ID, ODI.Customer, ODI.Station, ODI.Inspector, ODI.GroupModel, ODI.ModelName, ODI.WO,
                        ODI.WOQty, ODI.CheckNumber, ODI.Area, ODI.Shift, ODI.NumberNG, ODI.DateOccur, ODI.Occur_Time, ODI.Occur_Line,
@@ -810,6 +814,28 @@ namespace OQC
             {
                 txbNumerCheck.SelectAll();
                 txbNumerCheck.Focus();
+               
+            
+            }
+        }
+
+        private bool CheckOverLoad(string station,int oldSLKiem = 0)
+        {
+            using(var db = new ClaimFormEntities())
+            {
+                int sum = 0;
+                var woDB = db.ODIs.Where(m => m.WO == txbWO.Text.Trim() && m.Station == station).ToList();
+                if (woDB != null) sum = woDB.Sum(m => m.CheckNumber);
+                var slKiem = int.Parse(txbNumerCheck.Text.Trim());
+                slKiem = slKiem + (sum - oldSLKiem);
+              
+                var total = int.Parse(txbWOQty.Text.Trim());
+                if(slKiem > total)
+                {
+                    MessageBox.Show("Số lượng kiểm tra là " + slKiem + " vượt quá số lượng của wo! Vui lòng kiểm tra lại!");
+                    return false;
+                }
+                return true;
             }
         }
 
