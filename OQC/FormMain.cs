@@ -35,28 +35,28 @@ namespace OQC
         public FormMain()
         {
             InitializeComponent();
-            table = new DataTable();
-            table.Columns.Add("ID", typeof(int));
-            table.Columns.Add("Customer", typeof(string));
-            table.Columns.Add("Station", typeof(string));
-            table.Columns.Add("Inspector", typeof(string));
-            table.Columns.Add("GroupModel", typeof(string));
-            table.Columns.Add("ModelName", typeof(string));
-            table.Columns.Add("WO", typeof(string));
-            table.Columns.Add("WOQty", typeof(string));
-            table.Columns.Add("CheckNumber", typeof(string));
-            table.Columns.Add("Area", typeof(string));
-            table.Columns.Add("Shift", typeof(string));
-            table.Columns.Add("NumberNG", typeof(string));
-            table.Columns.Add("DateOccur", typeof(string));
-            table.Columns.Add("Occur_Time", typeof(string));
-            table.Columns.Add("Occur_Line", typeof(string));
-            table.Columns.Add("Serial_Number", typeof(string));
-            table.Columns.Add("Position", typeof(string));
-            table.Columns.Add("Defection", typeof(string));
-            table.Columns.Add("Sample_Form", typeof(string));
-            table.Columns.Add("IsConfirm", typeof(string));
-            table.Columns.Add("Check", typeof(bool));
+            //table = new DataTable();
+            //table.Columns.Add("ID", typeof(int));
+            //table.Columns.Add("Customer", typeof(string));
+            //table.Columns.Add("Station", typeof(string));
+            //table.Columns.Add("Inspector", typeof(string));
+            //table.Columns.Add("GroupModel", typeof(string));
+            //table.Columns.Add("ModelName", typeof(string));
+            //table.Columns.Add("WO", typeof(string));
+            //table.Columns.Add("WOQty", typeof(string));
+            //table.Columns.Add("CheckNumber", typeof(string));
+            //table.Columns.Add("Area", typeof(string));
+            //table.Columns.Add("Shift", typeof(string));
+            //table.Columns.Add("NumberNG", typeof(string));
+            //table.Columns.Add("DateOccur", typeof(string));
+            //table.Columns.Add("Occur_Time", typeof(string));
+            //table.Columns.Add("Occur_Line", typeof(string));
+            //table.Columns.Add("Serial_Number", typeof(string));
+            //table.Columns.Add("Position", typeof(string));
+            //table.Columns.Add("Defection", typeof(string));
+            //table.Columns.Add("Sample_Form", typeof(string));
+            //table.Columns.Add("IsConfirm", typeof(string));
+            //table.Columns.Add("Check", typeof(bool));
 
             lblcode.Text = Properties.Settings.Default.Code.ToUpper();
             lblName.Text = Properties.Settings.Default.Name;
@@ -586,6 +586,8 @@ namespace OQC
                         db.ODIs.Add(ODI);
                         if (!CheckOverLoad(ODI.Station,0)) return;
                         db.SaveChanges();
+                      
+
                         table.Rows.Add(ODI.ID, ODI.Customer, ODI.Station, ODI.Inspector, ODI.GroupModel, ODI.ModelName, ODI.WO,
                        ODI.WOQty, ODI.CheckNumber, ODI.Area, ODI.Shift, ODI.NumberNG, ODI.DateOccur, ODI.Occur_Time, ODI.Occur_Line,
                        ODI.Serial_Number, ODI.Position, ODI.Defection, ODI.Sample_Form, ODI.IsConfirm);
@@ -606,6 +608,8 @@ namespace OQC
                             pvsWebService.SaveModelInfo(entity, ODI.ModelName);
                         }
                     }
+                    if (adgrvODi.RowCount > 1)
+                        adgrvODi.FirstDisplayedScrollingRowIndex = adgrvODi.RowCount - 1;
 
                     if (((Button)sender).Name == "btnSaveODI" || ((Button)sender).Name == "btnCreate")
                     {
@@ -985,7 +989,7 @@ namespace OQC
         {
             dpFrom.Value = dtpDateOccur.Value.Date;
             dpTo.Value = dtpDateOccur.Value.Date;
-            GetListODIs();
+            //GetListODIs();
         }
 
 
@@ -1378,30 +1382,33 @@ namespace OQC
         {
             try
             {
-                //string selectCommand = (string)e.Argument;
-                //string connectionString = "Data Source=172.28.10.17;Initial Catalog=ClaimForm;Persist Security Info=True;User ID=sa;Password=umc@2019";
-                //dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
-                //DataTable table = new DataTable
-                //{
-                //    Locale = CultureInfo.InvariantCulture
-                //};
-                //dataAdapter.Fill(table);
-
-                using (var db = new ClaimFormEntities())
+                var dateFrom = dpFrom.Value.Date;
+                var dateTo = dpTo.Value.Date;
+                string selectCommand = sql + " where DateOccur  >='" + dateFrom + "' AND DateOccur <= '" + dateTo + "'";
+                string connectionString = "Data Source=172.28.10.17;Initial Catalog=ClaimForm;Persist Security Info=True;User ID=sa;Password=umc@2019";
+                dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
+                table = new DataTable
                 {
-                    var dateFrom = dpFrom.Value.Date;
-                    var dateTo = dpTo.Value.Date;
-                    var list = db.ODIs.Where(m => m.DateOccur >= dateFrom && m.DateOccur <= dateTo).ToList();
-                    table.Clear();
-                    foreach (var item in list)
-                    {
-                        table.Rows.Add(item.ID, item.Customer, item.Station, item.Inspector, item.GroupModel, item.ModelName, item.WO,
-                        item.WOQty, item.CheckNumber, item.Area, item.Shift, item.NumberNG, item.DateOccur, item.Occur_Time, item.Occur_Line,
-                        item.Serial_Number, item.Position, item.Defection, item.Sample_Form, item.IsConfirm);
-                    }
+                    Locale = CultureInfo.InvariantCulture
+                };
+                dataAdapter.Fill(table);
+                
+                e.Result = table;
+                //using (var db = new ClaimFormEntities())
+                //{
+                //    var dateFrom = dpFrom.Value.Date;
+                //    var dateTo = dpTo.Value.Date;
+                //    var list = db.ODIs.Where(m => m.DateOccur >= dateFrom && m.DateOccur <= dateTo).ToList();
+                //    table.Clear();
+                //    foreach (var item in list)
+                //    {
+                //        table.Rows.Add(item.ID, item.Customer, item.Station, item.Inspector, item.GroupModel, item.ModelName, item.WO,
+                //        item.WOQty, item.CheckNumber, item.Area, item.Shift, item.NumberNG, item.DateOccur, item.Occur_Time, item.Occur_Line,
+                //        item.Serial_Number, item.Position, item.Defection, item.Sample_Form, item.IsConfirm);
+                //    }
 
-                    e.Result = table;
-                }
+                //    e.Result = table;
+                //}
 
 
             }
