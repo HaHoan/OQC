@@ -1382,20 +1382,27 @@ namespace OQC
         {
             try
             {
-                var dateFrom = dpFrom.Value.Date;
-                var dateTo = dpTo.Value.Date;
-                string selectCommand = sql + " where DateOccur  >='" + dateFrom + "' AND DateOccur <= '" + dateTo + "'";
                 string connectionString = "Data Source=172.28.10.17;Initial Catalog=ClaimForm;Persist Security Info=True;User ID=sa;Password=umc@2019";
-                dataAdapter = new SqlDataAdapter(selectCommand, connectionString);
-                table = new DataTable
+                using (SqlConnection connection = new SqlConnection( connectionString))
                 {
-                    Locale = CultureInfo.InvariantCulture
-                };
-                dataAdapter.FillSchema(table, SchemaType.Source);
-                table.Columns["IsConfirm"].DataType = typeof(string);
-                dataAdapter.Fill(table);
-                table.Columns.Add("Check", typeof(bool));
-                e.Result = table;
+                    var dateFrom = dpFrom.Value.Date;
+                    var dateTo = dpTo.Value.Date;
+                    SqlCommand cmnd = new SqlCommand(sql + " where DateOccur >= @from and DateOccur <= @to");
+                    cmnd.Connection = connection;
+                    cmnd.Parameters.Add("@from", SqlDbType.DateTime).Value = dateFrom.Date;
+                    cmnd.Parameters.Add("@to", SqlDbType.DateTime).Value = dateTo.Date;
+                    dataAdapter = new SqlDataAdapter(cmnd);
+                    table = new DataTable
+                    {
+                        Locale = CultureInfo.InvariantCulture
+                    };
+                    dataAdapter.FillSchema(table, SchemaType.Source);
+                    table.Columns["IsConfirm"].DataType = typeof(string);
+                    dataAdapter.Fill(table);
+                    table.Columns.Add("Check", typeof(bool));
+                    e.Result = table;
+                }
+                   
 
             }
             catch (SqlException)
