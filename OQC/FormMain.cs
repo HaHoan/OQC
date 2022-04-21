@@ -1391,25 +1391,11 @@ namespace OQC
                 {
                     Locale = CultureInfo.InvariantCulture
                 };
+                dataAdapter.FillSchema(table, SchemaType.Source);
+                table.Columns["IsConfirm"].DataType = typeof(string);
                 dataAdapter.Fill(table);
-                
+                table.Columns.Add("Check", typeof(bool));
                 e.Result = table;
-                //using (var db = new ClaimFormEntities())
-                //{
-                //    var dateFrom = dpFrom.Value.Date;
-                //    var dateTo = dpTo.Value.Date;
-                //    var list = db.ODIs.Where(m => m.DateOccur >= dateFrom && m.DateOccur <= dateTo).ToList();
-                //    table.Clear();
-                //    foreach (var item in list)
-                //    {
-                //        table.Rows.Add(item.ID, item.Customer, item.Station, item.Inspector, item.GroupModel, item.ModelName, item.WO,
-                //        item.WOQty, item.CheckNumber, item.Area, item.Shift, item.NumberNG, item.DateOccur, item.Occur_Time, item.Occur_Line,
-                //        item.Serial_Number, item.Position, item.Defection, item.Sample_Form, item.IsConfirm);
-                //    }
-
-                //    e.Result = table;
-                //}
-
 
             }
             catch (SqlException)
