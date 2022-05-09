@@ -1,4 +1,5 @@
 ﻿using OQC.Business;
+using OQC.ServiceReference1;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace OQC
 {
     public partial class Login : Form
     {
+        private PVSWebServiceSoapClient pvsWebService = new PVSWebServiceSoapClient();
         public Login()
         {
             InitializeComponent();
@@ -26,25 +28,32 @@ namespace OQC
                 string pass = txbPass.Text.Trim();
                 if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(pass))
                 {
-                    pass = pass.MD5Hash();
-                    var user = db.Users.Where(m => m.Id == username && m.Password == pass).FirstOrDefault();
-                    if (user == null)
+                    var user = pvsWebService.CheckUserLogin(username, pass);
+                    if (user != null)
                     {
-                        MessageBox.Show("Tài khoản không tồn tại");
-                        return;
-                    }
-                    else
-                    {
-                        Properties.Settings.Default.Account = user.RoleId is int role ? role : 0;
-                        Properties.Settings.Default.Code = user.Id;
-                        Properties.Settings.Default.Name = user.Name;
-                        Properties.Settings.Default.Role = user.Role.Name;
+                        var roleUser = db.Users.Where(m => m.Id == username).FirstOrDefault();
+                        if (roleUser != null && roleUser.RoleId is int roleId)
+                        {
+                            Properties.Settings.Default.Account = roleId;
+                        }
+                        else
+                        {
+                            Properties.Settings.Default.Account = RoleName.OPERATOR;
+                        }
+                        Properties.Settings.Default.Code = user.ID;
+                        Properties.Settings.Default.Name = user.NAME;
                         this.Hide();
                         FormMain main = new FormMain();
                         main.ShowDialog();
                         this.Close();
 
                     }
+                    else
+                    {
+                        MessageBox.Show("Liên hệ với IT để thêm tài khoản!");
+                        return;
+                    }
+
                 }
                 else
                 {
@@ -55,7 +64,7 @@ namespace OQC
 
         private void txbUser_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 txbPass.Focus();
             }

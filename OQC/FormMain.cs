@@ -566,7 +566,7 @@ namespace OQC
                             Sample_Form = sampleForm,
                             IsConfirm = true
                         };
-                        if (Properties.Settings.Default.Account == 3)
+                        if (Properties.Settings.Default.Account == RoleName.OPERATOR)
                         {
                             ODI.IsConfirm = false;
                         }
