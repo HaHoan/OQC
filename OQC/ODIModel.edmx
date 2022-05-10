@@ -77,6 +77,7 @@
           <Property Name="Password" Type="nvarchar" MaxLength="100" />
           <Property Name="RoleId" Type="int" />
           <Property Name="MailCC" Type="nvarchar" MaxLength="100" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_RolesUser">
           <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
@@ -114,27 +115,13 @@
           <Property Name="TypeNG1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="JP" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Department_id" Type="Int32" />
-          <Property Name="Position_id" Type="Int32" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="RoleId" Type="Int32" />
-          <Property Name="MailCC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Role" Relationship="ClaimFormModel.FK_RolesUser" FromRole="User" ToRole="Role" />
-        </EntityType>
         <EntityContainer Name="ClaimFormEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TypeNGs" EntityType="Self.TypeNG" />
-          <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="TargetPPMs" EntityType="ClaimFormModel.TargetPPM" />
           <EntitySet Name="Areas" EntityType="ClaimFormModel.Area" />
           <EntitySet Name="ODIs" EntityType="ClaimFormModel.ODI" />
           <EntitySet Name="Roles" EntityType="ClaimFormModel.Role" />
+          <EntitySet Name="Users" EntityType="ClaimFormModel.User" />
           <AssociationSet Name="FK_RolesUser" Association="ClaimFormModel.FK_RolesUser">
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
@@ -193,6 +180,21 @@
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="ClaimFormModel.FK_RolesUser" FromRole="Role" ToRole="User" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Department_id" Type="Int32" />
+          <Property Name="Position_id" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="MailCC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Role" Relationship="ClaimFormModel.FK_RolesUser" FromRole="User" ToRole="Role" />
+        </EntityType>
         <Association Name="FK_RolesUser">
           <End Type="ClaimFormModel.Role" Role="Role" Multiplicity="0..1" />
           <End Type="ClaimFormModel.User" Role="User" Multiplicity="*" />
@@ -217,20 +219,6 @@
                 <ScalarProperty Name="JP" ColumnName="JP" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TypeNG1" ColumnName="TypeNG" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="ClaimFormModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Department_id" ColumnName="Department_id" />
-                <ScalarProperty Name="Position_id" ColumnName="Position_id" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="MailCC" ColumnName="MailCC" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -285,6 +273,21 @@
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="ClaimFormModel.Role">
               <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ClaimFormModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="MailCC" ColumnName="MailCC" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Position_id" ColumnName="Position_id" />
+                <ScalarProperty Name="Department_id" ColumnName="Department_id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

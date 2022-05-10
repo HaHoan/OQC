@@ -22,6 +22,7 @@ namespace OQC
         public string Password { get; set; }
         public Nullable<int> RoleId { get; set; }
         public string MailCC { get; set; }
+        public string Customer { get; set; }
     
         public virtual Role Role { get; set; }
     }

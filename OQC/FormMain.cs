@@ -35,32 +35,8 @@ namespace OQC
         public FormMain()
         {
             InitializeComponent();
-            //table = new DataTable();
-            //table.Columns.Add("ID", typeof(int));
-            //table.Columns.Add("Customer", typeof(string));
-            //table.Columns.Add("Station", typeof(string));
-            //table.Columns.Add("Inspector", typeof(string));
-            //table.Columns.Add("GroupModel", typeof(string));
-            //table.Columns.Add("ModelName", typeof(string));
-            //table.Columns.Add("WO", typeof(string));
-            //table.Columns.Add("WOQty", typeof(string));
-            //table.Columns.Add("CheckNumber", typeof(string));
-            //table.Columns.Add("Area", typeof(string));
-            //table.Columns.Add("Shift", typeof(string));
-            //table.Columns.Add("NumberNG", typeof(string));
-            //table.Columns.Add("DateOccur", typeof(string));
-            //table.Columns.Add("Occur_Time", typeof(string));
-            //table.Columns.Add("Occur_Line", typeof(string));
-            //table.Columns.Add("Serial_Number", typeof(string));
-            //table.Columns.Add("Position", typeof(string));
-            //table.Columns.Add("Defection", typeof(string));
-            //table.Columns.Add("Sample_Form", typeof(string));
-            //table.Columns.Add("IsConfirm", typeof(string));
-            //table.Columns.Add("Check", typeof(bool));
-
             lblcode.Text = Properties.Settings.Default.Code.ToUpper();
             lblName.Text = Properties.Settings.Default.Name;
-            //lblRole.Text = Properties.Settings.Default.Role.ToUpper();
             txbInspector.Text = Properties.Settings.Default.Code;
             lblVersion.Text = Utils.GetRunningVersion();
             getCustomer();
@@ -645,7 +621,7 @@ namespace OQC
             OK_Photo = "";
             pbNG.Image = null;
             pbOK.Image = null;
-            txbGroupModel.Focus();
+            txbModelName.Focus();
             btnSaveODI.Text = "SUBMIT";
             btnSubmitNext.Text = "SUBMIT/NEXT";
             IDODI = 0;
@@ -1268,6 +1244,11 @@ namespace OQC
 
         private void btnConfirmData_Click(object sender, EventArgs e)
         {
+            if(Properties.Settings.Default.Customer == null)
+            {
+                new FormNhapKhachHang().ShowDialog();
+                return;
+            }
             if (MessageBox.Show("Bạn có muốn xác nhận dữ liệu đã nhập không?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
 
@@ -1287,6 +1268,12 @@ namespace OQC
                                     var odi = db.ODIs.Where(m => m.ID == IDODI).FirstOrDefault();
                                     if (odi != null)
                                     {
+                                        if(odi.Customer != Properties.Settings.Default.Customer)
+                                        {
+                                            MessageBox.Show("Đang thực hiện confirm dữ liệu không thuộc khách hàng mà bạn quản lý. Vui lòng kiểm tra lại!");
+                                            transaction.Rollback();
+                                            return;
+                                        }
                                         if (odi.IsConfirm == null || (odi.IsConfirm is bool isconfirm && !isconfirm))
                                         {
                                             odi.IsConfirm = true;
@@ -1463,7 +1450,7 @@ namespace OQC
         }
         private void TickAll(bool isAll)
         {
-            var list = table.Select("IsConfirm = False").ToList();
+            var list = table.Select(this.adgrvODi.FilterString).ToList();
             foreach (var dr in list)
             {
                 dr["Check"] = isAll;
