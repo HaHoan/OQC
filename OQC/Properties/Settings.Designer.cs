@@ -85,12 +85,12 @@ namespace OQC.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Customer {
+        public string Area {
             get {
-                return ((string)(this["Customer"]));
+                return ((string)(this["Area"]));
             }
             set {
-                this["Customer"] = value;
+                this["Area"] = value;
             }
         }
     }

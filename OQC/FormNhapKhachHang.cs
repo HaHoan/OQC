@@ -22,10 +22,10 @@ namespace OQC
         {
             using (var db = new ClaimFormEntities())
             {
-                var customers = db.Areas.ToList();
+                var customers = db.Areas.GroupBy(m => m.Area1).ToList();
                 foreach (var cus in customers)
                 {
-                    cbbCustomer.Items.Add(cus.Customer);
+                    cbbCustomer.Items.Add(cus.Key);
                 }
 
             }
@@ -36,7 +36,7 @@ namespace OQC
             {
                 var user = db.Users.Where(m => m.Id == Properties.Settings.Default.Code).FirstOrDefault();
                 user.Customer = cbbCustomer.Text;
-                Properties.Settings.Default.Customer = cbbCustomer.Text;
+                Properties.Settings.Default.Area = cbbCustomer.Text;
                 db.SaveChanges();
                 Close();
             }

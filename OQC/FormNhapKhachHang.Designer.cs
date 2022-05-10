@@ -39,9 +39,9 @@
             this.label1.Location = new System.Drawing.Point(31, 13);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label1.Size = new System.Drawing.Size(178, 13);
+            this.label1.Size = new System.Drawing.Size(163, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Chọn khách hàng bạn đang quản lý";
+            this.label1.Text = "Chọn khu vực  bạn đang quản lý";
             // 
             // cbbCustomer
             // 

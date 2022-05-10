@@ -1244,7 +1244,7 @@ namespace OQC
 
         private void btnConfirmData_Click(object sender, EventArgs e)
         {
-            if(Properties.Settings.Default.Customer == null)
+            if(Properties.Settings.Default.Area == null)
             {
                 new FormNhapKhachHang().ShowDialog();
                 return;
@@ -1268,7 +1268,7 @@ namespace OQC
                                     var odi = db.ODIs.Where(m => m.ID == IDODI).FirstOrDefault();
                                     if (odi != null)
                                     {
-                                        if(odi.Customer != Properties.Settings.Default.Customer)
+                                        if(odi.Area != Properties.Settings.Default.Area)
                                         {
                                             MessageBox.Show("Đang thực hiện confirm dữ liệu không thuộc khách hàng mà bạn quản lý. Vui lòng kiểm tra lại!");
                                             transaction.Rollback();

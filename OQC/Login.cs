@@ -35,7 +35,7 @@ namespace OQC
                         if (roleUser != null && roleUser.RoleId is int roleId)
                         {
                             Properties.Settings.Default.Account = roleId;
-                            Properties.Settings.Default.Customer = roleUser.Customer;
+                            Properties.Settings.Default.Area = roleUser.Customer;
                         }
                         else
                         {
