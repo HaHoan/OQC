@@ -39,6 +39,7 @@ namespace OQC
         public static string ID = "ID";
         public static string OA = "OA";
         public static string PICKUP = "PICKUP";
+        public static string ALL = "ALL";
     }
     public class SHIFT
     {

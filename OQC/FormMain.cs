@@ -1268,7 +1268,7 @@ namespace OQC
                                     var odi = db.ODIs.Where(m => m.ID == IDODI).FirstOrDefault();
                                     if (odi != null)
                                     {
-                                        if(odi.Area != Properties.Settings.Default.Area)
+                                        if(odi.Area != Properties.Settings.Default.Area || Properties.Settings.Default.Area != Areas.ALL)
                                         {
                                             MessageBox.Show("Đang thực hiện confirm dữ liệu không thuộc khách hàng mà bạn quản lý. Vui lòng kiểm tra lại!");
                                             transaction.Rollback();
