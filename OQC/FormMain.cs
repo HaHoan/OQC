@@ -1268,18 +1268,23 @@ namespace OQC
                                     var odi = db.ODIs.Where(m => m.ID == IDODI).FirstOrDefault();
                                     if (odi != null)
                                     {
-                                        if(odi.Area != Properties.Settings.Default.Area || Properties.Settings.Default.Area != Areas.ALL)
+                                        if(odi.Area == Properties.Settings.Default.Area || Properties.Settings.Default.Area == Areas.ALL)
+                                        {
+                                            if (odi.IsConfirm == null || (odi.IsConfirm is bool isconfirm && !isconfirm))
+                                            {
+                                                odi.IsConfirm = true;
+                                                db.SaveChanges();
+                                                count++;
+                                            }
+                                        }
+                                        else
                                         {
                                             MessageBox.Show("Đang thực hiện confirm dữ liệu không thuộc khách hàng mà bạn quản lý. Vui lòng kiểm tra lại!");
                                             transaction.Rollback();
                                             return;
                                         }
-                                        if (odi.IsConfirm == null || (odi.IsConfirm is bool isconfirm && !isconfirm))
-                                        {
-                                            odi.IsConfirm = true;
-                                            db.SaveChanges();
-                                            count++;
-                                        }
+
+                                      
                                     }
                                 }
                             }
@@ -1288,6 +1293,8 @@ namespace OQC
                             GetListODIs();
                             updateAll();
                             MessageBox.Show("Confirm thành công " + count.ToString() + " rows!");
+
+
                         }
                         catch (Exception ex)
                         {

@@ -45,6 +45,7 @@ namespace OQC
             this.rbStationOQC2 = new System.Windows.Forms.RadioButton();
             this.rbStationOQC1 = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnSum = new System.Windows.Forms.Button();
             this.txbNote = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txbNumberNG = new System.Windows.Forms.TextBox();
@@ -87,6 +88,10 @@ namespace OQC
             this.lblNight = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.panelAddWork = new System.Windows.Forms.Panel();
+            this.cbAll = new System.Windows.Forms.CheckBox();
+            this.pbLoading = new System.Windows.Forms.PictureBox();
+            this.btnSettingModel = new System.Windows.Forms.Button();
+            this.btnEditTargetPPM = new System.Windows.Forms.Button();
             this.btnChangePass = new System.Windows.Forms.Button();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblNotice = new System.Windows.Forms.Label();
@@ -97,46 +102,14 @@ namespace OQC
             this.txbArea = new System.Windows.Forms.TextBox();
             this.btnCreate = new System.Windows.Forms.Button();
             this.lblExport = new System.Windows.Forms.Label();
+            this.btnExcel = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.rb50Per = new System.Windows.Forms.RadioButton();
             this.rbAQL = new System.Windows.Forms.RadioButton();
             this.rb100Per = new System.Windows.Forms.RadioButton();
             this.lblNumberRow = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.adgrvODi = new ADGV.AdvancedDataGridView();
-            this.label14 = new System.Windows.Forms.Label();
-            this.dpTo = new System.Windows.Forms.DateTimePicker();
-            this.label11 = new System.Windows.Forms.Label();
-            this.dpFrom = new System.Windows.Forms.DateTimePicker();
-            this.txbDateOccur = new System.Windows.Forms.TextBox();
-            this.btnSubmitNext = new System.Windows.Forms.Button();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnSaveODI = new System.Windows.Forms.Button();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.btnAddOK = new System.Windows.Forms.Button();
-            this.btnAddNG = new System.Windows.Forms.Button();
-            this.cbbTypeNG = new System.Windows.Forms.ComboBox();
-            this.dtpTimeOccur = new System.Windows.Forms.DateTimePicker();
-            this.txbNGDetail = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.txbPosition = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.txbSerial = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.txbLine = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.bgWorker = new System.ComponentModel.BackgroundWorker();
-            this.oDIBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.claimFormDataSet = new OQC.ClaimFormDataSet();
-            this.oDITableAdapter = new OQC.ClaimFormDataSetTableAdapters.ODITableAdapter();
-            this.claimFormDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bgwLoading = new System.ComponentModel.BackgroundWorker();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.cbAll = new System.Windows.Forms.CheckBox();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Station = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -157,15 +130,42 @@ namespace OQC
             this.Defection = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sample_Form = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsConfirm = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pbLoading = new System.Windows.Forms.PictureBox();
-            this.btnSettingModel = new System.Windows.Forms.Button();
-            this.btnEditTargetPPM = new System.Windows.Forms.Button();
-            this.btnExcel = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.dpTo = new System.Windows.Forms.DateTimePicker();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dpFrom = new System.Windows.Forms.DateTimePicker();
+            this.txbDateOccur = new System.Windows.Forms.TextBox();
             this.btnDateOccur = new System.Windows.Forms.Button();
+            this.btnSubmitNext = new System.Windows.Forms.Button();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnSaveODI = new System.Windows.Forms.Button();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.btnAddOK = new System.Windows.Forms.Button();
             this.pbOK = new System.Windows.Forms.PictureBox();
+            this.btnAddNG = new System.Windows.Forms.Button();
             this.pbNG = new System.Windows.Forms.PictureBox();
-            this.btnSum = new System.Windows.Forms.Button();
+            this.cbbTypeNG = new System.Windows.Forms.ComboBox();
+            this.dtpTimeOccur = new System.Windows.Forms.DateTimePicker();
+            this.txbNGDetail = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txbPosition = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.txbSerial = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.txbLine = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.oDIBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.claimFormDataSet = new OQC.ClaimFormDataSet();
+            this.oDITableAdapter = new OQC.ClaimFormDataSetTableAdapters.ODITableAdapter();
+            this.claimFormDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bgwLoading = new System.ComponentModel.BackgroundWorker();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -178,14 +178,14 @@ namespace OQC
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panelAddWork.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLoading)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.adgrvODi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOK)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oDIBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLoading)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOK)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNG)).BeginInit();
             this.SuspendLayout();
             // 
             // dtpDateOccur
@@ -211,6 +211,7 @@ namespace OQC
             // 
             this.cbbCustomer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbbCustomer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbbCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbCustomer.FormattingEnabled = true;
             this.cbbCustomer.Location = new System.Drawing.Point(91, 40);
             this.cbbCustomer.Name = "cbbCustomer";
@@ -330,6 +331,18 @@ namespace OQC
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Productivity";
+            // 
+            // btnSum
+            // 
+            this.btnSum.FlatAppearance.BorderSize = 0;
+            this.btnSum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSum.Image = global::OQC.Properties.Resources.edit;
+            this.btnSum.Location = new System.Drawing.Point(170, 164);
+            this.btnSum.Name = "btnSum";
+            this.btnSum.Size = new System.Drawing.Size(31, 23);
+            this.btnSum.TabIndex = 19;
+            this.btnSum.UseVisualStyleBackColor = true;
+            this.btnSum.Click += new System.EventHandler(this.btnSum_Click);
             // 
             // txbNote
             // 
@@ -853,6 +866,56 @@ namespace OQC
             this.panelAddWork.Size = new System.Drawing.Size(1008, 747);
             this.panelAddWork.TabIndex = 2;
             // 
+            // cbAll
+            // 
+            this.cbAll.AutoSize = true;
+            this.cbAll.Location = new System.Drawing.Point(959, 136);
+            this.cbAll.Name = "cbAll";
+            this.cbAll.Size = new System.Drawing.Size(37, 17);
+            this.cbAll.TabIndex = 81;
+            this.cbAll.Text = "All";
+            this.toolTip1.SetToolTip(this.cbAll, "Chọn confirm tất cả");
+            this.cbAll.UseVisualStyleBackColor = true;
+            this.cbAll.CheckedChanged += new System.EventHandler(this.cbAll_CheckedChanged);
+            // 
+            // pbLoading
+            // 
+            this.pbLoading.Image = global::OQC.Properties.Resources.loading;
+            this.pbLoading.Location = new System.Drawing.Point(564, 248);
+            this.pbLoading.Name = "pbLoading";
+            this.pbLoading.Size = new System.Drawing.Size(63, 68);
+            this.pbLoading.TabIndex = 80;
+            this.pbLoading.TabStop = false;
+            // 
+            // btnSettingModel
+            // 
+            this.btnSettingModel.BackColor = System.Drawing.Color.Transparent;
+            this.btnSettingModel.FlatAppearance.BorderSize = 0;
+            this.btnSettingModel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettingModel.Image = global::OQC.Properties.Resources.construction;
+            this.btnSettingModel.Location = new System.Drawing.Point(854, 712);
+            this.btnSettingModel.Name = "btnSettingModel";
+            this.btnSettingModel.Size = new System.Drawing.Size(77, 32);
+            this.btnSettingModel.TabIndex = 79;
+            this.toolTip1.SetToolTip(this.btnSettingModel, "Cài đặt nhóm model");
+            this.btnSettingModel.UseVisualStyleBackColor = false;
+            this.btnSettingModel.Visible = false;
+            this.btnSettingModel.Click += new System.EventHandler(this.btnSettingModel_Click);
+            // 
+            // btnEditTargetPPM
+            // 
+            this.btnEditTargetPPM.BackColor = System.Drawing.Color.Transparent;
+            this.btnEditTargetPPM.FlatAppearance.BorderSize = 0;
+            this.btnEditTargetPPM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditTargetPPM.Image = global::OQC.Properties.Resources.tools_16;
+            this.btnEditTargetPPM.Location = new System.Drawing.Point(786, 712);
+            this.btnEditTargetPPM.Name = "btnEditTargetPPM";
+            this.btnEditTargetPPM.Size = new System.Drawing.Size(61, 32);
+            this.btnEditTargetPPM.TabIndex = 78;
+            this.toolTip1.SetToolTip(this.btnEditTargetPPM, "Cài đặt Target");
+            this.btnEditTargetPPM.UseVisualStyleBackColor = false;
+            this.btnEditTargetPPM.Click += new System.EventHandler(this.btnEditTargetPPM_Click);
+            // 
             // btnChangePass
             // 
             this.btnChangePass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -943,6 +1006,7 @@ namespace OQC
             this.txbArea.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbArea.Location = new System.Drawing.Point(91, 65);
             this.txbArea.Name = "txbArea";
+            this.txbArea.ReadOnly = true;
             this.txbArea.Size = new System.Drawing.Size(123, 20);
             this.txbArea.TabIndex = 68;
             // 
@@ -967,6 +1031,19 @@ namespace OQC
             this.lblExport.Name = "lblExport";
             this.lblExport.Size = new System.Drawing.Size(0, 13);
             this.lblExport.TabIndex = 65;
+            // 
+            // btnExcel
+            // 
+            this.btnExcel.BackColor = System.Drawing.Color.Transparent;
+            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcel.ForeColor = System.Drawing.Color.Transparent;
+            this.btnExcel.Image = global::OQC.Properties.Resources.import_excel;
+            this.btnExcel.Location = new System.Drawing.Point(556, 131);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(75, 27);
+            this.btnExcel.TabIndex = 64;
+            this.btnExcel.UseVisualStyleBackColor = false;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
             // groupBox4
             // 
@@ -1025,6 +1102,19 @@ namespace OQC
             this.lblNumberRow.TabIndex = 62;
             this.lblNumberRow.Text = "0 Rows";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = global::OQC.Properties.Resources.find_icon;
+            this.button1.Location = new System.Drawing.Point(496, 128);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(42, 33);
+            this.button1.TabIndex = 60;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // adgrvODi
             // 
             this.adgrvODi.AllowUserToAddRows = false;
@@ -1082,323 +1172,6 @@ namespace OQC
             this.adgrvODi.FilterStringChanged += new System.EventHandler(this.adgrvODi_FilterStringChanged);
             this.adgrvODi.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.adgrvODi_CellMouseClick);
             this.adgrvODi.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.adgrvODi_DataError);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(357, 139);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(27, 13);
-            this.label14.TabIndex = 56;
-            this.label14.Text = "Đến";
-            // 
-            // dpTo
-            // 
-            this.dpTo.CustomFormat = "dd-MM-yyyy";
-            this.dpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpTo.Location = new System.Drawing.Point(387, 135);
-            this.dpTo.Name = "dpTo";
-            this.dpTo.Size = new System.Drawing.Size(77, 20);
-            this.dpTo.TabIndex = 55;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(226, 138);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(20, 13);
-            this.label11.TabIndex = 54;
-            this.label11.Text = "Từ";
-            // 
-            // dpFrom
-            // 
-            this.dpFrom.CustomFormat = "dd-MM-yyyy";
-            this.dpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dpFrom.Location = new System.Drawing.Point(249, 135);
-            this.dpFrom.Name = "dpFrom";
-            this.dpFrom.Size = new System.Drawing.Size(77, 20);
-            this.dpFrom.TabIndex = 53;
-            // 
-            // txbDateOccur
-            // 
-            this.txbDateOccur.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txbDateOccur.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbDateOccur.Location = new System.Drawing.Point(91, 16);
-            this.txbDateOccur.Name = "txbDateOccur";
-            this.txbDateOccur.Size = new System.Drawing.Size(123, 20);
-            this.txbDateOccur.TabIndex = 0;
-            this.txbDateOccur.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbDateOccur_PreviewKeyDown);
-            // 
-            // btnSubmitNext
-            // 
-            this.btnSubmitNext.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.btnSubmitNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubmitNext.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnSubmitNext.Location = new System.Drawing.Point(5, 640);
-            this.btnSubmitNext.Name = "btnSubmitNext";
-            this.btnSubmitNext.Size = new System.Drawing.Size(116, 49);
-            this.btnSubmitNext.TabIndex = 20;
-            this.btnSubmitNext.Text = "SUBMIT/NEXT";
-            this.btnSubmitNext.UseVisualStyleBackColor = false;
-            this.btnSubmitNext.Click += new System.EventHandler(this.btnSaveODI_Click);
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.ForeColor = System.Drawing.Color.Maroon;
-            this.lblStatus.Location = new System.Drawing.Point(10, 544);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(20, 16);
-            this.lblStatus.TabIndex = 49;
-            this.lblStatus.Text = "...";
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.BackColor = System.Drawing.Color.Maroon;
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnDelete.Location = new System.Drawing.Point(130, 639);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(142, 48);
-            this.btnDelete.TabIndex = 27;
-            this.btnDelete.Text = "DELETE";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnSaveODI
-            // 
-            this.btnSaveODI.BackColor = System.Drawing.Color.Green;
-            this.btnSaveODI.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveODI.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnSaveODI.Location = new System.Drawing.Point(8, 582);
-            this.btnSaveODI.Name = "btnSaveODI";
-            this.btnSaveODI.Size = new System.Drawing.Size(116, 49);
-            this.btnSaveODI.TabIndex = 19;
-            this.btnSaveODI.Text = "SUBMIT";
-            this.btnSaveODI.UseVisualStyleBackColor = false;
-            this.btnSaveODI.Click += new System.EventHandler(this.btnSaveODI_Click);
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(758, 408);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(44, 13);
-            this.label31.TabIndex = 46;
-            this.label31.Text = "Ảnh OK";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(476, 406);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(45, 13);
-            this.label32.TabIndex = 45;
-            this.label32.Text = "Ảnh NG";
-            // 
-            // btnAddOK
-            // 
-            this.btnAddOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddOK.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAddOK.Location = new System.Drawing.Point(756, 649);
-            this.btnAddOK.Name = "btnAddOK";
-            this.btnAddOK.Size = new System.Drawing.Size(68, 29);
-            this.btnAddOK.TabIndex = 44;
-            this.btnAddOK.Text = "Chọn Ảnh";
-            this.btnAddOK.UseVisualStyleBackColor = true;
-            this.btnAddOK.Click += new System.EventHandler(this.btnAddOK_Click);
-            // 
-            // btnAddNG
-            // 
-            this.btnAddNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddNG.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAddNG.Location = new System.Drawing.Point(470, 651);
-            this.btnAddNG.Name = "btnAddNG";
-            this.btnAddNG.Size = new System.Drawing.Size(68, 29);
-            this.btnAddNG.TabIndex = 42;
-            this.btnAddNG.Text = "Chọn Ảnh";
-            this.btnAddNG.UseVisualStyleBackColor = true;
-            this.btnAddNG.Click += new System.EventHandler(this.btnAddNG_Click);
-            // 
-            // cbbTypeNG
-            // 
-            this.cbbTypeNG.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbbTypeNG.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbbTypeNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbTypeNG.FormattingEnabled = true;
-            this.cbbTypeNG.Location = new System.Drawing.Point(328, 520);
-            this.cbbTypeNG.Name = "cbbTypeNG";
-            this.cbbTypeNG.Size = new System.Drawing.Size(130, 21);
-            this.cbbTypeNG.TabIndex = 25;
-            // 
-            // dtpTimeOccur
-            // 
-            this.dtpTimeOccur.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpTimeOccur.CustomFormat = "HH:mm";
-            this.dtpTimeOccur.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpTimeOccur.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTimeOccur.Location = new System.Drawing.Point(328, 409);
-            this.dtpTimeOccur.Name = "dtpTimeOccur";
-            this.dtpTimeOccur.ShowUpDown = true;
-            this.dtpTimeOccur.Size = new System.Drawing.Size(130, 20);
-            this.dtpTimeOccur.TabIndex = 21;
-            this.dtpTimeOccur.ValueChanged += new System.EventHandler(this.dtpTimeOccur_ValueChanged);
-            // 
-            // txbNGDetail
-            // 
-            this.txbNGDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbNGDetail.Location = new System.Drawing.Point(328, 548);
-            this.txbNGDetail.Name = "txbNGDetail";
-            this.txbNGDetail.Size = new System.Drawing.Size(130, 20);
-            this.txbNGDetail.TabIndex = 26;
-            this.txbNGDetail.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbNGDetail_PreviewKeyDown);
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label25.Location = new System.Drawing.Point(273, 554);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(47, 13);
-            this.label25.TabIndex = 37;
-            this.label25.Text = "Mô tả lỗi";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label26.Location = new System.Drawing.Point(280, 526);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(40, 13);
-            this.label26.TabIndex = 36;
-            this.label26.Text = "Loại lỗi";
-            // 
-            // txbPosition
-            // 
-            this.txbPosition.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txbPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbPosition.Location = new System.Drawing.Point(328, 492);
-            this.txbPosition.Name = "txbPosition";
-            this.txbPosition.Size = new System.Drawing.Size(130, 20);
-            this.txbPosition.TabIndex = 24;
-            this.txbPosition.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbPosition_PreviewKeyDown);
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label27.Location = new System.Drawing.Point(291, 498);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(29, 13);
-            this.label27.TabIndex = 34;
-            this.label27.Text = "Vị trí";
-            // 
-            // txbSerial
-            // 
-            this.txbSerial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbSerial.Location = new System.Drawing.Point(328, 464);
-            this.txbSerial.Name = "txbSerial";
-            this.txbSerial.Size = new System.Drawing.Size(130, 20);
-            this.txbSerial.TabIndex = 23;
-            this.txbSerial.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbSerial_PreviewKeyDown);
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label28.Location = new System.Drawing.Point(273, 470);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(47, 13);
-            this.label28.TabIndex = 32;
-            this.label28.Text = "Số serial";
-            // 
-            // txbLine
-            // 
-            this.txbLine.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txbLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbLine.Location = new System.Drawing.Point(328, 436);
-            this.txbLine.Name = "txbLine";
-            this.txbLine.Size = new System.Drawing.Size(130, 20);
-            this.txbLine.TabIndex = 22;
-            this.txbLine.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbLine_PreviewKeyDown);
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label29.Location = new System.Drawing.Point(247, 442);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(73, 13);
-            this.label29.TabIndex = 30;
-            this.label29.Text = "Line phát sinh";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label30.Location = new System.Drawing.Point(229, 414);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(91, 13);
-            this.label30.TabIndex = 29;
-            this.label30.Text = "Thời điểm(hh:mm)";
-            // 
-            // bgWorker
-            // 
-            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
-            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
-            // 
-            // oDIBindingSource
-            // 
-            this.oDIBindingSource.DataMember = "ODI";
-            this.oDIBindingSource.DataSource = this.claimFormDataSet;
-            // 
-            // claimFormDataSet
-            // 
-            this.claimFormDataSet.DataSetName = "ClaimFormDataSet";
-            this.claimFormDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // oDITableAdapter
-            // 
-            this.oDITableAdapter.ClearBeforeFill = true;
-            // 
-            // claimFormDataSetBindingSource
-            // 
-            this.claimFormDataSetBindingSource.DataSource = this.claimFormDataSet;
-            this.claimFormDataSetBindingSource.Position = 0;
-            // 
-            // bgwLoading
-            // 
-            this.bgwLoading.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwLoading_DoWork);
-            this.bgwLoading.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwLoading_RunWorkerCompleted);
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "loading-transparent.gif");
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.AutomaticDelay = 200;
-            // 
-            // cbAll
-            // 
-            this.cbAll.AutoSize = true;
-            this.cbAll.Location = new System.Drawing.Point(959, 136);
-            this.cbAll.Name = "cbAll";
-            this.cbAll.Size = new System.Drawing.Size(37, 17);
-            this.cbAll.TabIndex = 81;
-            this.cbAll.Text = "All";
-            this.toolTip1.SetToolTip(this.cbAll, "Chọn confirm tất cả");
-            this.cbAll.UseVisualStyleBackColor = true;
-            this.cbAll.CheckedChanged += new System.EventHandler(this.cbAll_CheckedChanged);
             // 
             // ID
             // 
@@ -1580,69 +1353,51 @@ namespace OQC
             this.IsConfirm.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.IsConfirm.Width = 36;
             // 
-            // pbLoading
+            // label14
             // 
-            this.pbLoading.Image = global::OQC.Properties.Resources.loading;
-            this.pbLoading.Location = new System.Drawing.Point(564, 248);
-            this.pbLoading.Name = "pbLoading";
-            this.pbLoading.Size = new System.Drawing.Size(63, 68);
-            this.pbLoading.TabIndex = 80;
-            this.pbLoading.TabStop = false;
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(357, 139);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(27, 13);
+            this.label14.TabIndex = 56;
+            this.label14.Text = "Đến";
             // 
-            // btnSettingModel
+            // dpTo
             // 
-            this.btnSettingModel.BackColor = System.Drawing.Color.Transparent;
-            this.btnSettingModel.FlatAppearance.BorderSize = 0;
-            this.btnSettingModel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettingModel.Image = global::OQC.Properties.Resources.construction;
-            this.btnSettingModel.Location = new System.Drawing.Point(854, 712);
-            this.btnSettingModel.Name = "btnSettingModel";
-            this.btnSettingModel.Size = new System.Drawing.Size(77, 32);
-            this.btnSettingModel.TabIndex = 79;
-            this.toolTip1.SetToolTip(this.btnSettingModel, "Cài đặt nhóm model");
-            this.btnSettingModel.UseVisualStyleBackColor = false;
-            this.btnSettingModel.Visible = false;
-            this.btnSettingModel.Click += new System.EventHandler(this.btnSettingModel_Click);
+            this.dpTo.CustomFormat = "dd-MM-yyyy";
+            this.dpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpTo.Location = new System.Drawing.Point(387, 135);
+            this.dpTo.Name = "dpTo";
+            this.dpTo.Size = new System.Drawing.Size(77, 20);
+            this.dpTo.TabIndex = 55;
             // 
-            // btnEditTargetPPM
+            // label11
             // 
-            this.btnEditTargetPPM.BackColor = System.Drawing.Color.Transparent;
-            this.btnEditTargetPPM.FlatAppearance.BorderSize = 0;
-            this.btnEditTargetPPM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditTargetPPM.Image = global::OQC.Properties.Resources.tools_16;
-            this.btnEditTargetPPM.Location = new System.Drawing.Point(786, 712);
-            this.btnEditTargetPPM.Name = "btnEditTargetPPM";
-            this.btnEditTargetPPM.Size = new System.Drawing.Size(61, 32);
-            this.btnEditTargetPPM.TabIndex = 78;
-            this.toolTip1.SetToolTip(this.btnEditTargetPPM, "Cài đặt Target");
-            this.btnEditTargetPPM.UseVisualStyleBackColor = false;
-            this.btnEditTargetPPM.Click += new System.EventHandler(this.btnEditTargetPPM_Click);
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(226, 138);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(20, 13);
+            this.label11.TabIndex = 54;
+            this.label11.Text = "Từ";
             // 
-            // btnExcel
+            // dpFrom
             // 
-            this.btnExcel.BackColor = System.Drawing.Color.Transparent;
-            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcel.ForeColor = System.Drawing.Color.Transparent;
-            this.btnExcel.Image = global::OQC.Properties.Resources.import_excel;
-            this.btnExcel.Location = new System.Drawing.Point(556, 131);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(75, 27);
-            this.btnExcel.TabIndex = 64;
-            this.btnExcel.UseVisualStyleBackColor = false;
-            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            this.dpFrom.CustomFormat = "dd-MM-yyyy";
+            this.dpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpFrom.Location = new System.Drawing.Point(249, 135);
+            this.dpFrom.Name = "dpFrom";
+            this.dpFrom.Size = new System.Drawing.Size(77, 20);
+            this.dpFrom.TabIndex = 53;
             // 
-            // button1
+            // txbDateOccur
             // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::OQC.Properties.Resources.find_icon;
-            this.button1.Location = new System.Drawing.Point(496, 128);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(42, 33);
-            this.button1.TabIndex = 60;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.txbDateOccur.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txbDateOccur.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbDateOccur.Location = new System.Drawing.Point(91, 16);
+            this.txbDateOccur.Name = "txbDateOccur";
+            this.txbDateOccur.Size = new System.Drawing.Size(123, 20);
+            this.txbDateOccur.TabIndex = 0;
+            this.txbDateOccur.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbDateOccur_PreviewKeyDown);
             // 
             // btnDateOccur
             // 
@@ -1657,6 +1412,86 @@ namespace OQC
             this.btnDateOccur.UseVisualStyleBackColor = false;
             this.btnDateOccur.Click += new System.EventHandler(this.btnDateOccur_Click);
             // 
+            // btnSubmitNext
+            // 
+            this.btnSubmitNext.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnSubmitNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubmitNext.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnSubmitNext.Location = new System.Drawing.Point(5, 640);
+            this.btnSubmitNext.Name = "btnSubmitNext";
+            this.btnSubmitNext.Size = new System.Drawing.Size(116, 49);
+            this.btnSubmitNext.TabIndex = 20;
+            this.btnSubmitNext.Text = "SUBMIT/NEXT";
+            this.btnSubmitNext.UseVisualStyleBackColor = false;
+            this.btnSubmitNext.Click += new System.EventHandler(this.btnSaveODI_Click);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.ForeColor = System.Drawing.Color.Maroon;
+            this.lblStatus.Location = new System.Drawing.Point(10, 544);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(20, 16);
+            this.lblStatus.TabIndex = 49;
+            this.lblStatus.Text = "...";
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.Maroon;
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnDelete.Location = new System.Drawing.Point(130, 639);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(142, 48);
+            this.btnDelete.TabIndex = 27;
+            this.btnDelete.Text = "DELETE";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnSaveODI
+            // 
+            this.btnSaveODI.BackColor = System.Drawing.Color.Green;
+            this.btnSaveODI.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveODI.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnSaveODI.Location = new System.Drawing.Point(8, 582);
+            this.btnSaveODI.Name = "btnSaveODI";
+            this.btnSaveODI.Size = new System.Drawing.Size(116, 49);
+            this.btnSaveODI.TabIndex = 19;
+            this.btnSaveODI.Text = "SUBMIT";
+            this.btnSaveODI.UseVisualStyleBackColor = false;
+            this.btnSaveODI.Click += new System.EventHandler(this.btnSaveODI_Click);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(758, 408);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(44, 13);
+            this.label31.TabIndex = 46;
+            this.label31.Text = "Ảnh OK";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(476, 406);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(45, 13);
+            this.label32.TabIndex = 45;
+            this.label32.Text = "Ảnh NG";
+            // 
+            // btnAddOK
+            // 
+            this.btnAddOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddOK.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnAddOK.Location = new System.Drawing.Point(756, 649);
+            this.btnAddOK.Name = "btnAddOK";
+            this.btnAddOK.Size = new System.Drawing.Size(68, 29);
+            this.btnAddOK.TabIndex = 44;
+            this.btnAddOK.Text = "Chọn Ảnh";
+            this.btnAddOK.UseVisualStyleBackColor = true;
+            this.btnAddOK.Click += new System.EventHandler(this.btnAddOK_Click);
+            // 
             // pbOK
             // 
             this.pbOK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1666,6 +1501,18 @@ namespace OQC
             this.pbOK.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbOK.TabIndex = 43;
             this.pbOK.TabStop = false;
+            // 
+            // btnAddNG
+            // 
+            this.btnAddNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddNG.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnAddNG.Location = new System.Drawing.Point(470, 651);
+            this.btnAddNG.Name = "btnAddNG";
+            this.btnAddNG.Size = new System.Drawing.Size(68, 29);
+            this.btnAddNG.TabIndex = 42;
+            this.btnAddNG.Text = "Chọn Ảnh";
+            this.btnAddNG.UseVisualStyleBackColor = true;
+            this.btnAddNG.Click += new System.EventHandler(this.btnAddNG_Click);
             // 
             // pbNG
             // 
@@ -1677,17 +1524,172 @@ namespace OQC
             this.pbNG.TabIndex = 41;
             this.pbNG.TabStop = false;
             // 
-            // btnSum
+            // cbbTypeNG
             // 
-            this.btnSum.FlatAppearance.BorderSize = 0;
-            this.btnSum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSum.Image = global::OQC.Properties.Resources.edit;
-            this.btnSum.Location = new System.Drawing.Point(170, 164);
-            this.btnSum.Name = "btnSum";
-            this.btnSum.Size = new System.Drawing.Size(31, 23);
-            this.btnSum.TabIndex = 19;
-            this.btnSum.UseVisualStyleBackColor = true;
-            this.btnSum.Click += new System.EventHandler(this.btnSum_Click);
+            this.cbbTypeNG.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbTypeNG.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbbTypeNG.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbTypeNG.FormattingEnabled = true;
+            this.cbbTypeNG.Location = new System.Drawing.Point(328, 520);
+            this.cbbTypeNG.Name = "cbbTypeNG";
+            this.cbbTypeNG.Size = new System.Drawing.Size(130, 21);
+            this.cbbTypeNG.TabIndex = 25;
+            // 
+            // dtpTimeOccur
+            // 
+            this.dtpTimeOccur.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpTimeOccur.CustomFormat = "HH:mm";
+            this.dtpTimeOccur.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpTimeOccur.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTimeOccur.Location = new System.Drawing.Point(328, 409);
+            this.dtpTimeOccur.Name = "dtpTimeOccur";
+            this.dtpTimeOccur.ShowUpDown = true;
+            this.dtpTimeOccur.Size = new System.Drawing.Size(130, 20);
+            this.dtpTimeOccur.TabIndex = 21;
+            this.dtpTimeOccur.ValueChanged += new System.EventHandler(this.dtpTimeOccur_ValueChanged);
+            // 
+            // txbNGDetail
+            // 
+            this.txbNGDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbNGDetail.Location = new System.Drawing.Point(328, 548);
+            this.txbNGDetail.Name = "txbNGDetail";
+            this.txbNGDetail.Size = new System.Drawing.Size(130, 20);
+            this.txbNGDetail.TabIndex = 26;
+            this.txbNGDetail.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbNGDetail_PreviewKeyDown);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label25.Location = new System.Drawing.Point(273, 554);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(47, 13);
+            this.label25.TabIndex = 37;
+            this.label25.Text = "Mô tả lỗi";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label26.Location = new System.Drawing.Point(280, 526);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(40, 13);
+            this.label26.TabIndex = 36;
+            this.label26.Text = "Loại lỗi";
+            // 
+            // txbPosition
+            // 
+            this.txbPosition.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txbPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbPosition.Location = new System.Drawing.Point(328, 492);
+            this.txbPosition.Name = "txbPosition";
+            this.txbPosition.Size = new System.Drawing.Size(130, 20);
+            this.txbPosition.TabIndex = 24;
+            this.txbPosition.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbPosition_PreviewKeyDown);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label27.Location = new System.Drawing.Point(291, 498);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(29, 13);
+            this.label27.TabIndex = 34;
+            this.label27.Text = "Vị trí";
+            // 
+            // txbSerial
+            // 
+            this.txbSerial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbSerial.Location = new System.Drawing.Point(328, 464);
+            this.txbSerial.Name = "txbSerial";
+            this.txbSerial.Size = new System.Drawing.Size(130, 20);
+            this.txbSerial.TabIndex = 23;
+            this.txbSerial.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbSerial_PreviewKeyDown);
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label28.Location = new System.Drawing.Point(273, 470);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(47, 13);
+            this.label28.TabIndex = 32;
+            this.label28.Text = "Số serial";
+            // 
+            // txbLine
+            // 
+            this.txbLine.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txbLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbLine.Location = new System.Drawing.Point(328, 436);
+            this.txbLine.Name = "txbLine";
+            this.txbLine.Size = new System.Drawing.Size(130, 20);
+            this.txbLine.TabIndex = 22;
+            this.txbLine.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbLine_PreviewKeyDown);
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label29.Location = new System.Drawing.Point(247, 442);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(73, 13);
+            this.label29.TabIndex = 30;
+            this.label29.Text = "Line phát sinh";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label30.Location = new System.Drawing.Point(229, 414);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(91, 13);
+            this.label30.TabIndex = 29;
+            this.label30.Text = "Thời điểm(hh:mm)";
+            // 
+            // bgWorker
+            // 
+            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
+            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
+            // 
+            // oDIBindingSource
+            // 
+            this.oDIBindingSource.DataMember = "ODI";
+            this.oDIBindingSource.DataSource = this.claimFormDataSet;
+            // 
+            // claimFormDataSet
+            // 
+            this.claimFormDataSet.DataSetName = "ClaimFormDataSet";
+            this.claimFormDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // oDITableAdapter
+            // 
+            this.oDITableAdapter.ClearBeforeFill = true;
+            // 
+            // claimFormDataSetBindingSource
+            // 
+            this.claimFormDataSetBindingSource.DataSource = this.claimFormDataSet;
+            this.claimFormDataSetBindingSource.Position = 0;
+            // 
+            // bgwLoading
+            // 
+            this.bgwLoading.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwLoading_DoWork);
+            this.bgwLoading.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwLoading_RunWorkerCompleted);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "loading-transparent.gif");
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutomaticDelay = 200;
             // 
             // FormMain
             // 
@@ -1718,15 +1720,15 @@ namespace OQC
             this.panel8.ResumeLayout(false);
             this.panelAddWork.ResumeLayout(false);
             this.panelAddWork.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLoading)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.adgrvODi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOK)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.oDIBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.claimFormDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLoading)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOK)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNG)).EndInit();
             this.ResumeLayout(false);
 
         }
