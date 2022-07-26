@@ -19,6 +19,7 @@ namespace OQC
     {
 
         List<TypeNG> listNG = new List<TypeNG>();
+        USAPService.USAPWebServiceSoapClient usapService = new USAPService.USAPWebServiceSoapClient();
         private PVSWebServiceSoapClient pvsWebService = new PVSWebServiceSoapClient();
         public string[] areas = new string[]
         {
@@ -225,7 +226,7 @@ namespace OQC
                 return false;
             }
 
-           
+
             return true;
         }
 
@@ -457,7 +458,7 @@ namespace OQC
 
                     if (ODI != null)
                     {
-                        if (!CheckOverLoad(ODI.Station,ODI.CheckNumber)) return;
+                        if (!CheckOverLoad(ODI.Station, ODI.CheckNumber)) return;
                         ODI.DateOccur = dateOccur;
                         ODI.Area = txbArea.Text;
                         ODI.Customer = cbbCustomer.Text;
@@ -484,7 +485,7 @@ namespace OQC
                         }
 
                         ODI.Sample_Form = sampleForm;
-                      
+
                         db.SaveChanges();
 
                         DataRow dr = table.Select("ID=" + ODI.ID).FirstOrDefault();
@@ -560,9 +561,9 @@ namespace OQC
                             ODI.OK_Photo = OK_Photo;
                         }
                         db.ODIs.Add(ODI);
-                        if (!CheckOverLoad(ODI.Station,0)) return;
+                        if (!CheckOverLoad(ODI.Station, 0)) return;
                         db.SaveChanges();
-                      
+
 
                         table.Rows.Add(ODI.ID, ODI.Customer, ODI.Station, ODI.Inspector, ODI.GroupModel, ODI.ModelName, ODI.WO,
                        ODI.WOQty, ODI.CheckNumber, ODI.Area, ODI.Shift, ODI.NumberNG, ODI.DateOccur, ODI.Occur_Time, ODI.Occur_Line,
@@ -579,7 +580,7 @@ namespace OQC
                         {
                             pvsWebService.SaveModelInfo(entity, "");
                         }
-                        else if(string.IsNullOrEmpty(model.Group_Id))
+                        else if (string.IsNullOrEmpty(model.Group_Id))
                         {
                             pvsWebService.SaveModelInfo(entity, ODI.ModelName);
                         }
@@ -774,11 +775,40 @@ namespace OQC
         {
             if (e.KeyCode == Keys.Enter)
             {
+                SearchModelByWork();
                 txbWOQty.SelectAll();
                 txbWOQty.Focus();
             }
         }
-
+        private void SearchModelByWork()
+        {
+            var BCLBFLMInfo = usapService.GetByTnNo("002000" + txbWO.Text);
+            string partNo = "";
+            if (BCLBFLMInfo != null && BCLBFLMInfo.Length > 0)
+            {
+                partNo = BCLBFLMInfo[0].PART_NO;
+            }
+            else
+            {
+                var order = pvsWebService.GetWorkOrdersByOrderNo("2000" + txbWO.Text);
+                if (order != null)
+                {
+                    partNo = order.PRODUCT_ID;
+                }
+            }
+            var split = partNo.Split('-');
+            if (split != null && split.Length == 3)
+            {
+                partNo = split[0] + "-" + split[1];
+            }
+            txbModelName.Text = partNo;
+            GetTotalByModel();
+            var modelInfo = pvsWebService.GetModelInfo(txbModelName.Text.Trim());
+            if (modelInfo != null && !string.IsNullOrEmpty(modelInfo.Group_Id))
+            {
+                txbGroupModel.Text = modelInfo.Group_Id;
+            }
+        }
         private void txbNumerCheck_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -794,23 +824,23 @@ namespace OQC
             {
                 txbNumerCheck.SelectAll();
                 txbNumerCheck.Focus();
-               
-            
+
+
             }
         }
 
-        private bool CheckOverLoad(string station,int oldSLKiem = 0)
+        private bool CheckOverLoad(string station, int oldSLKiem = 0)
         {
-            using(var db = new ClaimFormEntities())
+            using (var db = new ClaimFormEntities())
             {
                 int sum = 0;
                 var woDB = db.ODIs.Where(m => m.WO == txbWO.Text.Trim() && m.Station == station).ToList();
                 if (woDB != null) sum = woDB.Sum(m => m.CheckNumber);
                 var slKiem = int.Parse(txbNumerCheck.Text.Trim());
                 slKiem = slKiem + (sum - oldSLKiem);
-              
+
                 var total = int.Parse(txbWOQty.Text.Trim());
-                if(slKiem > total)
+                if (slKiem > total)
                 {
                     MessageBox.Show("Số lượng kiểm tra là " + slKiem + " vượt quá số lượng của wo! Vui lòng kiểm tra lại!");
                     return false;
@@ -981,7 +1011,7 @@ namespace OQC
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-         
+
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -1244,7 +1274,7 @@ namespace OQC
 
         private void btnConfirmData_Click(object sender, EventArgs e)
         {
-            if(Properties.Settings.Default.Area == null)
+            if (Properties.Settings.Default.Area == null)
             {
                 new FormNhapKhachHang().ShowDialog();
                 return;
@@ -1268,7 +1298,7 @@ namespace OQC
                                     var odi = db.ODIs.Where(m => m.ID == IDODI).FirstOrDefault();
                                     if (odi != null)
                                     {
-                                        if(odi.Area == Properties.Settings.Default.Area || Properties.Settings.Default.Area == Areas.ALL)
+                                        if (odi.Area == Properties.Settings.Default.Area || Properties.Settings.Default.Area == Areas.ALL)
                                         {
                                             if (odi.IsConfirm == null || (odi.IsConfirm is bool isconfirm && !isconfirm))
                                             {
@@ -1284,11 +1314,11 @@ namespace OQC
                                             return;
                                         }
 
-                                      
+
                                     }
                                 }
                             }
-                          
+
                             transaction.Commit();
                             GetListODIs();
                             updateAll();
@@ -1377,7 +1407,7 @@ namespace OQC
             try
             {
                 string connectionString = "Data Source=172.28.10.17;Initial Catalog=ClaimForm;Persist Security Info=True;User ID=sa;Password=umc@2019";
-                using (SqlConnection connection = new SqlConnection( connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     var dateFrom = dpFrom.Value.Date;
                     var dateTo = dpTo.Value.Date;
@@ -1396,7 +1426,7 @@ namespace OQC
                     table.Columns.Add("Check", typeof(bool));
                     e.Result = table;
                 }
-                   
+
 
             }
             catch (SqlException)
@@ -1423,7 +1453,7 @@ namespace OQC
                     {
                         adgrvODi.Columns[i].Width = width;
                     }
-                   
+
                 }
                 updateAll();
                 if (adgrvODi.RowCount > 1)

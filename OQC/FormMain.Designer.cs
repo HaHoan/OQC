@@ -327,7 +327,7 @@ namespace OQC
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.groupBox3.Location = new System.Drawing.Point(12, 241);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(211, 285);
+            this.groupBox3.Size = new System.Drawing.Size(211, 291);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Productivity";
@@ -410,7 +410,7 @@ namespace OQC
             // txbWOQty
             // 
             this.txbWOQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbWOQty.Location = new System.Drawing.Point(71, 139);
+            this.txbWOQty.Location = new System.Drawing.Point(71, 83);
             this.txbWOQty.MaxLength = 6;
             this.txbWOQty.Name = "txbWOQty";
             this.txbWOQty.Size = new System.Drawing.Size(131, 20);
@@ -423,7 +423,7 @@ namespace OQC
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label6.Location = new System.Drawing.Point(18, 144);
+            this.label6.Location = new System.Drawing.Point(18, 88);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 13);
             this.label6.TabIndex = 8;
@@ -433,7 +433,7 @@ namespace OQC
             // 
             this.txbWO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbWO.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbWO.Location = new System.Drawing.Point(71, 111);
+            this.txbWO.Location = new System.Drawing.Point(71, 55);
             this.txbWO.MaxLength = 6;
             this.txbWO.Name = "txbWO";
             this.txbWO.Size = new System.Drawing.Size(131, 20);
@@ -445,7 +445,7 @@ namespace OQC
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label5.Location = new System.Drawing.Point(30, 117);
+            this.label5.Location = new System.Drawing.Point(30, 61);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(33, 13);
             this.label5.TabIndex = 6;
@@ -455,8 +455,9 @@ namespace OQC
             // 
             this.txbModelName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbModelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbModelName.Location = new System.Drawing.Point(71, 55);
+            this.txbModelName.Location = new System.Drawing.Point(71, 112);
             this.txbModelName.Name = "txbModelName";
+            this.txbModelName.ReadOnly = true;
             this.txbModelName.Size = new System.Drawing.Size(131, 20);
             this.txbModelName.TabIndex = 13;
             this.txbModelName.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbModelName_PreviewKeyDown);
@@ -466,7 +467,7 @@ namespace OQC
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(6, 62);
+            this.label4.Location = new System.Drawing.Point(6, 119);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 4;
@@ -476,8 +477,9 @@ namespace OQC
             // 
             this.txbGroupModel.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txbGroupModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbGroupModel.Location = new System.Drawing.Point(71, 82);
+            this.txbGroupModel.Location = new System.Drawing.Point(71, 139);
             this.txbGroupModel.Name = "txbGroupModel";
+            this.txbGroupModel.ReadOnly = true;
             this.txbGroupModel.Size = new System.Drawing.Size(131, 20);
             this.txbGroupModel.TabIndex = 12;
             this.txbGroupModel.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txbGroupModel_PreviewKeyDown);
@@ -487,7 +489,7 @@ namespace OQC
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(-4, 90);
+            this.label3.Location = new System.Drawing.Point(-4, 147);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 2;
