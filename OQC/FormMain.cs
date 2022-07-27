@@ -765,8 +765,8 @@ namespace OQC
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txbWO.SelectAll();
-                txbWO.Focus();
+                txbWOQty.SelectAll();
+                txbWOQty.Focus();
                 GetTotalByGroup();
             }
         }
@@ -776,8 +776,8 @@ namespace OQC
             if (e.KeyCode == Keys.Enter)
             {
                 SearchModelByWork();
-                txbWOQty.SelectAll();
-                txbWOQty.Focus();
+                txbModelName.SelectAll();
+                txbModelName.Focus();
             }
         }
         private void SearchModelByWork()
@@ -824,8 +824,6 @@ namespace OQC
             {
                 txbNumerCheck.SelectAll();
                 txbNumerCheck.Focus();
-
-
             }
         }
 
