@@ -622,7 +622,7 @@ namespace OQC
             OK_Photo = "";
             pbNG.Image = null;
             pbOK.Image = null;
-            txbModelName.Focus();
+            txbWO.Focus();
             btnSaveODI.Text = "SUBMIT";
             btnSubmitNext.Text = "SUBMIT/NEXT";
             IDODI = 0;
