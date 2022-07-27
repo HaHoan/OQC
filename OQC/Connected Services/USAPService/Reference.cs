@@ -1445,12 +1445,12 @@ namespace OQC.USAPService {
     public partial class GetByTnNoResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public OQC.USAPService.BCLBFLMEntity[] GetByTnNoResult;
+        public OQC.USAPService.BCLBFLMEntity GetByTnNoResult;
         
         public GetByTnNoResponseBody() {
         }
         
-        public GetByTnNoResponseBody(OQC.USAPService.BCLBFLMEntity[] GetByTnNoResult) {
+        public GetByTnNoResponseBody(OQC.USAPService.BCLBFLMEntity GetByTnNoResult) {
             this.GetByTnNoResult = GetByTnNoResult;
         }
     }
@@ -2207,7 +2207,7 @@ namespace OQC.USAPService {
             return base.Channel.GetByTnNo(request);
         }
         
-        public OQC.USAPService.BCLBFLMEntity[] GetByTnNo(string tnNo) {
+        public OQC.USAPService.BCLBFLMEntity GetByTnNo(string tnNo) {
             OQC.USAPService.GetByTnNoRequest inValue = new OQC.USAPService.GetByTnNoRequest();
             inValue.Body = new OQC.USAPService.GetByTnNoRequestBody();
             inValue.Body.tnNo = tnNo;

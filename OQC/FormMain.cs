@@ -661,8 +661,8 @@ namespace OQC
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txbModelName.SelectAll();
-                txbModelName.Focus();
+                txbWO.SelectAll();
+                txbWO.Focus();
                 GetTotalByOP();
             }
         }
@@ -784,9 +784,9 @@ namespace OQC
         {
             var BCLBFLMInfo = usapService.GetByTnNo("002000" + txbWO.Text);
             string partNo = "";
-            if (BCLBFLMInfo != null && BCLBFLMInfo.Length > 0)
+            if (BCLBFLMInfo != null)
             {
-                partNo = BCLBFLMInfo[0].PART_NO;
+                partNo = BCLBFLMInfo.PART_NO;
             }
             else
             {
@@ -797,7 +797,7 @@ namespace OQC
                 }
             }
             var split = partNo.Split('-');
-            if (split != null && split.Length == 3)
+            if (split != null && split.Length == 3 && split[2].Contains("000SS0"))
             {
                 partNo = split[0] + "-" + split[1];
             }
